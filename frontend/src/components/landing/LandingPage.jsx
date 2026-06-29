@@ -1,19 +1,21 @@
 import React, { useEffect } from 'react';
 import Navbar from './Navbar';
 import Hero from './Hero';
-import WhatIs from './WhatIs';
-import Features from './Features';
-import ExamPathways from './ExamPathways';
+import WhyInfinity from './WhyInfinity';
 import HowItWorks from './HowItWorks';
-import PainPoints from './PainPoints';
+import Features from './Features';
+import WhatIs from './WhatIs';
+import WhyItWorks from './WhyItWorks';
+import Research from './Research';
+import Testimonials from './Testimonials';
 import Pricing from './Pricing';
+import FinalCTA from './FinalCTA';
 import SignupSection from './SignupSection';
 import Footer from './Footer';
 
 export default function LandingPage({ hash }) {
   useEffect(() => {
     if (hash && hash.startsWith('#') && hash.length > 1) {
-      // Smooth scroll to section if it exists
       const id = hash.slice(1);
       const el = document.getElementById(id);
       if (el) {
@@ -22,20 +24,21 @@ export default function LandingPage({ hash }) {
     }
   }, [hash]);
 
-  const onStart = () => {
-    window.location.hash = '#signup';
-  };
+  const onStart = () => { window.location.hash = '#signup'; };
 
   return (
-    <div className="bg-white scroll-smooth-area">
+    <div className="section-bg">
       <Navbar onStart={onStart} />
       <Hero />
-      <WhatIs />
-      <Features />
-      <ExamPathways />
+      <WhyInfinity />
       <HowItWorks />
-      <PainPoints />
+      <Features />
+      <WhatIs />
+      <WhyItWorks />
+      <Research />
+      <Testimonials />
       <Pricing />
+      <FinalCTA />
       <SignupSection />
       <Footer />
     </div>

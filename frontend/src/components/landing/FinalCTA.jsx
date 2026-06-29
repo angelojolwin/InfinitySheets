@@ -1,0 +1,28 @@
+import React from 'react';
+import { ArrowRight } from 'lucide-react';
+
+export default function FinalCTA() {
+  return (
+    <section className="section-bg">
+      <div className="max-w-[1280px] mx-auto px-6 py-20">
+        <div className="relative overflow-hidden rounded-3xl bg-slate-900 px-8 py-16 lg:px-16 lg:py-20">
+          <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-violet-500/20 blur-3xl pointer-events-none" />
+          <div className="absolute -bottom-24 -left-24 w-80 h-80 rounded-full bg-blue-500/20 blur-3xl pointer-events-none" />
+          <div className="relative max-w-[760px]">
+            <div className="text-[11px] tracking-[0.14em] uppercase font-semibold text-violet-300 mb-5">Final call</div>
+            <h2 className="h-display text-white text-[40px] sm:text-[48px] lg:text-[56px]">Ready to study smarter?</h2>
+            <p className="mt-5 text-[16px] text-slate-300 leading-relaxed max-w-[560px]">
+              Join students who are using AI-powered personalized learning to improve faster and study with confidence.
+            </p>
+            <div className="mt-8 flex flex-wrap items-center gap-3">
+              <a href="#signup" className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-violet-500 hover:bg-violet-400 text-white text-[14.5px] font-medium transition-colors">
+                Start Free <ArrowRight className="w-4 h-4" />
+              </a>
+              <a href="#features" className="inline-flex items-center px-5 py-3 rounded-xl border border-slate-700 text-slate-200 hover:bg-slate-800 transition-colors text-[14.5px] font-medium">Explore features</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}

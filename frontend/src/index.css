@@ -4,13 +4,28 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+    --color-primary: #7c3aed;       /* violet */
+    --color-primary-700: #6d28d9;
+    --color-secondary: #2563eb;     /* royal blue */
+    --color-secondary-700: #1d4ed8;
+    --color-accent: #06b6d4;        /* cyan */
+    --color-success: #10b981;       /* emerald */
+    --color-bg: #fafaf7;             /* off white */
+    --color-bg-2: #f4f3ee;
+    --color-card: #ffffff;
+    --color-text: #0f172a;           /* dark slate */
+    --color-text-2: #64748b;         /* gray */
+    --color-border: #e6e4dd;
+}
+
 html, body {
     margin: 0;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background: #ffffff;
-    color: #18181b;
+    background: var(--color-bg);
+    color: var(--color-text);
 }
 
 .font-serif-italic {
@@ -25,7 +40,7 @@ html, body {
     font-weight: 600;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: #7c3aed;
+    color: var(--color-primary);
 }
 
 .eyebrow-muted {
@@ -33,63 +48,78 @@ html, body {
     font-weight: 600;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: #71717a;
+    color: var(--color-text-2);
 }
 
 .h-display {
     font-weight: 600;
     letter-spacing: -0.035em;
     line-height: 1.02;
+    color: var(--color-text);
 }
 
 .btn-violet {
-    background: #7c3aed;
+    background: var(--color-primary);
     color: white;
     transition: background-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
 }
 .btn-violet:hover {
-    background: #6d28d9;
+    background: var(--color-primary-700);
 }
 
+.btn-blue {
+    background: var(--color-secondary);
+    color: white;
+    transition: background-color 0.18s ease;
+}
+.btn-blue:hover { background: var(--color-secondary-700); }
+
 .btn-outline-dark {
-    background: white;
-    color: #18181b;
-    border: 1px solid #e4e4e7;
+    background: var(--color-card);
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
     transition: background-color 0.18s ease, border-color 0.18s ease;
 }
 .btn-outline-dark:hover {
-    background: #fafafa;
-    border-color: #d4d4d8;
+    background: #fafaf3;
+    border-color: #d8d5cc;
 }
 
 .card-soft {
-    background: white;
-    border: 1px solid #e4e4e7;
+    background: var(--color-card);
+    border: 1px solid var(--color-border);
     border-radius: 14px;
     transition: border-color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
 }
 .card-soft:hover {
-    border-color: #d4d4d8;
-    box-shadow: 0 8px 24px -12px rgba(24,24,27,0.08);
+    border-color: #cfcdc4;
+    box-shadow: 0 8px 24px -12px rgba(15, 23, 42, 0.08);
 }
 
 .section-light {
-    background: #f6f5f8;
+    background: var(--color-bg-2);
+}
+
+.section-bg {
+    background: var(--color-bg);
 }
 
 .section-dark {
-    background: #18181b;
-    color: #fafafa;
+    background: #0f172a;          /* dark slate */
+    color: #f8fafc;
 }
+
+.text-muted-2 { color: var(--color-text-2); }
+.text-dark-slate { color: var(--color-text); }
 
 .input-base {
     width: 100%;
     padding: 10px 12px;
     border-radius: 10px;
-    border: 1px solid #e4e4e7;
-    background: white;
+    border: 1px solid var(--color-border);
+    background: var(--color-card);
     font-size: 14px;
-    color: #18181b;
+    color: var(--color-text);
     outline: none;
     transition: border-color 0.18s ease, box-shadow 0.18s ease;
 }
@@ -102,10 +132,10 @@ html, body {
     width: 100%;
     padding: 11px 12px;
     border-radius: 10px;
-    border: 1px solid #3f3f46;
-    background: #27272a;
+    border: 1px solid #334155;
+    background: #1e293b;
     font-size: 14px;
-    color: #fafafa;
+    color: #f8fafc;
     outline: none;
     transition: border-color 0.18s ease, box-shadow 0.18s ease;
 }

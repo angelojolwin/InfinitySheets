@@ -13,29 +13,45 @@ export const EXAM_TRACKS = [
 ];
 
 export const FEATURES = [
-  { title: 'Progress tracking', desc: 'Readiness score, streak, questions answered, completed worksheets, and subject trends update automatically.', icon: 'LineChart' },
-  { title: 'Targeted worksheets', desc: 'Choose exam, subject, topic, difficulty, and length. The app builds a worksheet instantly.', icon: 'Sigma' },
-  { title: 'Weakness analysis', desc: 'Wrong answers are mapped to topics, so strengths and weaknesses are based on actual attempts.', icon: 'Sparkles' },
-  { title: 'Smart recommendations', desc: 'The dashboard recommends the next topic and difficulty using your saved worksheet history.', icon: 'Calendar' },
+  { title: 'Progress Tracking', desc: 'Visual dashboards that show mastery, readiness, completed worksheets, and study streaks.', icon: 'LineChart', tone: 'primary' },
+  { title: 'AI Weakness Analysis', desc: 'Automatically discover which concepts need the most attention.', icon: 'Brain', tone: 'secondary' },
+  { title: 'Targeted Worksheets', desc: 'Practice exactly what you need, instead of repeating what you already know.', icon: 'Target', tone: 'accent' },
+  { title: 'Smart Recommendations', desc: 'Receive personalized study plans based on your performance.', icon: 'Lightbulb', tone: 'success' },
+  { title: 'Multiple Curricula', desc: 'Built for IGCSE, IB, AP, SAT, and more.', icon: 'BookOpen', tone: 'primary' },
 ];
 
 export const HOW_IT_WORKS = [
-  { n: '01', text: 'Create an account and choose your exam track' },
-  { n: '02', text: 'Generate fresh questions by topic and difficulty' },
-  { n: '03', text: 'Submit answers and get an immediate score' },
-  { n: '04', text: 'Use saved results to track progress and weak areas' },
+  { n: '01', title: 'Complete a Worksheet', text: 'Answer AI-generated questions tailored to your syllabus and current ability.' },
+  { n: '02', title: 'AI Weakness Analysis', text: 'Our AI identifies the exact topics and skills you need to improve.' },
+  { n: '03', title: 'Targeted Worksheets', text: 'Receive new worksheets focused specifically on your weak areas.' },
+  { n: '04', title: 'Smart Recommendations', text: 'Know exactly what to study next with personalized revision suggestions.' },
+  { n: '05', title: 'Track Your Progress', text: 'Monitor topic mastery, readiness scores, study streaks, and long-term improvement.' },
 ];
 
-export const PAIN_POINTS = [
-  { quote: 'I know the chapter, but I never know what type of question will show up.', label: 'Question-style uncertainty' },
-  { quote: 'Practice papers help more than rereading, but finding the right ones wastes time.', label: 'Material discovery problem' },
-  { quote: 'I would use it if it showed exactly what I was weak at and what to do next.', label: 'Need for clear next steps' },
+export const WHY_IT_WORKS = [
+  'Personalized AI-generated worksheets',
+  'Active recall-based learning',
+  'Adaptive revision paths',
+  'Real-time progress tracking',
+  'Instant feedback',
+  'Built around how students actually learn',
+];
+
+export const RESEARCH_STATS = [
+  { num: '2\u00d7', title: 'More effective than passive rereading', desc: 'Retrieval practice consistently outperforms rereading in long-term retention studies.' },
+  { num: '89%', title: 'Better long-term retention', desc: 'Students report stronger recall when using active recall techniques over time.' },
+  { num: 'Personalized', title: 'Higher engagement & outcomes', desc: 'Adaptive learning leads to improved results compared to one-size-fits-all instruction.' },
+];
+
+export const TESTIMONIALS = [
+  { quote: 'I finally knew exactly what to study instead of wasting time guessing.', name: 'High school senior', role: 'IB student' },
+  { quote: 'The targeted worksheets helped me improve the topics I struggled with the most.', name: 'IGCSE learner', role: 'Year 11' },
+  { quote: 'It is like having a personal tutor that understands how I learn.', name: 'SAT prep student', role: 'Grade 12' },
 ];
 
 export const PRICING = [
-  { tag: 'Free', desc: 'Local account, worksheets, progress, history' },
-  { tag: 'Premium later', desc: 'Cloud sync, higher limits, deeper weak-spot reports' },
-  { tag: 'Schools later', desc: 'Class dashboards and shared syllabus packs' },
+  { tag: 'Free', price: '$0', period: 'forever', features: ['Personalized worksheets', 'AI weakness analysis', 'Progress tracking'], cta: 'Start Free', highlight: false },
+  { tag: 'Premium', price: '$9', period: 'per month', features: ['Unlimited worksheets', 'Advanced analytics', 'Smart recommendations', 'Priority AI generation', 'Early access to new features'], cta: 'Upgrade', highlight: true },
 ];
 
 // Subjects per exam track
