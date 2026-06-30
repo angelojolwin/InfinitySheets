@@ -6,7 +6,7 @@ const GOALS = [5, 10, 20];
 const DIFF = ['Basics', 'Mixed exam practice', 'Challenge'];
 
 export default function SettingsView() {
-  const { state, updateSettings, resetProgress, deleteAccount } = useApp();
+  const { state, updateSettings, resetProgress, deleteAccount, restartTutorial } = useApp();
   const [s, setS] = useState({ ...state.settings });
   const [confirmDelete, setConfirmDelete] = useState(false);
   const [confirmReset, setConfirmReset] = useState(false);
@@ -41,9 +41,15 @@ export default function SettingsView() {
         <button className="btn-violet px-5 py-2.5 rounded-lg text-[14px] font-medium self-start">Save settings</button>
       </form>
 
-      <div className="rounded-xl border border-zinc-200 p-5">
+      <div className="rounded-xl border border-[color:var(--color-border)] bg-white p-5">
+        <div className="text-[14.5px] font-semibold mb-1 text-slate-900">Replay tutorial</div>
+        <div className="text-[13px] text-slate-500 mb-3">Walk through the 5-step welcome tour again to revisit how InfinitySheets works.</div>
+        <button onClick={() => { restartTutorial(); toast.success('Tutorial restarted'); window.location.hash = '#dashboard'; }} className="btn-outline-dark px-4 py-2 rounded-lg text-[13.5px]">Replay tutorial</button>
+      </div>
+
+      <div className="rounded-xl border border-[color:var(--color-border)] bg-white p-5">
         <div className="text-[14.5px] font-semibold mb-1">Reset my progress</div>
-        <div className="text-[13px] text-zinc-500 mb-3">Clear worksheets, scores, streak, and mistake history.</div>
+        <div className="text-[13px] text-slate-500 mb-3">Clear worksheets, scores, streak, and mistake history.</div>
         {!confirmReset ? (
           <button onClick={() => setConfirmReset(true)} className="btn-outline-dark px-4 py-2 rounded-lg text-[13.5px]">Reset progress</button>
         ) : (

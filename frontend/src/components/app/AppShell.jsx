@@ -1,5 +1,5 @@
 import React from 'react';
-import { Infinity, LayoutDashboard, BookOpen, FileText, TrendingUp, Target, AlertCircle, User, Settings as SettingsIcon, LogOut, Sparkles, History } from 'lucide-react';
+import { Infinity, LayoutDashboard, BookOpen, FileText, TrendingUp, Target, AlertCircle, User, Settings as SettingsIcon, LogOut, Sparkles, History, GraduationCap } from 'lucide-react';
 import { useApp } from '../../context/AppContext';
 import Dashboard from './Dashboard';
 import StartStudying from './StartStudying';
@@ -11,9 +11,12 @@ import Mistakes from './Mistakes';
 import Recommendations from './Recommendations';
 import Profile from './Profile';
 import SettingsView from './SettingsView';
+import MyCourses from './MyCourses';
+import Tutorial from './Tutorial';
 
 const NAV = [
   { key: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
+  { key: 'courses', label: 'My Courses', icon: GraduationCap },
   { key: 'study', label: 'Start Studying', icon: BookOpen },
   { key: 'worksheets', label: 'Worksheets', icon: FileText },
   { key: 'history', label: 'Worksheet History', icon: History },
@@ -32,9 +35,15 @@ export default function AppShell({ hash }) {
 
   const go = (k) => { window.location.hash = `#${k}`; };
 
+  // First-time tutorial overrides the main view
+  if (!state.tutorialDone && active !== 'settings') {
+    return <Tutorial onDone={() => go('dashboard')} />;
+  }
+
   let content = null;
   switch (current.key) {
     case 'dashboard': content = <Dashboard go={go} />; break;
+    case 'courses': content = <MyCourses />; break;
     case 'study': content = <StartStudying go={go} />; break;
     case 'worksheets': content = <Worksheets go={go} />; break;
     case 'history': content = <WorksheetHistory />; break;
@@ -48,8 +57,8 @@ export default function AppShell({ hash }) {
   }
 
   return (
-    <div className="min-h-screen bg-white grid grid-cols-[220px_1fr]">
-      <aside className="border-r border-zinc-100 flex flex-col bg-white">
+    <div className="min-h-screen section-bg grid grid-cols-[220px_1fr]">
+      <aside className="border-r border-[color:var(--color-border)] flex flex-col bg-white">
         <div className="px-5 pt-5 pb-6 flex items-center gap-2">
           <span className="w-8 h-8 rounded-lg bg-violet-100 flex items-center justify-center">
             <Infinity className="w-5 h-5 text-violet-600" strokeWidth={2.4} />
@@ -62,28 +71,31 @@ export default function AppShell({ hash }) {
             const isActive = current.key === n.key;
             return (
               <button key={n.key} onClick={() => go(n.key)}
-                className={`text-left text-[13.5px] px-3 py-2 rounded-lg flex items-center gap-2.5 transition-colors ${isActive ? 'bg-violet-50 text-violet-700 font-medium' : 'text-zinc-600 hover:bg-zinc-50 hover:text-zinc-900'}`}>
+                className={`text-left text-[13.5px] px-3 py-2 rounded-lg flex items-center gap-2.5 transition-colors ${isActive ? 'bg-violet-50 text-violet-700 font-medium' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'}`}>
                 <Icon className="w-4 h-4" />
                 <span>{n.label}</span>
               </button>
             );
           })}
         </nav>
-        <div className="px-3 pb-4 pt-4 border-t border-zinc-100">
-          <button onClick={() => { logout(); window.location.hash = ''; }} className="w-full text-left text-[13.5px] px-3 py-2 rounded-lg flex items-center gap-2.5 text-zinc-600 hover:bg-zinc-50 hover:text-zinc-900 transition-colors">
+        <div className="px-3 pb-4 pt-4 border-t border-[color:var(--color-border)]">
+          <button onClick={() => { logout(); window.location.hash = ''; }} className="w-full text-left text-[13.5px] px-3 py-2 rounded-lg flex items-center gap-2.5 text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-colors">
             <LogOut className="w-4 h-4" />
             <span>Logout</span>
           </button>
         </div>
       </aside>
       <main className="min-w-0">
-        <header className="px-8 pt-7 pb-2 flex items-start justify-between border-b border-zinc-100">
+        <header className="px-8 pt-7 pb-2 flex items-start justify-between border-b border-[color:var(--color-border)] bg-white">
           <div>
             <div className="eyebrow-muted mb-1">{state.user?.examTrack || 'SSLC'}</div>
-            <h1 className="text-[28px] font-semibold tracking-tight text-zinc-900">{current.label}</h1>
+            <h1 className="text-[28px] font-semibold tracking-tight text-slate-900">{current.label}</h1>
           </div>
           {current.key === 'dashboard' && (
             <button onClick={() => go('worksheets')} className="btn-violet inline-flex items-center px-4 py-2 rounded-lg text-[14px] font-medium">New worksheet</button>
+          )}
+          {current.key === 'courses' && (
+            <div className="text-[13px] text-slate-500">{(state.courses || []).length} course{(state.courses || []).length === 1 ? '' : 's'}</div>
           )}
         </header>
         <div className="px-8 py-7 max-w-[1280px]">{content}</div>

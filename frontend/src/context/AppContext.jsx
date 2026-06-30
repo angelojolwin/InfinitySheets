@@ -6,8 +6,10 @@ const defaultState = {
   user: null, // { name, email, examTrack }
   worksheets: [], // array of completed worksheet results
   mistakes: [], // wrong answer history
+  courses: [], // user-added courses
   streak: 0,
   lastStudyDate: null,
+  tutorialDone: false,
   settings: {
     dailyGoal: 10,
     defaultDifficulty: 'Mixed exam practice',
@@ -108,8 +110,28 @@ export function AppProvider({ children }) {
     setState((s) => ({ ...s, mistakes: s.mistakes.filter((m) => m.id !== id) }));
   }, []);
 
+  const finishTutorial = useCallback(() => {
+    setState((s) => ({ ...s, tutorialDone: true }));
+  }, []);
+
+  const restartTutorial = useCallback(() => {
+    setState((s) => ({ ...s, tutorialDone: false }));
+  }, []);
+
+  const addCourse = useCallback((course) => {
+    setState((s) => ({ ...s, courses: [{ id: `c_${Date.now()}`, addedAt: new Date().toISOString(), ...course }, ...s.courses] }));
+  }, []);
+
+  const removeCourse = useCallback((id) => {
+    setState((s) => ({ ...s, courses: s.courses.filter((c) => c.id !== id) }));
+  }, []);
+
+  const updateCourse = useCallback((id, patch) => {
+    setState((s) => ({ ...s, courses: s.courses.map((c) => (c.id === id ? { ...c, ...patch } : c)) }));
+  }, []);
+
   return (
-    <AppContext.Provider value={{ state, loaded, signup, login, logout, updateProfile, updateSettings, resetProgress, deleteAccount, recordWorksheet, removeMistake }}>
+    <AppContext.Provider value={{ state, loaded, signup, login, logout, updateProfile, updateSettings, resetProgress, deleteAccount, recordWorksheet, removeMistake, finishTutorial, restartTutorial, addCourse, removeCourse, updateCourse }}>
       {children}
     </AppContext.Provider>
   );
