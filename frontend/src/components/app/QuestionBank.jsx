@@ -68,11 +68,11 @@ export default function QuestionBank({ go, subjectParam }) {
       {/* subject chips */}
       <div className="flex flex-wrap gap-2 mb-5">
         {subjects.map((s) => {
-          const info = SUBJECT_INFO[s] || { emoji: '\u{1F4DA}' };
+          const info = SUBJECT_INFO[s] || { emoji: '\u25A0' };
           const sel = active === s;
           return (
             <button key={s} onClick={() => setActive(s)}
-              className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-[12.5px] font-medium border transition-colors ${sel ? 'bg-gradient-to-r from-violet-50 to-blue-50 border-violet-300 text-violet-700' : 'bg-white border-[color:var(--color-border)] text-slate-700 hover:bg-slate-100'}`}>
+              className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-[12.5px] font-medium border transition-colors ${sel ? 'bg-blue-50 border-blue-300 text-blue-700' : 'bg-white border-[color:var(--color-border)] text-slate-700 hover:bg-slate-100'}`}>
               <span className="text-[14px] leading-none">{info.emoji}</span>
               <span>{s}</span>
               <span className="text-[11px] text-slate-500">{ALL_QUESTIONS[s]?.length || 0}</span>
@@ -88,7 +88,7 @@ export default function QuestionBank({ go, subjectParam }) {
 }
 
 function SubjectQuestions({ subject, questions, revealed, setRevealed, launchPractice }) {
-  const info = SUBJECT_INFO[subject] || { emoji: '\u{1F4DA}' };
+  const info = SUBJECT_INFO[subject] || { emoji: '\u25A0' };
   const byTopic = useMemo(() => {
     const m = {};
     questions.forEach((q) => { (m[q.topic] = m[q.topic] || []).push(q); });
@@ -110,7 +110,7 @@ function SubjectQuestions({ subject, questions, revealed, setRevealed, launchPra
       <div className="card-soft p-5">
         <div className="flex items-center justify-between gap-3">
           <div className="flex items-center gap-2 min-w-0">
-            <div className="w-9 h-9 rounded-lg bg-violet-100 text-violet-700 flex items-center justify-center text-[18px]">{info.emoji}</div>
+            <div className="w-9 h-9 rounded-lg bg-blue-100 text-blue-700 flex items-center justify-center text-[18px]">{info.emoji}</div>
             <div className="min-w-0">
               <div className="text-[15.5px] font-semibold text-slate-900">{subject}</div>
               <div className="text-[12px] text-slate-500">{questions.length} questions in this subject · curated</div>
@@ -131,13 +131,13 @@ function TopicGroup({ topic, questions, revealed, setRevealed, onPractice }) {
     <div className="card-soft p-5">
       <div className="flex items-center justify-between gap-3 mb-4">
         <div className="flex items-center gap-2 min-w-0">
-          <span className="w-7 h-7 rounded-md bg-blue-100 text-blue-700 flex items-center justify-center"><BookOpen className="w-3.5 h-3.5" /></span>
+          <span className="w-7 h-7 rounded-md bg-violet-100 text-violet-700 flex items-center justify-center"><BookOpen className="w-3.5 h-3.5" /></span>
           <div>
             <div className="text-[14px] font-semibold text-slate-900">{topic}</div>
             <div className="text-[11.5px] text-slate-500">{questions.length} questions</div>
           </div>
         </div>
-        <button onClick={onPractice} className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-[12.5px] font-semibold text-white bg-gradient-to-r from-violet-600 to-blue-600 hover:opacity-95">
+        <button onClick={onPractice} className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-[12.5px] font-semibold text-white bg-blue-600 hover:opacity-95">
           <Sparkles className="w-3.5 h-3.5" /> Practice these
         </button>
       </div>

@@ -73,7 +73,7 @@ export default function CourseWizard({ mode = 'onboarding', onClose }) {
       <div className="relative w-full max-w-[860px] mx-4 my-8">
         <div className="flex items-center justify-between mb-5">
           <div className="flex items-center gap-2">
-            <span className="w-8 h-8 rounded-lg bg-gradient-to-br from-violet-500 to-blue-600 flex items-center justify-center text-white">
+            <span className="w-8 h-8 rounded-lg bg-blue-500 flex items-center justify-center text-white">
               <Sparkles className="w-4 h-4" />
             </span>
             <div className="leading-tight">
@@ -90,7 +90,7 @@ export default function CourseWizard({ mode = 'onboarding', onClose }) {
           {STEP_LABELS.map((label, i) => (
             <React.Fragment key={label}>
               <div className="flex items-center gap-2">
-                <div className={`w-7 h-7 rounded-full flex items-center justify-center text-[12px] font-semibold transition-colors ${i < step ? 'bg-emerald-500 text-white' : i === step ? 'bg-violet-600 text-white' : 'bg-slate-200 text-slate-500'}`}>
+                <div className={`w-7 h-7 rounded-full flex items-center justify-center text-[12px] font-semibold transition-colors ${i < step ? 'bg-emerald-500 text-white' : i === step ? 'bg-blue-600 text-white' : 'bg-slate-200 text-slate-500'}`}>
                   {i < step ? <CheckCircle2 className="w-4 h-4" /> : i + 1}
                 </div>
                 <span className={`text-[12.5px] font-medium ${i === step ? 'text-slate-900' : 'text-slate-500'}`}>{label}</span>
@@ -100,16 +100,16 @@ export default function CourseWizard({ mode = 'onboarding', onClose }) {
           ))}
         </div>
 
-        <div className="bg-white rounded-2xl border border-[color:var(--color-border)] shadow-[0_30px_80px_-30px_rgba(15,23,42,0.18)] overflow-hidden">
+        <div className="bg-white rounded-2xl border border-[color:var(--color-border)] overflow-hidden">
           <div className="h-1 w-full bg-slate-100">
-            <div className="h-full bg-gradient-to-r from-violet-500 via-blue-500 to-cyan-400 transition-all duration-500" style={{ width: `${((step + 1) / 3) * 100}%` }} />
+            <div className="h-full bg-blue-500 transition-all duration-500" style={{ width: `${((step + 1) / 3) * 100}%` }} />
           </div>
 
           {step === 0 && (
             <div className="p-6 lg:p-8">
               <div className="flex items-center gap-2 mb-2">
-                <GraduationCap className="w-4 h-4 text-violet-600" />
-                <span className="text-[11px] tracking-[0.16em] uppercase font-semibold text-violet-600">Step 1</span>
+                <GraduationCap className="w-4 h-4 text-blue-600" />
+                <span className="text-[11px] tracking-[0.16em] uppercase font-semibold text-blue-600">Step 1</span>
               </div>
               <h2 className="text-[26px] font-semibold tracking-tight text-slate-900">Which exam is this course for?</h2>
               <p className="text-[13.5px] text-slate-500 mt-1">A course groups subjects under one exam track.</p>
@@ -118,13 +118,13 @@ export default function CourseWizard({ mode = 'onboarding', onClose }) {
                   const sel = examTrack === t.id;
                   return (
                     <button key={t.id} onClick={() => { setExamTrack(t.id); setPicked([]); setDates({}); }}
-                      className={`text-left rounded-xl border px-4 py-3 transition-colors ${sel ? 'border-violet-400 bg-gradient-to-br from-violet-50 to-blue-50' : 'border-[color:var(--color-border)] bg-white hover:bg-slate-100'}`}>
+                      className={`text-left rounded-xl border px-4 py-3 transition-colors ${sel ? 'border-blue-400 bg-blue-50' : 'border-[color:var(--color-border)] bg-white hover:bg-slate-100'}`}>
                       <div className="flex items-start justify-between gap-2">
                         <div className="min-w-0">
-                          <div className={`text-[13.5px] font-semibold ${sel ? 'text-violet-700' : 'text-slate-900'}`}>{t.name}</div>
+                          <div className={`text-[13.5px] font-semibold ${sel ? 'text-blue-700' : 'text-slate-900'}`}>{t.name}</div>
                           <div className="text-[12px] text-slate-500 mt-0.5 leading-snug">{t.title}</div>
                         </div>
-                        {sel && <CheckCircle2 className="w-4 h-4 text-violet-600 shrink-0" />}
+                        {sel && <CheckCircle2 className="w-4 h-4 text-blue-600 shrink-0" />}
                       </div>
                     </button>
                   );
@@ -136,35 +136,35 @@ export default function CourseWizard({ mode = 'onboarding', onClose }) {
           {step === 1 && (
             <div className="p-6 lg:p-8">
               <div className="flex items-center gap-2 mb-2">
-                <BookOpen className="w-4 h-4 text-cyan-600" />
-                <span className="text-[11px] tracking-[0.16em] uppercase font-semibold text-cyan-700">Step 2</span>
+                <BookOpen className="w-4 h-4 text-red-600" />
+                <span className="text-[11px] tracking-[0.16em] uppercase font-semibold text-red-700">Step 2</span>
               </div>
               <h2 className="text-[26px] font-semibold tracking-tight text-slate-900">Pick the subjects in this course</h2>
               <p className="text-[13.5px] text-slate-500 mt-1">Select one or more subjects. Each can have its own exam date in the next step.</p>
               <div className="mt-4 flex items-center justify-between gap-3">
                 <div className="text-[12.5px] text-slate-500">{picked.length} selected</div>
                 <div className="flex items-center gap-2">
-                  <button onClick={() => setPicked(trackSubjects)} className="text-[12.5px] text-violet-700 hover:text-violet-900 transition-colors">Select all</button>
+                  <button onClick={() => setPicked(trackSubjects)} className="text-[12.5px] text-blue-700 hover:text-blue-900 transition-colors">Select all</button>
                   <span className="text-slate-300">/</span>
                   <button onClick={() => { setPicked([]); setDates({}); }} className="text-[12.5px] text-slate-500 hover:text-slate-800 transition-colors">Clear</button>
                 </div>
               </div>
               <div className="mt-3 grid grid-cols-2 md:grid-cols-3 gap-2.5">
                 {trackSubjects.map((s) => {
-                  const info = SUBJECT_INFO[s] || { emoji: '\u{1F4DA}', tagline: 'Practice and improve.' };
+                  const info = SUBJECT_INFO[s] || { emoji: '\u25A0', tagline: 'Practice and improve.' };
                   const sel = picked.includes(s);
                   return (
                     <button key={s} onClick={() => togglePick(s)}
-                      className={`text-left rounded-xl border px-4 py-3 transition-colors ${sel ? 'border-violet-400 bg-gradient-to-br from-violet-50 to-blue-50' : 'border-[color:var(--color-border)] bg-white hover:bg-slate-100'}`}>
+                      className={`text-left rounded-xl border px-4 py-3 transition-colors ${sel ? 'border-blue-400 bg-blue-50' : 'border-[color:var(--color-border)] bg-white hover:bg-slate-100'}`}>
                       <div className="flex items-start justify-between gap-2">
                         <div className="min-w-0">
                           <div className="flex items-center gap-1.5">
                             <span className="text-[16px] leading-none">{info.emoji}</span>
-                            <span className={`text-[13.5px] font-semibold ${sel ? 'text-violet-700' : 'text-slate-900'}`}>{s}</span>
+                            <span className={`text-[13.5px] font-semibold ${sel ? 'text-blue-700' : 'text-slate-900'}`}>{s}</span>
                           </div>
                           <div className="text-[11.5px] text-slate-500 mt-1 leading-snug truncate">{info.tagline}</div>
                         </div>
-                        {sel && <CheckCircle2 className="w-4 h-4 text-violet-600 shrink-0" />}
+                        {sel && <CheckCircle2 className="w-4 h-4 text-blue-600 shrink-0" />}
                       </div>
                     </button>
                   );
@@ -176,8 +176,8 @@ export default function CourseWizard({ mode = 'onboarding', onClose }) {
           {step === 2 && (
             <div className="p-6 lg:p-8">
               <div className="flex items-center gap-2 mb-2">
-                <Calendar className="w-4 h-4 text-blue-600" />
-                <span className="text-[11px] tracking-[0.16em] uppercase font-semibold text-blue-700">Step 3</span>
+                <Calendar className="w-4 h-4 text-violet-600" />
+                <span className="text-[11px] tracking-[0.16em] uppercase font-semibold text-violet-700">Step 3</span>
               </div>
               <h2 className="text-[26px] font-semibold tracking-tight text-slate-900">Set an exam date per subject</h2>
               <p className="text-[13.5px] text-slate-500 mt-1">Each subject can have its own date, so countdowns stay accurate.</p>
@@ -200,7 +200,7 @@ export default function CourseWizard({ mode = 'onboarding', onClose }) {
 
               <div className="mt-5 flex flex-col gap-3">
                 {picked.map((s) => {
-                  const info = SUBJECT_INFO[s] || { emoji: '\u{1F4DA}' };
+                  const info = SUBJECT_INFO[s] || { emoji: '\u25A0' };
                   const v = dates[s] || '';
                   const days = v ? Math.max(0, Math.ceil((new Date(v + 'T00:00:00').getTime() - Date.now()) / (1000 * 60 * 60 * 24))) : null;
                   return (
@@ -213,8 +213,8 @@ export default function CourseWizard({ mode = 'onboarding', onClose }) {
                         </div>
                       </div>
                       <input type="date" min={new Date().toISOString().slice(0, 10)} className="input-base" value={v} onChange={(e) => setDates((d) => ({ ...d, [s]: e.target.value }))} />
-                      <div className="rounded-md border border-blue-200/60 bg-gradient-to-br from-blue-50 via-violet-50/40 to-transparent px-3 py-2 text-right min-w-[100px]">
-                        <div className="text-[9.5px] tracking-wider uppercase font-semibold text-blue-700">Days</div>
+                      <div className="rounded-md border border-violet-200/60 bg-violet-50 px-3 py-2 text-right min-w-[100px]">
+                        <div className="text-[9.5px] tracking-wider uppercase font-semibold text-violet-700">Days</div>
                         <div className="text-[16px] font-semibold text-slate-900 tabular-nums">{days !== null ? days : '—'}</div>
                       </div>
                       <div className="md:col-span-3 flex flex-wrap gap-1.5">
@@ -222,7 +222,7 @@ export default function CourseWizard({ mode = 'onboarding', onClose }) {
                           const iso = inDays(d);
                           return (
                             <button key={d} onClick={() => setDates((m) => ({ ...m, [s]: iso }))}
-                              className={`px-2.5 py-1 rounded-md text-[11.5px] font-medium border transition-colors ${v === iso ? 'border-violet-400 bg-violet-50 text-violet-700' : 'border-[color:var(--color-border)] bg-white text-slate-700 hover:bg-slate-100'}`}>
+                              className={`px-2.5 py-1 rounded-md text-[11.5px] font-medium border transition-colors ${v === iso ? 'border-blue-400 bg-blue-50 text-blue-700' : 'border-[color:var(--color-border)] bg-white text-slate-700 hover:bg-slate-100'}`}>
                               In {d} days
                             </button>
                           );
@@ -243,7 +243,7 @@ export default function CourseWizard({ mode = 'onboarding', onClose }) {
                   <ArrowLeft className="w-4 h-4" /> Back
                 </button>
               )}
-              <button onClick={next} className="inline-flex items-center gap-1 px-4 py-2 rounded-lg text-[13px] font-semibold text-white bg-gradient-to-r from-violet-600 to-blue-600 hover:opacity-95 transition-opacity">
+              <button onClick={next} className="inline-flex items-center gap-1 px-4 py-2 rounded-lg text-[13px] font-semibold text-white bg-blue-600 hover:opacity-95 transition-opacity">
                 {step === 2 ? (<><Sparkles className="w-4 h-4" /> {isOnboarding ? 'Finish setup' : 'Add course'}</>) : (<>Continue <ArrowRight className="w-4 h-4" /></>)}
               </button>
             </div>

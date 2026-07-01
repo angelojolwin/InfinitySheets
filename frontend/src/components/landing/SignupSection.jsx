@@ -35,7 +35,7 @@ export default function SignupSection() {
     <section id="signup" className="section-dark">
       <div className="max-w-[1280px] mx-auto px-6 py-24 lg:py-28 grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
         <div>
-          <div className="text-violet-400 text-[11px] tracking-[0.14em] uppercase font-semibold mb-5">Start now</div>
+          <div className="text-blue-400 text-[11px] tracking-[0.14em] uppercase font-semibold mb-5">Start now</div>
           <h2 className="h-display text-[40px] sm:text-[48px] lg:text-[56px] text-white">
             Create your InfinitySheets account.
           </h2>
@@ -45,8 +45,8 @@ export default function SignupSection() {
         </div>
         <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-6">
           <div className="grid grid-cols-2 gap-2 mb-5">
-            <button onClick={() => setTab('signup')} className={`py-2.5 rounded-lg text-[14px] font-medium transition-colors ${tab === 'signup' ? 'bg-violet-600 text-white' : 'bg-transparent text-zinc-400 hover:text-white border border-zinc-700'}`}>Sign Up</button>
-            <button onClick={() => setTab('login')} className={`py-2.5 rounded-lg text-[14px] font-medium transition-colors ${tab === 'login' ? 'bg-violet-600 text-white' : 'bg-transparent text-zinc-400 hover:text-white border border-zinc-700'}`}>Log In</button>
+            <button onClick={() => setTab('signup')} className={`py-2.5 rounded-lg text-[14px] font-medium transition-colors ${tab === 'signup' ? 'bg-blue-600 text-white' : 'bg-transparent text-zinc-400 hover:text-white border border-zinc-700'}`}>Sign Up</button>
+            <button onClick={() => setTab('login')} className={`py-2.5 rounded-lg text-[14px] font-medium transition-colors ${tab === 'login' ? 'bg-blue-600 text-white' : 'bg-transparent text-zinc-400 hover:text-white border border-zinc-700'}`}>Log In</button>
           </div>
           {tab === 'signup' ? (
             <form onSubmit={handleSignup} className="flex flex-col gap-3">

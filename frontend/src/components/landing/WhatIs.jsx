@@ -7,10 +7,10 @@ export default function WhatIs() {
       <div className="max-w-[1280px] mx-auto px-6 py-24 lg:py-28 grid lg:grid-cols-[1fr_1.1fr] gap-12 lg:gap-20">
         <div>
           <div className="flex items-center gap-2 mb-5">
-            <span className="w-7 h-7 rounded-md bg-violet-500/20 flex items-center justify-center">
-              <Infinity className="w-4 h-4 text-violet-300" strokeWidth={2.4} />
+            <span className="w-7 h-7 rounded-md bg-blue-500/20 flex items-center justify-center">
+              <Infinity className="w-4 h-4 text-blue-300" strokeWidth={2.4} />
             </span>
-            <span className="text-[11px] tracking-[0.14em] uppercase font-semibold text-violet-300">What is InfinitySheets?</span>
+            <span className="text-[11px] tracking-[0.14em] uppercase font-semibold text-blue-300">What is InfinitySheets?</span>
           </div>
           <h2 className="h-display text-[40px] sm:text-[48px] lg:text-[54px] text-white">
             An AI-powered platform that creates personalized revision for every student.

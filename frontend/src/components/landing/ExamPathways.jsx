@@ -15,7 +15,7 @@ export default function ExamPathways() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-12">
           {EXAM_TRACKS.map((e) => (
             <div key={e.id} className="card-soft p-6 cursor-default">
-              <span className="inline-block px-2.5 py-1 text-[11px] font-semibold rounded-md bg-violet-100 text-violet-700 mb-4">{e.name}</span>
+              <span className="inline-block px-2.5 py-1 text-[11px] font-semibold rounded-md bg-blue-100 text-blue-700 mb-4">{e.name}</span>
               <h3 className="text-[16px] font-semibold text-zinc-900 mb-2 leading-snug">{e.title}</h3>
               <p className="text-[13.5px] text-zinc-500 leading-relaxed">{e.desc}</p>
             </div>

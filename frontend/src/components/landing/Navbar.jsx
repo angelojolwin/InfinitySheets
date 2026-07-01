@@ -16,7 +16,7 @@ export default function Navbar({ onStart }) {
     <header className="sticky top-0 z-40 bg-white/85 backdrop-blur border-b border-[color:var(--color-border)]">
       <div className="max-w-[1280px] mx-auto px-6 h-[60px] flex items-center justify-between">
         <a href="#top" className="flex items-center gap-2 group">
-          <span className="w-8 h-8 rounded-lg bg-gradient-to-br from-violet-500 to-blue-600 flex items-center justify-center shadow-[0_8px_24px_-10px_rgba(124,58,237,0.6)] group-hover:scale-105 transition-transform">
+          <span className="w-8 h-8 rounded-lg bg-blue-500 flex items-center justify-center group-hover:scale-105 transition-transform">
             <Infinity className="w-5 h-5 text-white" strokeWidth={2.6} />
           </span>
           <span className="font-semibold text-[15px] tracking-tight text-slate-900">InfinitySheets</span>
@@ -29,7 +29,7 @@ export default function Navbar({ onStart }) {
           <a href="#signup" className="text-[14px] font-medium text-slate-900">Sign Up</a>
         </nav>
         <div className="flex items-center gap-2">
-          <button onClick={tryDemo} className="hidden md:inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-[13.5px] font-medium text-blue-700 border border-blue-200 bg-blue-50 hover:bg-blue-100 transition-colors">
+          <button onClick={tryDemo} className="hidden md:inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-[13.5px] font-medium text-violet-700 border border-violet-200 bg-violet-50 hover:bg-violet-100 transition-colors">
             <Eye className="w-3.5 h-3.5" /> Try Demo
           </button>
           <button onClick={onStart} className="btn-violet hidden md:inline-flex px-4 py-2 rounded-lg text-[14px] font-medium shadow-sm">Start Free</button>
@@ -46,7 +46,7 @@ export default function Navbar({ onStart }) {
             ))}
             <a href="#signup" onClick={() => setOpen(false)} className="text-[14px] font-medium">Log In</a>
             <a href="#signup" onClick={() => setOpen(false)} className="text-[14px] font-medium">Sign Up</a>
-            <button onClick={tryDemo} className="mt-1 inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-lg text-[14px] font-medium text-blue-700 border border-blue-200 bg-blue-50">
+            <button onClick={tryDemo} className="mt-1 inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-lg text-[14px] font-medium text-violet-700 border border-violet-200 bg-violet-50">
               <Eye className="w-3.5 h-3.5" /> Try Demo
             </button>
             <button onClick={onStart} className="btn-violet px-4 py-2 rounded-lg text-[14px] font-medium">Start Free</button>

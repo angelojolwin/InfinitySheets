@@ -46,9 +46,9 @@ const STEPS = [
 ];
 
 const toneClass = {
-  primary: { bg: 'bg-violet-100', text: 'text-violet-700', bar: 'bg-violet-500' },
-  secondary: { bg: 'bg-blue-100', text: 'text-blue-700', bar: 'bg-blue-500' },
-  accent: { bg: 'bg-cyan-100', text: 'text-cyan-700', bar: 'bg-cyan-500' },
+  primary: { bg: 'bg-blue-100', text: 'text-blue-700', bar: 'bg-blue-500' },
+  secondary: { bg: 'bg-violet-100', text: 'text-violet-700', bar: 'bg-violet-500' },
+  accent: { bg: 'bg-red-100', text: 'text-red-700', bar: 'bg-red-500' },
   success: { bg: 'bg-emerald-100', text: 'text-emerald-700', bar: 'bg-emerald-500' },
 };
 
@@ -73,7 +73,7 @@ export default function Tutorial({ onDone }) {
           </button>
         </div>
 
-        <div className="rounded-2xl bg-white border border-[color:var(--color-border)] overflow-hidden shadow-[0_30px_80px_-30px_rgba(15,23,42,0.15)]">
+        <div className="rounded-2xl bg-white border border-[color:var(--color-border)] overflow-hidden">
           {/* progress bar */}
           <div className="h-1 w-full bg-slate-100">
             <div className={`h-full ${tone.bar} transition-all duration-500`} style={{ width: `${((i + 1) / STEPS.length) * 100}%` }} />
@@ -110,7 +110,7 @@ export default function Tutorial({ onDone }) {
             <div className="flex items-center gap-1.5">
               {STEPS.map((_, idx) => (
                 <button key={idx} onClick={() => setI(idx)} aria-label={`Go to step ${idx + 1}`}
-                  className={`w-2 h-2 rounded-full transition-colors ${idx === i ? 'bg-violet-600' : (idx < i ? 'bg-violet-300' : 'bg-slate-300')}`} />
+                  className={`w-2 h-2 rounded-full transition-colors ${idx === i ? 'bg-blue-600' : (idx < i ? 'bg-blue-300' : 'bg-slate-300')}`} />
               ))}
               <span className="ml-3 text-[12.5px] text-slate-500 tabular-nums">{i + 1} / {STEPS.length}</span>
             </div>
@@ -142,7 +142,7 @@ function Preview({ index }) {
         <div className="text-[10px] tracking-[0.14em] uppercase font-semibold text-slate-500 mb-2">Your study overview</div>
         <div className="flex items-center justify-between">
           <div className="text-[18px] font-semibold tracking-tight">Ready for the next win?</div>
-          <div className="w-12 h-12 rounded-full border-[5px] border-violet-100 border-t-violet-500" />
+          <div className="w-12 h-12 rounded-full border-[5px] border-blue-100 border-t-blue-500" />
         </div>
         <div className="grid grid-cols-2 gap-2 mt-4">
           {['Readiness 82%', 'Streak 9d', 'Questions 428', 'Sheets 31'].map((t) => (
@@ -172,12 +172,12 @@ function Preview({ index }) {
       <div className="w-full max-w-[320px] rounded-xl border border-[color:var(--color-border)] bg-white p-5">
         <div className="text-[11px] text-slate-500 mb-2">Question 1 of 10</div>
         <div className="h-1.5 rounded-full bg-slate-100 overflow-hidden mb-4">
-          <div className="h-full bg-violet-500" style={{ width: '10%' }} />
+          <div className="h-full bg-blue-500" style={{ width: '10%' }} />
         </div>
         <div className="text-[14px] font-semibold mb-3">Coulomb’s law force is inversely proportional to:</div>
         <div className="flex flex-col gap-2">
           {['Distance', 'Distance squared', 'Charge', 'Charge squared'].map((o, idx) => (
-            <div key={o} className={`px-3 py-2 rounded-md border text-[12.5px] ${idx === 1 ? 'border-violet-400 bg-violet-50 text-violet-800' : 'border-slate-200 text-slate-700'}`}>{String.fromCharCode(65 + idx)}. {o}</div>
+            <div key={o} className={`px-3 py-2 rounded-md border text-[12.5px] ${idx === 1 ? 'border-blue-400 bg-blue-50 text-blue-800' : 'border-slate-200 text-slate-700'}`}>{String.fromCharCode(65 + idx)}. {o}</div>
           ))}
         </div>
       </div>
@@ -199,7 +199,7 @@ function Preview({ index }) {
     <div className="w-full max-w-[320px] rounded-xl border border-[color:var(--color-border)] bg-white p-5">
       <div className="text-[11px] tracking-[0.14em] uppercase font-semibold text-slate-500 mb-3">Recommended action</div>
       <div className="flex items-start gap-3">
-        <div className="w-9 h-9 rounded-lg bg-violet-100 text-violet-700 flex items-center justify-center"><Sparkles className="w-4 h-4" /></div>
+        <div className="w-9 h-9 rounded-lg bg-blue-100 text-blue-700 flex items-center justify-center"><Sparkles className="w-4 h-4" /></div>
         <div>
           <div className="text-[14px] font-semibold text-slate-900">Complete a 10-question Electrostatics worksheet.</div>
           <div className="text-[12px] text-slate-500 mt-1">Current accuracy 42% · Physics</div>
@@ -207,7 +207,7 @@ function Preview({ index }) {
       </div>
       <div className="flex items-center gap-2 mt-4 text-[12.5px]">
         <span className="px-2 py-0.5 rounded-md bg-emerald-100 text-emerald-700 font-medium">Goal 6/10</span>
-        <span className="px-2 py-0.5 rounded-md bg-violet-100 text-violet-700 font-medium">Streak 9d</span>
+        <span className="px-2 py-0.5 rounded-md bg-blue-100 text-blue-700 font-medium">Streak 9d</span>
       </div>
     </div>
   );

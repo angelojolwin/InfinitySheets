@@ -15,7 +15,7 @@ function daysUntil(d) {
 
 function statusClass(s) {
   if (s === 'Active') return 'bg-emerald-50 border-emerald-200 text-emerald-700';
-  if (s === 'Completed') return 'bg-violet-50 border-violet-200 text-violet-700';
+  if (s === 'Completed') return 'bg-blue-50 border-blue-200 text-blue-700';
   return 'bg-slate-50 border-slate-200 text-slate-700';
 }
 
@@ -26,7 +26,7 @@ function normalize(course) {
 }
 
 function SubjectRow({ s }) {
-  const info = SUBJECT_INFO[s.subject] || { emoji: '\u{1F4DA}' };
+  const info = SUBJECT_INFO[s.subject] || { emoji: '\u25A0' };
   const days = daysUntil(s.examDate);
   return (
     <div className="flex items-center justify-between gap-3 px-3 py-2 rounded-md border border-[color:var(--color-border)]">
@@ -52,7 +52,7 @@ function CourseCard({ course, onRemove, onUpdate }) {
     <div className="card-soft p-5">
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
-          <span className="inline-block px-2 py-0.5 text-[10.5px] font-semibold rounded-md bg-violet-100 text-violet-700 mb-2">{exam.name}</span>
+          <span className="inline-block px-2 py-0.5 text-[10.5px] font-semibold rounded-md bg-blue-100 text-blue-700 mb-2">{exam.name}</span>
           <div className="text-[15.5px] font-semibold text-slate-900 leading-tight">{c.name}</div>
           <div className="text-[12px] text-slate-500 mt-0.5">{c.subjects.length} subject{c.subjects.length === 1 ? '' : 's'}</div>
         </div>
@@ -79,7 +79,7 @@ function EmptyState({ onAdd }) {
     <div className="relative rounded-2xl border border-dashed border-[color:var(--color-border)] bg-white overflow-hidden">
       <EmptyStateScene variant="book" className="absolute inset-0" />
       <div className="relative p-12 text-center">
-        <div className="w-12 h-12 rounded-xl bg-violet-100 text-violet-700 flex items-center justify-center mx-auto mb-4">
+        <div className="w-12 h-12 rounded-xl bg-blue-100 text-blue-700 flex items-center justify-center mx-auto mb-4">
           <GraduationCap className="w-6 h-6" />
         </div>
         <div className="text-[15.5px] font-semibold text-slate-900">No courses yet</div>

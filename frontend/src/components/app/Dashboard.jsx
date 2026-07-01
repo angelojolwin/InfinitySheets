@@ -29,9 +29,8 @@ function Stat({ label, value }) {
 function DaysStat({ days, subLabel }) {
   const has = days !== null && days !== undefined;
   return (
-    <div className="rounded-xl border border-blue-200/70 p-4 bg-gradient-to-br from-blue-50 via-violet-50/50 to-transparent relative overflow-hidden">
-      <div className="absolute -top-6 -right-6 w-20 h-20 rounded-full bg-blue-500/20 blur-2xl pointer-events-none" />
-      <div className="relative text-[10px] tracking-[0.14em] uppercase font-semibold text-blue-700">Days until exam</div>
+    <div className="rounded-xl border border-violet-200/70 p-4 bg-violet-50 relative overflow-hidden">
+      <div className="relative text-[10px] tracking-[0.14em] uppercase font-semibold text-violet-700">Days until exam</div>
       <div className="relative text-[24px] font-semibold mt-1 text-slate-900 tabular-nums">
         {has ? days : '\u2014'}
         {has && <span className="text-[12px] font-medium text-slate-500 ml-1">{days === 1 ? 'day' : 'days'}</span>}
@@ -123,13 +122,13 @@ export default function Dashboard({ go }) {
           <div className="eyebrow-muted mb-2">Today&rsquo;s goal</div>
           <div className="text-[18px] font-semibold">{questionsToday} / {dailyGoal} questions</div>
           <div className="mt-3 h-1.5 rounded-full bg-slate-100 overflow-hidden">
-            <div className="h-full bg-gradient-to-r from-violet-500 to-blue-500 transition-all" style={{ width: `${progressPct}%` }} />
+            <div className="h-full bg-blue-500 transition-all" style={{ width: `${progressPct}%` }} />
           </div>
         </div>
         <div className="rounded-xl border border-[color:var(--color-border)] p-5 bg-white">
-          <div className="eyebrow-muted mb-3 flex items-center gap-1.5"><CalendarClock className="w-3.5 h-3.5 text-blue-600" /> Upcoming exams</div>
+          <div className="eyebrow-muted mb-3 flex items-center gap-1.5"><CalendarClock className="w-3.5 h-3.5 text-violet-600" /> Upcoming exams</div>
           {courseExams.length === 0 ? (
-            <button onClick={() => go('courses')} className="text-[14px] text-violet-700 hover:text-violet-900 transition-colors">Add a course to set per-subject exam dates &rarr;</button>
+            <button onClick={() => go('courses')} className="text-[14px] text-blue-700 hover:text-blue-900 transition-colors">Add a course to set per-subject exam dates &rarr;</button>
           ) : (
             <div className="flex flex-col gap-2">
               {courseExams.slice(0, 4).map((c) => (
@@ -157,7 +156,7 @@ export default function Dashboard({ go }) {
           ) : (
             <div className="flex flex-wrap gap-2">
               {strongTopics.map((t) => (
-                <span key={t.k} className="px-2.5 py-1 rounded-md bg-violet-50 text-violet-700 text-[12.5px] font-medium">{t.k} · {Math.round(t.acc * 100)}%</span>
+                <span key={t.k} className="px-2.5 py-1 rounded-md bg-blue-50 text-blue-700 text-[12.5px] font-medium">{t.k} · {Math.round(t.acc * 100)}%</span>
               ))}
             </div>
           )}

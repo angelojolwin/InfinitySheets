@@ -200,18 +200,18 @@ export const STATS_LANDING = [
   { num: '400+', label: 'focused syllabus topics' },
 ];
 
-// Subject overview info: emoji, tagline, description, key topics, study tips
+// Subject overview info: symbol, tagline, description, key topics, study tips
 export const SUBJECT_INFO = {
   Mathematics: {
-    emoji: '\u{1F4D0}',
-    tone: 'blue',
+    emoji: 'M',
+    tone: 'primary',
     tagline: 'The language of patterns and proof.',
     description: 'Build fluency in algebra, geometry, calculus, and statistics through targeted practice. Mastery here unlocks confidence across every science subject.',
     keyTopics: ['Algebra & equations', 'Trigonometry', 'Geometry', 'Calculus basics', 'Probability & statistics'],
     studyTips: ['Practice 10 mixed problems daily', 'Re-solve mistakes from memory', 'Time yourself on past papers'],
   },
   'Mathematics AA': {
-    emoji: '\u2795',
+    emoji: 'M',
     tone: 'blue',
     tagline: 'Analysis & approaches in IB Maths.',
     description: 'Rigorous focus on proofs, functions, and calculus. AA students will spend more time on abstract reasoning and algebraic manipulation.',
@@ -219,7 +219,7 @@ export const SUBJECT_INFO = {
     studyTips: ['Memorise key derivatives and integrals', 'Annotate your worked examples', 'Practice IA-style problems'],
   },
   'Mathematics AI': {
-    emoji: '\u{1F9EE}',
+    emoji: 'M',
     tone: 'blue',
     tagline: 'Applications & interpretation.',
     description: 'AI emphasises real-world modelling, technology use, and statistics. Great for students heading into the social sciences.',
@@ -235,7 +235,7 @@ export const SUBJECT_INFO = {
     studyTips: ['Work proofs forwards and backwards', 'Group similar problem types', 'Push past the first attempt'],
   },
   Math: {
-    emoji: '\u{1F9EE}',
+    emoji: 'M',
     tone: 'blue',
     tagline: 'SAT math: speed, accuracy, strategy.',
     description: 'Train on the four content areas of the SAT math section: Heart of Algebra, Problem Solving and Data Analysis, Passport to Advanced Math, and Additional Topics.',
@@ -243,7 +243,7 @@ export const SUBJECT_INFO = {
     studyTips: ['Skip and return on hard ones', 'Estimate answers first', 'Memorise the formula sheet'],
   },
   Physics: {
-    emoji: '\u{1FA90}',
+    emoji: 'P',
     tone: 'violet',
     tagline: 'How the universe works.',
     description: 'From projectile motion to electromagnetism. Physics rewards conceptual clarity plus mathematical precision.',
@@ -251,7 +251,7 @@ export const SUBJECT_INFO = {
     studyTips: ['Draw force diagrams first', 'Always check units', 'Solve symbolically before plugging in'],
   },
   Chemistry: {
-    emoji: '\u{1F9EA}',
+    emoji: 'C',
     tone: 'cyan',
     tagline: 'Reactions, bonds, and matter.',
     description: 'Organic, inorganic, and physical chemistry feed each other. Connecting principles is how top scorers think.',
@@ -259,7 +259,7 @@ export const SUBJECT_INFO = {
     studyTips: ['Master reaction mechanisms by drawing them', 'Practice equation balancing daily', 'Use flashcards for nomenclature'],
   },
   Biology: {
-    emoji: '\u{1F9EC}',
+    emoji: 'B',
     tone: 'success',
     tagline: 'The science of life.',
     description: 'Heavy on definitions, processes, and diagrams. Biology rewards consistent recall and clear explanations.',
@@ -267,7 +267,7 @@ export const SUBJECT_INFO = {
     studyTips: ['Make labelled diagrams from memory', 'Connect structure to function', 'Use mnemonics for cycles'],
   },
   'Social Science': {
-    emoji: '\u{1F5FA}\uFE0F',
+    emoji: 'S',
     tone: 'blue',
     tagline: 'People, places, and power.',
     description: 'History, geography, civics, and economics work together to understand societies. Strong on argument writing and source analysis.',
@@ -275,7 +275,7 @@ export const SUBJECT_INFO = {
     studyTips: ['Build timelines and maps', 'Practice short structured answers', 'Quote sources precisely'],
   },
   English: {
-    emoji: '\u270D\uFE0F',
+    emoji: 'E',
     tone: 'violet',
     tagline: 'Words that move ideas.',
     description: 'Grammar, comprehension, vocabulary, and writing. The goal is precise, persuasive expression with strong reading habits.',
@@ -283,7 +283,7 @@ export const SUBJECT_INFO = {
     studyTips: ['Read short non-fiction daily', 'Outline before writing', 'Vary sentence length'],
   },
   'Computer Applications': {
-    emoji: '\u{1F4BB}',
+    emoji: 'CS',
     tone: 'cyan',
     tagline: 'Code, logic, and computational thinking.',
     description: 'Java fundamentals, OOP, arrays, and strings. Practice by writing small programs and tracing execution by hand.',
@@ -291,7 +291,7 @@ export const SUBJECT_INFO = {
     studyTips: ['Dry-run code on paper', 'Refactor your own solutions', 'Build mini projects'],
   },
   Economics: {
-    emoji: '\u{1F4BC}',
+    emoji: '\u20AC',
     tone: 'success',
     tagline: 'Choices under scarcity.',
     description: 'Microeconomics, macroeconomics, and international trade. Build intuition with graphs and apply it to current events.',
@@ -299,7 +299,7 @@ export const SUBJECT_INFO = {
     studyTips: ['Draw and re-draw key diagrams', 'Practice short-answer evaluation', 'Read business news weekly'],
   },
   Reading: {
-    emoji: '\u{1F4D6}',
+    emoji: 'R',
     tone: 'violet',
     tagline: 'Read smarter, not slower.',
     description: 'Master inference, main idea, and vocabulary in context. Pacing is half the SAT reading battle.',
@@ -307,7 +307,7 @@ export const SUBJECT_INFO = {
     studyTips: ['Skim first, then question-by-question', 'Eliminate obviously wrong choices', 'Track time per passage'],
   },
   Writing: {
-    emoji: '\u2712\uFE0F',
+    emoji: 'W',
     tone: 'blue',
     tagline: 'Clear, precise, and persuasive prose.',
     description: 'Grammar rules, rhetoric, and structure. Most points are won by spotting predictable patterns.',

@@ -36,7 +36,7 @@ export default function Strengths() {
             <div className="text-[13px] text-slate-700 tabular-nums">{t.acc}% \u00b7 {t.correct}/{t.total}</div>
           </div>
           <div className="h-1.5 rounded-full bg-slate-100 overflow-hidden">
-            <div className={`h-full ${t.acc >= 70 ? 'bg-violet-500' : t.acc >= 40 ? 'bg-amber-400' : 'bg-rose-400'}`} style={{ width: `${t.acc}%` }} />
+            <div className={`h-full ${t.acc >= 70 ? 'bg-blue-500' : t.acc >= 40 ? 'bg-amber-400' : 'bg-rose-400'}`} style={{ width: `${t.acc}%` }} />
           </div>
         </div>
       ))}

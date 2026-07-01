@@ -4,9 +4,9 @@ import { FEATURES } from '../../data/mock';
 
 const iconMap = { LineChart, Brain, Target, Lightbulb, BookOpen };
 const toneClass = {
-  primary: 'bg-violet-100 text-violet-700',
-  secondary: 'bg-blue-100 text-blue-700',
-  accent: 'bg-cyan-100 text-cyan-700',
+  primary: 'bg-blue-100 text-blue-700',
+  secondary: 'bg-violet-100 text-violet-700',
+  accent: 'bg-red-100 text-red-700',
   success: 'bg-emerald-100 text-emerald-700',
 };
 

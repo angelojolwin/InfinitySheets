@@ -115,14 +115,14 @@ export default function TutorialOverlay() {
         <div className="relative">
           {/* arrow pointing left toward sidebar */}
           <span className="hidden md:block absolute -left-2.5 top-7 w-5 h-5 rotate-45 bg-white border-l border-b border-[color:var(--color-border)]" />
-          <div className="relative bg-white border border-[color:var(--color-border)] rounded-2xl shadow-[0_30px_80px_-30px_rgba(15,23,42,0.35)] overflow-hidden">
+          <div className="relative bg-white border border-[color:var(--color-border)] rounded-2xl overflow-hidden">
             <div className="h-1 w-full bg-slate-100">
-              <div className="h-full bg-gradient-to-r from-violet-500 via-blue-500 to-cyan-400 transition-all duration-500" style={{ width: `${((i + 1) / STEPS.length) * 100}%` }} />
+              <div className="h-full bg-blue-500 transition-all duration-500" style={{ width: `${((i + 1) / STEPS.length) * 100}%` }} />
             </div>
             <div className="p-5">
               <div className="flex items-start justify-between gap-3">
                 <div>
-                  <div className="text-[10px] tracking-[0.16em] uppercase font-semibold text-violet-600">{step.eyebrow}</div>
+                  <div className="text-[10px] tracking-[0.16em] uppercase font-semibold text-blue-600">{step.eyebrow}</div>
                   <div className="text-[18px] font-semibold tracking-tight text-slate-900 mt-1">{step.title}</div>
                 </div>
                 <button onClick={close} className="w-7 h-7 rounded-md text-slate-500 hover:text-slate-900 hover:bg-slate-100 flex items-center justify-center transition-colors" aria-label="Close tutorial">
@@ -133,7 +133,7 @@ export default function TutorialOverlay() {
               <ul className="mt-3 flex flex-col gap-1">
                 {step.bullets.map((b) => (
                   <li key={b} className="flex items-start gap-2 text-[13px] text-slate-700">
-                    <span className="mt-1 w-1.5 h-1.5 rounded-full bg-violet-500 shrink-0" />
+                    <span className="mt-1 w-1.5 h-1.5 rounded-full bg-blue-500 shrink-0" />
                     <span>{b}</span>
                   </li>
                 ))}
@@ -143,7 +143,7 @@ export default function TutorialOverlay() {
               <div className="flex items-center gap-1.5">
                 {STEPS.map((_, idx) => (
                   <button key={idx} onClick={() => setI(idx)} aria-label={`Go to step ${idx + 1}`}
-                    className={`w-1.5 h-1.5 rounded-full transition-colors ${idx === i ? 'bg-violet-600' : (idx < i ? 'bg-violet-300' : 'bg-slate-300')}`} />
+                    className={`w-1.5 h-1.5 rounded-full transition-colors ${idx === i ? 'bg-blue-600' : (idx < i ? 'bg-blue-300' : 'bg-slate-300')}`} />
                 ))}
                 <span className="ml-2 text-[11.5px] text-slate-500 tabular-nums">{i + 1} / {STEPS.length}</span>
               </div>
@@ -155,11 +155,11 @@ export default function TutorialOverlay() {
                   </button>
                 )}
                 {!isLast ? (
-                  <button onClick={next} className="inline-flex items-center gap-1 px-3 py-1.5 rounded-md text-[12.5px] font-medium bg-violet-600 text-white hover:bg-violet-700 transition-colors">
+                  <button onClick={next} className="inline-flex items-center gap-1 px-3 py-1.5 rounded-md text-[12.5px] font-medium bg-blue-600 text-white hover:bg-blue-700 transition-colors">
                     Next <ChevronRight className="w-3.5 h-3.5" />
                   </button>
                 ) : (
-                  <button onClick={next} className="inline-flex items-center gap-1 px-3 py-1.5 rounded-md text-[12.5px] font-medium bg-gradient-to-r from-violet-600 to-blue-600 text-white hover:opacity-95 transition-opacity">
+                  <button onClick={next} className="inline-flex items-center gap-1 px-3 py-1.5 rounded-md text-[12.5px] font-medium bg-blue-600 text-white hover:opacity-95 transition-opacity">
                     <Sparkles className="w-3.5 h-3.5" /> Finish tour
                   </button>
                 )}

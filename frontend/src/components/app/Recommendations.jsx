@@ -36,7 +36,7 @@ export default function Recommendations({ go }) {
       {recs.map((r, i) => (
         <div key={r.topic} className="rounded-xl border border-zinc-200 p-5 flex items-center justify-between gap-4">
           <div className="min-w-0">
-            <div className="text-[11px] tracking-[0.14em] uppercase font-semibold text-violet-600">Next best action {i + 1}</div>
+            <div className="text-[11px] tracking-[0.14em] uppercase font-semibold text-blue-600">Next best action {i + 1}</div>
             <div className="text-[15.5px] font-semibold text-zinc-900 mt-1">Practice {r.topic}</div>
             <div className="text-[13px] text-zinc-500 mt-0.5">Current accuracy {Math.round(r.acc * 100)}% · {r.subject}</div>
           </div>

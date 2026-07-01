@@ -17,7 +17,7 @@ export default function HowItWorks() {
           {HOW_IT_WORKS.map((s, i) => (
             <React.Fragment key={s.n}>
               <div className="card-soft px-5 py-5 flex items-start gap-5">
-                <div className="shrink-0 w-10 h-10 rounded-lg bg-violet-100 text-violet-700 flex items-center justify-center font-semibold text-[14px] tabular-nums">{s.n}</div>
+                <div className="shrink-0 w-10 h-10 rounded-lg bg-blue-100 text-blue-700 flex items-center justify-center font-semibold text-[14px] tabular-nums">{s.n}</div>
                 <div className="min-w-0">
                   <div className="text-[16px] font-semibold text-slate-900">{s.title}</div>
                   <p className="text-[14px] text-slate-600 mt-1 leading-relaxed">{s.text}</p>

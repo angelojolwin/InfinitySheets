@@ -5,7 +5,7 @@ import { TrendingUp, TrendingDown, Minus } from 'lucide-react';
 import EmptyStateScene from '../decor/EmptyStateScene';
 
 const SUBJECT_COLORS = [
-  '#7c3aed', '#2563eb', '#06b6d4', '#10b981',
+  '#2563eb', '#7c3aed', '#dc2626', '#10b981',
   '#f59e0b', '#ec4899', '#8b5cf6', '#0ea5e9', '#14b8a6',
 ];
 
@@ -85,7 +85,7 @@ export default function ProgressView() {
             <div className="text-[12px] text-slate-500 mt-1">A line per subject. Tap a chip to show or hide it.</div>
           </div>
           <div className="flex items-center gap-2">
-            <button onClick={() => setHidden({})} className="text-[12px] text-violet-700 hover:text-violet-900 transition-colors">Show all</button>
+            <button onClick={() => setHidden({})} className="text-[12px] text-blue-700 hover:text-blue-900 transition-colors">Show all</button>
             <span className="text-slate-300">/</span>
             <button onClick={() => { const m = {}; allSubjects.forEach((s) => { m[s] = true; }); setHidden(m); }} className="text-[12px] text-slate-500 hover:text-slate-800 transition-colors">Hide all</button>
           </div>
@@ -94,7 +94,7 @@ export default function ProgressView() {
           {allSubjects.map((s, i) => {
             const color = SUBJECT_COLORS[i % SUBJECT_COLORS.length];
             const off = isHidden(s);
-            const info = SUBJECT_INFO[s] || { emoji: '\u{1F4DA}' };
+            const info = SUBJECT_INFO[s] || { emoji: '\u25A0' };
             const d = deltas[s] || {};
             return (
               <button key={s} onClick={() => setHidden((a) => ({ ...a, [s]: !a[s] }))}
@@ -119,7 +119,7 @@ export default function ProgressView() {
           <div className="flex flex-col gap-3">
             {visibleSubjects.map((s) => {
               const color = SUBJECT_COLORS[allSubjects.indexOf(s) % SUBJECT_COLORS.length];
-              const info = SUBJECT_INFO[s] || { emoji: '\u{1F4DA}' };
+              const info = SUBJECT_INFO[s] || { emoji: '\u25A0' };
               const d = deltas[s] || {};
               return (
                 <div key={s} className="rounded-xl border border-[color:var(--color-border)] px-4 py-3">
@@ -226,12 +226,12 @@ function DeltaPill({ delta, small = false }) {
 
 function Delta({ label, value, delta }) {
   return (
-    <div className="rounded-xl border border-violet-200 bg-gradient-to-br from-violet-50 to-blue-50 p-4">
+    <div className="rounded-xl border border-blue-200 bg-blue-50 p-4">
       <div className="flex items-center justify-between gap-2">
         <div className="eyebrow-muted">{label}</div>
         {delta !== null && delta !== undefined && <DeltaPill delta={delta} small />}
       </div>
-      <div className="text-[20px] font-semibold mt-1 text-violet-700">{value}</div>
+      <div className="text-[20px] font-semibold mt-1 text-blue-700">{value}</div>
     </div>
   );
 }

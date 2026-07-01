@@ -5,27 +5,27 @@ import InfinityBackground from '../decor/InfinityBackground';
 import { useApp } from '../../context/AppContext';
 
 const toneToBg = {
-  primary: 'from-violet-500 via-violet-600 to-blue-600',
-  violet: 'from-violet-500 via-violet-600 to-blue-600',
-  blue: 'from-blue-500 via-blue-600 to-violet-600',
-  secondary: 'from-blue-500 via-blue-600 to-violet-600',
-  cyan: 'from-cyan-500 via-blue-500 to-violet-600',
-  accent: 'from-cyan-500 via-blue-500 to-violet-600',
-  success: 'from-emerald-500 via-blue-500 to-violet-600',
+  primary: 'bg-blue-600',
+  violet: 'bg-blue-600',
+  blue: 'bg-violet-600',
+  secondary: 'bg-violet-600',
+  cyan: 'bg-red-600',
+  accent: 'bg-red-600',
+  success: 'bg-emerald-600',
 };
 const toneToBadge = {
-  primary: 'bg-violet-100 text-violet-700',
-  violet: 'bg-violet-100 text-violet-700',
-  blue: 'bg-blue-100 text-blue-700',
-  secondary: 'bg-blue-100 text-blue-700',
-  cyan: 'bg-cyan-100 text-cyan-700',
-  accent: 'bg-cyan-100 text-cyan-700',
+  primary: 'bg-blue-100 text-blue-700',
+  violet: 'bg-blue-100 text-blue-700',
+  blue: 'bg-violet-100 text-violet-700',
+  secondary: 'bg-violet-100 text-violet-700',
+  cyan: 'bg-red-100 text-red-700',
+  accent: 'bg-red-100 text-red-700',
   success: 'bg-emerald-100 text-emerald-700',
 };
 
 export default function SubjectOverview({ subject, go, onBack }) {
   const { state } = useApp();
-  const info = SUBJECT_INFO[subject] || { emoji: '\u{1F4DA}', tagline: 'Practice and improve.', description: 'Choose a topic and start practicing.', keyTopics: [], studyTips: [], tone: 'primary' };
+  const info = SUBJECT_INFO[subject] || { emoji: '\u25A0', tagline: 'Practice and improve.', description: 'Choose a topic and start practicing.', keyTopics: [], studyTips: [], tone: 'primary' };
   const topics = TOPICS[subject] || info.keyTopics || [];
 
   // Per-topic stats from completed worksheets
@@ -55,7 +55,7 @@ export default function SubjectOverview({ subject, go, onBack }) {
 
       {/* Hero banner */}
       <div className="relative overflow-hidden rounded-2xl text-white">
-        <div className={`absolute inset-0 bg-gradient-to-br ${toneToBg[info.tone] || toneToBg.primary}`} />
+        <div className={`absolute inset-0 ${toneToBg[info.tone] || toneToBg.primary}`} />
         <InfinityBackground variant="hero" />
         <div className="absolute inset-0 grid-fade opacity-60" />
         <div className="relative p-7 lg:p-10 grid lg:grid-cols-[1.4fr_1fr] gap-6 items-center">
@@ -69,8 +69,8 @@ export default function SubjectOverview({ subject, go, onBack }) {
             </div>
             <p className="text-[15.5px] text-white/85 max-w-[640px] leading-relaxed">{info.description}</p>
             <div className="mt-6 flex flex-wrap items-center gap-3">
-              <button onClick={() => launch(null)} className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white text-slate-900 hover:bg-slate-100 transition-colors text-[14px] font-semibold shadow-[0_10px_30px_-10px_rgba(0,0,0,0.25)]">
-                <Sparkles className="w-4 h-4 text-violet-600" /> Create worksheet
+              <button onClick={() => launch(null)} className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white text-slate-900 hover:bg-slate-100 transition-colors text-[14px] font-semibold">
+                <Sparkles className="w-4 h-4 text-blue-600" /> Create worksheet
               </button>
               <button onClick={() => go('history')} className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border border-white/30 text-white hover:bg-white/10 transition-colors text-[14px] font-medium">
                 <ListChecks className="w-4 h-4" /> View history
@@ -100,7 +100,7 @@ export default function SubjectOverview({ subject, go, onBack }) {
               const s = stats[t];
               const acc = s && s.total ? Math.round((s.correct / s.total) * 100) : null;
               return (
-                <button key={t} onClick={() => launch(t)} className="text-left rounded-xl border border-[color:var(--color-border)] px-4 py-3 flex items-center justify-between hover:border-violet-300 hover:bg-violet-50/50 transition-colors group">
+                <button key={t} onClick={() => launch(t)} className="text-left rounded-xl border border-[color:var(--color-border)] px-4 py-3 flex items-center justify-between hover:border-blue-300 hover:bg-blue-50/50 transition-colors group">
                   <div className="min-w-0">
                     <div className="text-[14.5px] font-medium text-slate-900">{t}</div>
                     <div className="text-[12px] text-slate-500 mt-0.5">{acc !== null ? `Your accuracy ${acc}% · ${s.total} questions` : 'Not attempted yet'}</div>
@@ -111,7 +111,7 @@ export default function SubjectOverview({ subject, go, onBack }) {
                         <div className={`h-full ${acc >= 70 ? 'bg-emerald-500' : acc >= 40 ? 'bg-amber-400' : 'bg-rose-400'}`} style={{ width: `${acc}%` }} />
                       </div>
                     )}
-                    <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-violet-600 group-hover:translate-x-0.5 transition-all" />
+                    <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-blue-600 group-hover:translate-x-0.5 transition-all" />
                   </div>
                 </button>
               );
@@ -124,13 +124,13 @@ export default function SubjectOverview({ subject, go, onBack }) {
         <div className="flex flex-col gap-4">
           <div className="card-soft p-6">
             <div className="flex items-center gap-2 mb-3">
-              <span className="w-8 h-8 rounded-lg bg-cyan-100 text-cyan-700 flex items-center justify-center"><Target className="w-4 h-4" /></span>
+              <span className="w-8 h-8 rounded-lg bg-red-100 text-red-700 flex items-center justify-center"><Target className="w-4 h-4" /></span>
               <h3 className="text-[15px] font-semibold text-slate-900">Key focus areas</h3>
             </div>
             <ul className="flex flex-col gap-1.5">
               {(info.keyTopics || []).map((k) => (
                 <li key={k} className="text-[13.5px] text-slate-700 flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-violet-500" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-blue-500" />
                   <span>{k}</span>
                 </li>
               ))}

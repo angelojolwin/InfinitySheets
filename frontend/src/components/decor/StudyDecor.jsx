@@ -4,7 +4,7 @@ import React from 'react';
  * Hand-drawn style SVG decorations - pencils, pens, notebooks, test tubes,
  * students, and small infinity loops. Used as decorative backgrounds.
  */
-export function Pencil({ className = '', color = '#7c3aed', size = 64 }) {
+export function Pencil({ className = '', color = '#2563eb', size = 64 }) {
   return (
     <svg className={className} width={size} height={size} viewBox="0 0 64 64" fill="none">
       <g stroke={color} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
@@ -17,7 +17,7 @@ export function Pencil({ className = '', color = '#7c3aed', size = 64 }) {
   );
 }
 
-export function Pen({ className = '', color = '#2563eb', size = 64 }) {
+export function Pen({ className = '', color = '#7c3aed', size = 64 }) {
   return (
     <svg className={className} width={size} height={size} viewBox="0 0 64 64" fill="none">
       <g stroke={color} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
@@ -30,7 +30,7 @@ export function Pen({ className = '', color = '#2563eb', size = 64 }) {
   );
 }
 
-export function Notebook({ className = '', color = '#06b6d4', size = 64 }) {
+export function Notebook({ className = '', color = '#dc2626', size = 64 }) {
   return (
     <svg className={className} width={size} height={size} viewBox="0 0 64 64" fill="none">
       <g stroke={color} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
@@ -59,7 +59,7 @@ export function TestTube({ className = '', color = '#10b981', size = 64 }) {
   );
 }
 
-export function Student({ className = '', color = '#7c3aed', size = 64 }) {
+export function Student({ className = '', color = '#2563eb', size = 64 }) {
   return (
     <svg className={className} width={size} height={size} viewBox="0 0 64 64" fill="none">
       <g stroke={color} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
@@ -93,17 +93,10 @@ export function Ruler({ className = '', color = '#f59e0b', size = 64 }) {
   );
 }
 
-export function InfinityMark({ className = '', from = '#7c3aed', to = '#2563eb', size = 64, opacity = 0.5 }) {
-  const id = `inf-${from.slice(1)}-${to.slice(1)}-${size}`;
+export function InfinityMark({ className = '', color = '#2563eb', size = 64, opacity = 0.5 }) {
   return (
     <svg className={className} width={size} height={size * 0.5} viewBox="0 0 200 100" style={{ opacity }}>
-      <defs>
-        <linearGradient id={id} x1="0" x2="1">
-          <stop offset="0%" stopColor={from} />
-          <stop offset="100%" stopColor={to} />
-        </linearGradient>
-      </defs>
-      <path d="M30,50 C30,20 70,20 100,50 C130,80 170,80 170,50 C170,20 130,20 100,50 C70,80 30,80 30,50 Z" fill="none" stroke={`url(#${id})`} strokeWidth="1.4" strokeLinecap="round" />
+      <path d="M30,50 C30,20 70,20 100,50 C130,80 170,80 170,50 C170,20 130,20 100,50 C70,80 30,80 30,50 Z" fill="none" stroke={color} strokeWidth="1.4" strokeLinecap="round" />
     </svg>
   );
 }
@@ -115,31 +108,26 @@ export function InfinityMark({ className = '', from = '#7c3aed', to = '#2563eb',
 export default function StudyDecor({ density = 'normal' }) {
   const items = density === 'dense'
     ? [
-        { C: Pencil, top: '6%',  left: '4%',  rot: -12, size: 78, op: 0.35, color: '#7c3aed' },
+        { C: Pencil, top: '6%',  left: '4%',  rot: -12, size: 78, op: 0.35, color: '#2563eb' },
         { C: TestTube, top: '12%', right: '6%', rot: 16, size: 72, op: 0.32, color: '#10b981' },
-        { C: Notebook, top: '46%', left: '3%', rot: -6, size: 86, op: 0.30, color: '#06b6d4' },
-        { C: Pen, top: '60%', right: '5%', rot: 22, size: 82, op: 0.34, color: '#2563eb' },
-        { C: Student, bottom: '8%', left: '38%', rot: -4, size: 86, op: 0.28, color: '#7c3aed' },
+        { C: Notebook, top: '46%', left: '3%', rot: -6, size: 86, op: 0.30, color: '#dc2626' },
+        { C: Pen, top: '60%', right: '5%', rot: 22, size: 82, op: 0.34, color: '#7c3aed' },
+        { C: Student, bottom: '8%', left: '38%', rot: -4, size: 86, op: 0.28, color: '#2563eb' },
         { C: Ruler, top: '32%', left: '46%', rot: 10, size: 78, op: 0.28, color: '#f59e0b' },
       ]
     : [
-        { C: Pencil, top: '8%', left: '6%', rot: -14, size: 60, op: 0.30, color: '#7c3aed' },
+        { C: Pencil, top: '8%', left: '6%', rot: -14, size: 60, op: 0.30, color: '#2563eb' },
         { C: TestTube, top: '64%', right: '6%', rot: 14, size: 60, op: 0.28, color: '#10b981' },
-        { C: Notebook, bottom: '8%', left: '8%', rot: -6, size: 62, op: 0.26, color: '#06b6d4' },
-        { C: Pen, top: '14%', right: '12%', rot: 22, size: 60, op: 0.28, color: '#2563eb' },
+        { C: Notebook, bottom: '8%', left: '8%', rot: -6, size: 62, op: 0.26, color: '#dc2626' },
+        { C: Pen, top: '14%', right: '12%', rot: 22, size: 60, op: 0.28, color: '#7c3aed' },
       ];
 
   return (
     <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
-      {/* color dots */}
-      <span className="absolute top-[10%] left-[10%] w-56 h-56 rounded-full" style={{ background: 'radial-gradient(circle, rgba(124,58,237,0.25), transparent 70%)' }} />
-      <span className="absolute bottom-[5%] right-[10%] w-64 h-64 rounded-full" style={{ background: 'radial-gradient(circle, rgba(37,99,235,0.22), transparent 70%)' }} />
-      <span className="absolute top-[42%] left-[40%] w-56 h-56 rounded-full" style={{ background: 'radial-gradient(circle, rgba(6,182,212,0.18), transparent 70%)' }} />
-
       {/* infinity marks */}
-      <div className="absolute top-[5%] right-[28%] -rotate-12"><InfinityMark size={260} from="#7c3aed" to="#2563eb" opacity={0.32} /></div>
-      <div className="absolute bottom-[12%] left-[18%] rotate-6"><InfinityMark size={220} from="#06b6d4" to="#7c3aed" opacity={0.28} /></div>
-      <div className="absolute top-[58%] right-[6%] rotate-12"><InfinityMark size={180} from="#2563eb" to="#06b6d4" opacity={0.24} /></div>
+      <div className="absolute top-[5%] right-[28%] -rotate-12"><InfinityMark size={260} color="#2563eb" opacity={0.32} /></div>
+      <div className="absolute bottom-[12%] left-[18%] rotate-6"><InfinityMark size={220} color="#7c3aed" opacity={0.28} /></div>
+      <div className="absolute top-[58%] right-[6%] rotate-12"><InfinityMark size={180} color="#dc2626" opacity={0.24} /></div>
 
       {/* clipart */}
       {items.map(({ C, color, op, rot, size, ...pos }, i) => (

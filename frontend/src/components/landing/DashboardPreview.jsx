@@ -26,17 +26,16 @@ export default function DashboardPreview() {
   ];
   return (
     <div className="relative">
-      <div className="absolute -inset-6 rounded-[28px] bg-gradient-to-br from-violet-200/40 via-violet-100/30 to-transparent blur-2xl pointer-events-none" />
-      <div className="relative bg-white border border-zinc-200 rounded-2xl shadow-[0_20px_60px_-30px_rgba(24,24,27,0.25)] overflow-hidden">
+      <div className="relative bg-white border border-zinc-200 rounded-2xl overflow-hidden">
         <div className="grid grid-cols-[200px_1fr]">
           <aside className="border-r border-zinc-100 p-4">
             <div className="flex items-center gap-2 px-2 py-1 mb-4">
-              <Infinity className="w-4 h-4 text-violet-600" strokeWidth={2.4} />
+              <Infinity className="w-4 h-4 text-blue-600" strokeWidth={2.4} />
               <span className="text-[13px] font-semibold">InfinitySheets</span>
             </div>
             <nav className="flex flex-col gap-0.5">
               {sidebar.map((s, i) => (
-                <div key={s} className={`text-[12.5px] px-2.5 py-1.5 rounded-md ${i === 0 ? 'bg-violet-50 text-violet-700 font-medium' : 'text-zinc-600'}`}>{s}</div>
+                <div key={s} className={`text-[12.5px] px-2.5 py-1.5 rounded-md ${i === 0 ? 'bg-blue-50 text-blue-700 font-medium' : 'text-zinc-600'}`}>{s}</div>
               ))}
             </nav>
           </aside>
@@ -57,7 +56,7 @@ export default function DashboardPreview() {
                 </div>
               ))}
             </div>
-            <div className="mt-4 rounded-lg border border-zinc-100 px-4 py-3 border-l-[3px] border-l-violet-500">
+            <div className="mt-4 rounded-lg border border-zinc-100 px-4 py-3 border-l-[3px] border-l-blue-500">
               <div className="text-[10px] tracking-wider font-semibold uppercase text-zinc-500">Recommended action</div>
               <div className="text-[13.5px] mt-1 text-zinc-800">Complete a 10-question Electrostatics worksheet.</div>
             </div>

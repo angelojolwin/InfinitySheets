@@ -107,7 +107,7 @@ export default function Worksheets({ go }) {
         <div className="flex items-center justify-between mb-5">
           <div className="text-[13px] text-zinc-500">{subject} · {topic}</div>
           {duration !== 'Untimed' && (
-            <div className="inline-flex items-center gap-2 text-[13px] text-zinc-700 bg-violet-50 px-3 py-1.5 rounded-md">
+            <div className="inline-flex items-center gap-2 text-[13px] text-zinc-700 bg-blue-50 px-3 py-1.5 rounded-md">
               <Clock className="w-3.5 h-3.5" /> {fmtTime(timeLeft)}
             </div>
           )}
@@ -115,14 +115,14 @@ export default function Worksheets({ go }) {
         <div className="rounded-2xl border border-zinc-200 p-6">
           <div className="text-[12px] text-zinc-500 mb-2">Question {current + 1} of {questions.length}</div>
           <div className="h-1.5 rounded-full bg-zinc-100 overflow-hidden mb-5">
-            <div className="h-full bg-violet-500 transition-all" style={{ width: `${((current + 1) / questions.length) * 100}%` }} />
+            <div className="h-full bg-blue-500 transition-all" style={{ width: `${((current + 1) / questions.length) * 100}%` }} />
           </div>
           <h3 className="text-[18px] font-semibold mb-5 leading-snug">{q.q}</h3>
           <div className="flex flex-col gap-2.5">
             {q.options.map((opt, i) => (
               <button key={i}
                 onClick={() => { const c = [...answers]; c[current] = i; setAnswers(c); }}
-                className={`text-left px-4 py-3 rounded-lg border text-[14px] transition-colors ${answers[current] === i ? 'border-violet-500 bg-violet-50 text-violet-800' : 'border-zinc-200 hover:border-zinc-300 hover:bg-zinc-50'}`}>
+                className={`text-left px-4 py-3 rounded-lg border text-[14px] transition-colors ${answers[current] === i ? 'border-blue-500 bg-blue-50 text-blue-800' : 'border-zinc-200 hover:border-zinc-300 hover:bg-zinc-50'}`}>
                 <span className="inline-block w-6 text-zinc-500 font-medium">{String.fromCharCode(65 + i)}.</span>
                 <span>{opt}</span>
               </button>
@@ -155,7 +155,7 @@ export default function Worksheets({ go }) {
             <div className="text-[13px] text-zinc-500">{result.subject} · {result.topic}</div>
           </div>
           <div className="mt-3 h-2 rounded-full bg-zinc-100 overflow-hidden">
-            <div className="h-full bg-violet-500" style={{ width: `${result.score}%` }} />
+            <div className="h-full bg-blue-500" style={{ width: `${result.score}%` }} />
           </div>
         </div>
         <div className="flex flex-col gap-3">
