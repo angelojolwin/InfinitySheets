@@ -27,13 +27,14 @@ Clone `https://infinitysheets.netlify.app/#dashboard-view` as a pixel-perfect, f
 ## Completed (Feb 2026)
 - Full landing page (Hero, WhatIs, HowItWorks, Features, Research, ExamPathways, Pricing, Testimonials, Signup, FinalCTA, Footer)
 - Full dashboard app (12 pages)
-- Multi-subject Course Wizard with per-subject exam dates
+- Multi-subject Course Wizard now has **4 steps**: Exam → Subjects → Dates → **Schedule** (worksheet frequency + weekly question goal)
 - 5-step interactive tutorial overlay with DOM highlighting
 - Dark Mode + Demo Mode + Reset Demo flow
 - Line-chart Progress View tracking % deltas over time
 - Hand-drawn laboratory/cobweb empty state scenes
 - Color palette swap (Royal Blue / Purple / Red)
 - Removed all gradients, glows, blur decorations, and emojis
+- Fixed infinity-bg SVG stacking bug (restored `.inf-1/-2/-3/-4` corner positioning + `pointer-events: none`)
 - **P2 refactor**: Split AppShell → Sidebar + DemoBanner + TopHeader; SubjectOverview → SubjectHero + TopicsList + SubjectSidePanels; StudyPlanModal → PlanGeneratingState + PlanDayCard + useMockStudyPlan hook
 - **P2 cleanup**: Stable keys in list maps, removed unused eslint-disable directives
 

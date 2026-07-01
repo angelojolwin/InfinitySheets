@@ -28,6 +28,8 @@ const defaultState = {
   theme: 'light',
   settings: {
     dailyGoal: 10,
+    weeklyGoal: 50,
+    frequency: '3-4 per week',
     defaultDifficulty: 'Mixed exam practice',
     examDate: '',
   },
@@ -85,11 +87,16 @@ export function AppProvider({ children }) {
     }));
   }, []);
 
-  const completeOnboarding = useCallback(({ examTrack, examDate, subjects }) => {
+  const completeOnboarding = useCallback(({ examTrack, examDate, subjects, frequency, weeklyGoal }) => {
     setState((s) => ({
       ...s,
       user: { ...s.user, examTrack: examTrack || s.user?.examTrack, subjects: subjects || [] },
-      settings: { ...s.settings, examDate: examDate || s.settings.examDate },
+      settings: {
+        ...s.settings,
+        examDate: examDate || s.settings.examDate,
+        frequency: frequency || s.settings.frequency,
+        weeklyGoal: typeof weeklyGoal === 'number' ? weeklyGoal : s.settings.weeklyGoal,
+      },
       onboardingDone: true,
     }));
   }, []);

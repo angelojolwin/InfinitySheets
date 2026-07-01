@@ -221,6 +221,23 @@ html.dark .grid-fade {
         linear-gradient(to bottom, rgba(37, 99, 235, 0.14) 1px, transparent 1px);
 }
 
+/* ----- Infinity SVG background positioning ----- */
+.infinity-bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+}
+.infinity-bg svg {
+    position: absolute;
+    pointer-events: none;
+}
+.infinity-bg .inf-1 { top: -40px; left: -60px; transform: rotate(-12deg); }
+.infinity-bg .inf-2 { top: 30%; right: -80px; transform: rotate(18deg); }
+.infinity-bg .inf-3 { bottom: -60px; left: 25%; transform: rotate(-4deg); }
+.infinity-bg .inf-4 { top: 65%; left: -40px; transform: rotate(6deg); }
+
 /* ===== Remove all gradients & glow effects globally ===== */
 [class*="bg-gradient-to"] {
     background-image: none !important;
