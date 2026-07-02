@@ -111,7 +111,7 @@ export default function Dashboard({ go }) {
         </div>
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mt-6">
           <DaysStat days={examCountdown} subLabel={examLabel} />
-          <Stat label="Study streak" value={`${state.streak || 0} days`} />
+          <Stat label="Study streak" value={`${state.streak || 0} ${(state.streak || 0) === 1 ? 'day' : 'days'}`} />
           <Stat label="Questions answered" value={stats.total} />
           <Stat label="Worksheets completed" value={stats.sheets} />
         </div>

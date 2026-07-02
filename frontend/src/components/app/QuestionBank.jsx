@@ -57,7 +57,7 @@ export default function QuestionBank({ go, subjectParam }) {
       <div className="flex flex-wrap items-center justify-between gap-3 mb-5">
         <div>
           <p className="text-[14px] text-slate-500 max-w-[640px]">A curated, hand-written question bank organized by subject and topic. Practice anytime — these questions are not AI generated.</p>
-          <div className="text-[12px] text-slate-500 mt-1">{Object.values(ALL_QUESTIONS).reduce((a, b) => a + b.length, 0)} questions · {subjects.length} subjects</div>
+          <div className="text-[12px] text-slate-500 mt-1">{Object.values(ALL_QUESTIONS).reduce((a, b) => a + b.length, 0)} {Object.values(ALL_QUESTIONS).reduce((a, b) => a + b.length, 0) === 1 ? 'question' : 'questions'} · {subjects.length} {subjects.length === 1 ? 'subject' : 'subjects'}</div>
         </div>
         <div className="relative">
           <Search className="w-4 h-4 text-slate-400 absolute left-2.5 top-1/2 -translate-y-1/2" />
@@ -113,7 +113,7 @@ function SubjectQuestions({ subject, questions, revealed, setRevealed, launchPra
             <div className="w-9 h-9 rounded-lg bg-blue-100 text-blue-700 flex items-center justify-center text-[18px]">{info.emoji}</div>
             <div className="min-w-0">
               <div className="text-[15.5px] font-semibold text-slate-900">{subject}</div>
-              <div className="text-[12px] text-slate-500">{questions.length} questions in this subject · curated</div>
+              <div className="text-[12px] text-slate-500">{questions.length} {questions.length === 1 ? 'question' : 'questions'} in this subject · curated</div>
             </div>
           </div>
         </div>
@@ -134,7 +134,7 @@ function TopicGroup({ topic, questions, revealed, setRevealed, onPractice }) {
           <span className="w-7 h-7 rounded-md bg-violet-100 text-violet-700 flex items-center justify-center"><BookOpen className="w-3.5 h-3.5" /></span>
           <div>
             <div className="text-[14px] font-semibold text-slate-900">{topic}</div>
-            <div className="text-[11.5px] text-slate-500">{questions.length} questions</div>
+            <div className="text-[11.5px] text-slate-500">{questions.length} {questions.length === 1 ? 'question' : 'questions'}</div>
           </div>
         </div>
         <button onClick={onPractice} className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-[12.5px] font-semibold text-white bg-blue-600 hover:opacity-95">
