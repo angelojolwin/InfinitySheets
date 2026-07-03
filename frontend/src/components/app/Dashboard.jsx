@@ -100,21 +100,11 @@ export default function Dashboard({ go }) {
 
   return (
     <div className="flex flex-col gap-6">
-      <div className="rounded-2xl border border-[color:var(--color-border)] p-6 bg-white">
-        <div className="flex items-start justify-between gap-4">
-          <div>
-            <div className="eyebrow-muted mb-2">Your study overview</div>
-            <h2 className="text-[28px] font-semibold tracking-tight">Welcome back, {state.user?.name || 'Student'}.</h2>
-            <p className="text-[14px] text-slate-500 mt-1">Here is your study overview.</p>
-          </div>
-          <Ring value={stats.readiness} />
-        </div>
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mt-6">
-          <DaysStat days={examCountdown} subLabel={examLabel} />
-          <Stat label="Study streak" value={`${state.streak || 0} ${(state.streak || 0) === 1 ? 'day' : 'days'}`} />
-          <Stat label="Questions answered" value={stats.total} />
-          <Stat label="Worksheets completed" value={stats.sheets} />
-        </div>
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+        <DaysStat days={examCountdown} subLabel={examLabel} />
+        <Stat label="Study streak" value={`${state.streak || 0} ${(state.streak || 0) === 1 ? 'day' : 'days'}`} />
+        <Stat label="Questions answered" value={stats.total} />
+        <Stat label="Worksheets completed" value={stats.sheets} />
       </div>
 
       <div className="grid lg:grid-cols-2 gap-4">
