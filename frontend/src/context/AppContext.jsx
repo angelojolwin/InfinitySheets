@@ -5,7 +5,20 @@ import React, { createContext, useContext, useEffect, useState, useCallback, use
 // Auth tokens live in httpOnly cookies set by the backend, never localStorage.
 const STORAGE_KEY = 'infinitysheets_state_v1';
 const isProd = process.env.NODE_ENV === 'production';
-const API_BASE = process.env.REACT_APP_BACKEND_URL;
+
+// Prefer same-origin fetches so we work correctly across preview URLs even if
+// REACT_APP_BACKEND_URL points at a stale subdomain. The k8s ingress routes
+// /api on any preview URL to the FastAPI backend, so a relative URL always
+// resolves correctly. Falls back to the env var only when there is no browser
+// origin (e.g., SSR / build-time).
+function resolveApiBase() {
+  if (typeof window !== 'undefined' && window.location && window.location.origin) {
+    return window.location.origin;
+  }
+  return process.env.REACT_APP_BACKEND_URL || '';
+}
+
+const API_BASE = resolveApiBase();
 
 async function apiCall(path, opts = {}) {
   const res = await fetch(`${API_BASE}${path}`, {

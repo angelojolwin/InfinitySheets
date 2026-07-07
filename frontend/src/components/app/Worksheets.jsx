@@ -273,6 +273,47 @@ export default function Worksheets({ go }) {
     });
   };
 
+  // Keyboard shortcuts while taking a worksheet:
+  //   A / B / C / D → pick that MCQ option
+  //   1 / 2 / 3 / 4 → same, using numbers
+  //   → / Enter / Space → next question (or submit on last)
+  //   ← / Backspace → previous question
+  // Ignored while typing in an input/textarea (Typed / Exam-style).
+  useEffect(() => {
+    if (stage !== 'take') return;
+    const handler = (e) => {
+      const target = e.target;
+      const tag = (target && target.tagName) || '';
+      const isEditable = tag === 'INPUT' || tag === 'TEXTAREA' || (target && target.isContentEditable);
+      if (isEditable) return;
+      const q = questions[current];
+      if (!q) return;
+      if (q.answerType === 'Multiple choice') {
+        const key = (e.key || '').toLowerCase();
+        // Letter A-Z or digit 1-9.
+        let idx = -1;
+        if (/^[a-z]$/.test(key)) idx = key.charCodeAt(0) - 97;
+        else if (/^[1-9]$/.test(key)) idx = parseInt(key, 10) - 1;
+        const opts = q.options || [];
+        if (idx >= 0 && idx < opts.length) {
+          e.preventDefault();
+          setAnswerAt(current, idx);
+          return;
+        }
+      }
+      if (e.key === 'ArrowRight' || e.key === 'Enter') {
+        e.preventDefault();
+        if (current < questions.length - 1) setCurrent((c) => c + 1);
+        else finalize();
+      } else if (e.key === 'ArrowLeft' || e.key === 'Backspace') {
+        if (current > 0) { e.preventDefault(); setCurrent((c) => c - 1); }
+      }
+    };
+    window.addEventListener('keydown', handler);
+    return () => window.removeEventListener('keydown', handler);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [stage, current, questions]);
+
   /* ================== Take stage ================== */
   if (stage === 'take') {
     const q = questions[current];
@@ -307,16 +348,21 @@ export default function Worksheets({ go }) {
           <h3 className="text-[18px] font-semibold mb-5 leading-snug">{q.q}</h3>
 
           {isMCQ && (
-            <div className="flex flex-col gap-2.5">
-              {(q.options || []).map((opt, i) => (
-                <button key={`${q.q}-${i}`}
-                  onClick={() => setAnswerAt(current, i)}
-                  className={`text-left px-4 py-3 rounded-lg border text-[14px] transition-colors ${answers[current] === i ? 'border-blue-500 bg-blue-50 text-blue-800' : 'border-zinc-200 hover:border-zinc-300 hover:bg-zinc-50'}`}>
-                  <span className="inline-block w-6 text-zinc-500 font-medium">{String.fromCharCode(65 + i)}.</span>
-                  <span>{opt}</span>
-                </button>
-              ))}
-            </div>
+            <>
+              <div className="flex flex-col gap-2.5">
+                {(q.options || []).map((opt, i) => (
+                  <button key={`${q.q}-${i}`}
+                    onClick={() => setAnswerAt(current, i)}
+                    className={`text-left px-4 py-3 rounded-lg border text-[14px] transition-colors ${answers[current] === i ? 'border-blue-500 bg-blue-50 text-blue-800' : 'border-zinc-200 hover:border-zinc-300 hover:bg-zinc-50'}`}>
+                    <span className="inline-block w-6 text-zinc-500 font-medium">{String.fromCharCode(65 + i)}.</span>
+                    <span>{opt}</span>
+                  </button>
+                ))}
+              </div>
+              <div className="text-[11.5px] text-slate-500 mt-3">
+                Tip: press <kbd className="px-1.5 py-0.5 rounded bg-slate-100 border border-slate-200 text-[10.5px] font-mono">A</kbd>–<kbd className="px-1.5 py-0.5 rounded bg-slate-100 border border-slate-200 text-[10.5px] font-mono">{String.fromCharCode(64 + Math.max(2, (q.options || []).length))}</kbd> on your keyboard to pick an answer, <kbd className="px-1.5 py-0.5 rounded bg-slate-100 border border-slate-200 text-[10.5px] font-mono">→</kbd> to advance.
+              </div>
+            </>
           )}
 
           {isTyped && (
