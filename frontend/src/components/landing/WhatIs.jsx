@@ -13,18 +13,18 @@ export default function WhatIs() {
             <span className="text-[11px] tracking-[0.14em] uppercase font-semibold text-blue-300">What is InfinitySheets?</span>
           </div>
           <h2 className="h-display text-[40px] sm:text-[48px] lg:text-[54px] text-white">
-            An AI-powered platform that creates personalized revision for every student.
+            A study loop that runs itself—personalized revision for every student.
           </h2>
         </div>
         <div className="lg:pt-3 flex flex-col gap-5">
           <p className="text-[16px] leading-relaxed text-slate-300">
-            Instead of using the same worksheets for everyone, InfinitySheets continuously adapts to your strengths and weaknesses. Every worksheet, recommendation, and progress report is generated specifically for you, making every study session more effective.
+            You practice—InfinitySheets does the rest. All the planning happens in the background: it decides what you should study, finds the material, spots your weak concepts, and builds your next worksheet. The only thing you actively do is practice.
           </p>
           <div className="grid grid-cols-2 gap-3 mt-2">
             <Mini label="Adaptive" value="to your level" />
             <Mini label="Personalized" value="to your weak spots" />
             <Mini label="Instant" value="feedback & marking" />
-            <Mini label="Local" value="saved on your device" />
+            <Mini label="Free" value="every feature, no paywall" />
           </div>
         </div>
       </div>

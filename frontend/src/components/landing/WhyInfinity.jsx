@@ -12,7 +12,10 @@ export default function WhyInfinity() {
         </div>
         <div className="lg:pt-3">
           <p className="text-[16.5px] leading-relaxed text-slate-600">
-            Most students spend hours revising topics they already know while overlooking the concepts they struggle with. InfinitySheets changes that by creating a personalized learning experience that adapts to every student.
+            Most students don't fail for lack of effort—they study blind. Rereading notes explains concepts, but it never shows you which questions you'd miss or how the exam will actually ask them. InfinitySheets finds your weak concepts, drills them with exam-style practice, and shows your score climbing—so every hour you put in pays off.
+          </p>
+          <p className="mt-5 text-[16.5px] leading-relaxed text-slate-600">
+            And unlike a chatbot, it doesn't just answer what you ask. It remembers every answer you've given, tracks your weaknesses over time, sticks to your syllabus, matches real exam formats, and decides what you should practice next.
           </p>
         </div>
       </div>

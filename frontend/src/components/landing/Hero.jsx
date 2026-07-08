@@ -18,14 +18,14 @@ export default function Hero() {
           <div>
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-violet-200 bg-blue-50 mb-6">
               <Sparkles className="w-3.5 h-3.5 text-violet-600" />
-              <span className="text-[11.5px] font-medium tracking-wide text-violet-700">AI-powered personalized learning</span>
+              <span className="text-[11.5px] font-medium tracking-wide text-violet-700">The coaching-centre advantage, free</span>
             </div>
             <h1 className="h-display text-[52px] sm:text-[64px] lg:text-[76px]">
               A study tool <br />
               <span className="font-serif-italic">tailored</span> just for you.
             </h1>
             <p className="mt-6 text-[16.5px] text-slate-500 max-w-[560px] leading-relaxed">
-              InfinitySheets uses AI to identify your weaknesses, generate personalized worksheets, and guide your revision—helping you study smarter, not harder.
+              Coaching centres win exams with endless on-syllabus practice, focused work on weak concepts, and total exam familiarity. InfinitySheets puts that training on any device—completely free.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <a href="#signup" className="btn-violet inline-flex items-center gap-2 px-5 py-3 rounded-xl text-[14.5px] font-medium shadow-sm">

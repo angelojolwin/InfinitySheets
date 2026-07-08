@@ -27,28 +27,29 @@ export const EXAM_DURATIONS = {
 };
 
 export const FEATURES = [
-  { title: 'Progress Tracking', desc: 'Visual dashboards that show mastery, readiness, completed worksheets, and study streaks.', icon: 'LineChart', tone: 'primary' },
-  { title: 'AI Weakness Analysis', desc: 'Automatically discover which concepts need the most attention.', icon: 'Brain', tone: 'secondary' },
+  { title: 'Weakness Analysis', desc: 'Every answer sharpens the picture of which concepts need attention—no self-diagnosis required.', icon: 'Brain', tone: 'secondary' },
   { title: 'Targeted Worksheets', desc: 'Practice exactly what you need, instead of repeating what you already know.', icon: 'Target', tone: 'accent' },
-  { title: 'Smart Recommendations', desc: 'Receive personalized study plans based on your performance.', icon: 'Lightbulb', tone: 'success' },
-  { title: 'Multiple Curricula', desc: 'Built for IGCSE, IB, AP, SAT, and more.', icon: 'BookOpen', tone: 'primary' },
+  { title: 'Scores & Predicted Grades', desc: 'An accurate score after every session, plus a predicted grade—especially handy for IGCSE and IB, where predictions shape university applications.', icon: 'LineChart', tone: 'primary' },
+  { title: 'Custom Feedback & Advice', desc: 'Personalized feedback on every worksheet and clear advice on what to do next—like a tutor reviewing every session.', icon: 'Lightbulb', tone: 'success' },
+  { title: 'A Huge Question Bank', desc: 'SSLC, CBSE, ICSE, IGCSE, A Levels, IB, SAT, JEE, NEET and more—including exams with barely any practice-paper support.', icon: 'BookOpen', tone: 'primary' },
+  { title: 'Fresh Questions, Free', desc: 'AI does one job here: generating new exam-style questions. For courses like IB or CLAT, where practice material sits behind paywalls, you get an endless supply at no cost.', icon: 'Brain', tone: 'secondary' },
 ];
 
 export const HOW_IT_WORKS = [
-  { n: '01', title: 'Complete a Worksheet', text: 'Answer AI-generated questions tailored to your syllabus and current ability.' },
-  { n: '02', title: 'AI Weakness Analysis', text: 'Our AI identifies the exact topics and skills you need to improve.' },
+  { n: '01', title: 'Complete a Worksheet', text: 'Answer fresh exam-style questions matched to your syllabus and current level.' },
+  { n: '02', title: 'Weakness Analysis', text: 'The platform pinpoints the exact topics and question types costing you marks.' },
   { n: '03', title: 'Targeted Worksheets', text: 'Receive new worksheets focused specifically on your weak areas.' },
-  { n: '04', title: 'Smart Recommendations', text: 'Know exactly what to study next with personalized revision suggestions.' },
-  { n: '05', title: 'Track Your Progress', text: 'Monitor topic mastery, readiness scores, study streaks, and long-term improvement.' },
+  { n: '04', title: 'Smart Recommendations', text: 'Know exactly what to study next—no planning, no guesswork, no hunting for material.' },
+  { n: '05', title: 'Track Your Progress', text: 'Watch topic mastery, predicted scores, and study streaks improve over time.' },
 ];
 
 export const WHY_IT_WORKS = [
-  'Personalized AI-generated worksheets',
-  'Active recall-based learning',
-  'Adaptive revision paths',
-  'Real-time progress tracking',
-  'Instant feedback',
-  'Built around how students actually learn',
+  'Active recall—practice beats rereading',
+  'Fresh exam-style questions generated for you',
+  'Targets your weak concepts automatically',
+  'Accurate scores and predicted grades',
+  'Instant, personalized feedback',
+  'Completely free—no paywalled practice material',
 ];
 
 export const RESEARCH_STATS = [
