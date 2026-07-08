@@ -1,11 +1,12 @@
 import React from 'react';
-import { Infinity, LogOut, Moon, Sun, RotateCcw } from 'lucide-react';
+import { Infinity, LogOut, RotateCcw } from 'lucide-react';
 
 /**
  * Left navigation rail. Renders brand mark, nav items, and the bottom
- * theme / demo / logout controls. All handlers are provided by the parent shell.
+ * demo / logout controls. All handlers are provided by the parent shell.
+ * (Theme toggle lives in the top header — one entry point is enough.)
  */
-export default function Sidebar({ nav, activeKey, isDark, isDemo, onNavigate, onToggleTheme, onResetDemo, onLogout }) {
+export default function Sidebar({ nav, activeKey, isDemo, onNavigate, onResetDemo, onLogout }) {
   return (
     <aside className="border-r border-[color:var(--color-border)] flex flex-col bg-white relative overflow-hidden">
       <div className="relative px-5 pt-5 pb-6 flex items-center gap-2">
@@ -36,14 +37,6 @@ export default function Sidebar({ nav, activeKey, isDark, isDemo, onNavigate, on
         })}
       </nav>
       <div className="relative px-3 pb-4 pt-4 border-t border-[color:var(--color-border)] flex flex-col gap-1">
-        <button
-          onClick={onToggleTheme}
-          data-testid="sidebar-theme-toggle"
-          className="w-full text-left text-[13.5px] px-3 py-2 rounded-lg flex items-center gap-2.5 text-slate-700 hover:bg-slate-100 hover:text-slate-900 transition-colors"
-        >
-          {isDark ? <Sun className="w-4 h-4 text-amber-500" /> : <Moon className="w-4 h-4 text-blue-600" />}
-          <span>{isDark ? 'Light mode' : 'Dark mode'}</span>
-        </button>
         {isDemo && (
           <button
             onClick={onResetDemo}

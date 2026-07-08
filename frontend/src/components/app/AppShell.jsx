@@ -1,5 +1,5 @@
 import React from 'react';
-import { LayoutDashboard, GraduationCap, Brain, FileText, Library, History, TrendingUp, Dumbbell, Sparkles, AlertTriangle, User, Settings, Shield } from 'lucide-react';
+import { LayoutDashboard, GraduationCap, Pencil, FileText, Library, History, TrendingUp, Dumbbell, Sparkles, AlertTriangle, User, Settings, Shield } from 'lucide-react';
 import { useApp } from '../../context/AppContext';
 import Dashboard from './Dashboard';
 import StartStudying from './StartStudying';
@@ -25,7 +25,7 @@ import { toast } from 'sonner';
 const BASE_NAV = [
   { key: 'dashboard', label: 'Dashboard', Icon: LayoutDashboard },
   { key: 'courses', label: 'My Courses', Icon: GraduationCap },
-  { key: 'study', label: 'Start Studying', Icon: Brain },
+  { key: 'study', label: 'Start Studying', Icon: Pencil },
   { key: 'qbank', label: 'Question Bank', Icon: Library },
   { key: 'history', label: 'Worksheet History', Icon: History },
   { key: 'progress', label: 'Progress', Icon: TrendingUp },
@@ -108,10 +108,8 @@ export default function AppShell({ hash }) {
       <Sidebar
         nav={NAV}
         activeKey={current.key}
-        isDark={isDark}
         isDemo={isDemo}
         onNavigate={go}
-        onToggleTheme={toggleTheme}
         onResetDemo={resetDemo}
         onLogout={exitAccount}
       />
