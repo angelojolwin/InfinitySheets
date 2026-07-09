@@ -4,6 +4,31 @@
 
 export const RESOURCE_TRACKS = [
   {
+    id: 'AP',
+    name: 'Advanced Placement (AP)',
+    short: 'AP',
+    note: 'College Board enforces copyright on secure exams — use official released questions rather than mirrored PDFs.',
+    groups: [
+      {
+        label: 'Official (College Board)',
+        links: [
+          { title: 'AP Central — course index', desc: 'Every AP course page: course description, exam format, and released questions.', url: 'https://apcentral.collegeboard.org/courses' },
+          { title: 'AP past exam questions (example: Calculus AB)', desc: 'Officially released free-response questions with scoring guidelines — each course page has its own.', url: 'https://apcentral.collegeboard.org/courses/ap-calculus-ab/exam/past-exam-questions' },
+          { title: 'AP Students', desc: 'Student-facing hub: exam dates, course skills, and practice.', url: 'https://apstudents.collegeboard.org/' },
+          { title: 'AP Daily videos', desc: 'Official topic-by-topic teaching videos.', url: 'https://apcentral.collegeboard.org/instructional-resources/ap-daily' },
+        ],
+      },
+      {
+        label: 'Free prep & practice',
+        links: [
+          { title: 'Khan Academy', desc: 'Free full courses for AP Calculus, Physics, Chemistry, Biology, and more.', url: 'https://www.khanacademy.org/' },
+          { title: 'Fiveable', desc: 'Free study guides, replays, and practice by AP course.', url: 'https://library.fiveable.me/' },
+          { title: 'CrackAP', desc: 'Free multiple-choice practice tests by course.', url: 'https://www.crackap.com/' },
+        ],
+      },
+    ],
+  },
+  {
     id: 'IGCSE',
     name: 'Cambridge IGCSE',
     short: 'IGCSE',
@@ -253,3 +278,6 @@ export const RESOURCE_TRACKS = [
     ],
   },
 ];
+
+// Keep the directory alphabetical by display name everywhere it renders.
+RESOURCE_TRACKS.sort((a, b) => a.short.localeCompare(b.short));

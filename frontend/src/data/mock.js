@@ -1,21 +1,25 @@
 // Mock data for InfinitySheets clone (frontend-only)
 
+// Kept in alphabetical order by display name — this order is used
+// everywhere tracks are listed (hero chips, onboarding, pickers).
 export const EXAM_TRACKS = [
-  { id: 'SSLC', name: 'SSLC', title: 'State syllabus mastery', desc: 'Mathematics, science, social science, and English practice for secondary-level exams.' },
+  { id: 'AP', name: 'AP', title: 'College-level depth', desc: 'Advanced Placement practice across calculus, sciences, and English with free-response technique.' },
+  { id: 'ASA', name: 'AS & A Level', title: 'Advanced subject depth', desc: 'Focused preparation for Cambridge advanced-level mathematics, sciences, and economics.' },
   { id: 'CBSE', name: 'CBSE', title: 'NCERT-aligned revision', desc: 'Topic practice across mathematics, sciences, and English for CBSE assessments.' },
+  { id: 'IB', name: 'IB', title: 'Concept and analysis practice', desc: 'Practice for IB mathematics, sciences, economics, and English coursework.' },
   { id: 'ICSE', name: 'ICSE', title: 'Detailed subject practice', desc: 'Broad, rigorous preparation including science, English, and computer applications.' },
   { id: 'IGCSE', name: 'IGCSE', title: 'International exam technique', desc: 'Cambridge-style subject practice with structured and application-focused questions.' },
-  { id: 'ASA', name: 'AS & A Level', title: 'Advanced subject depth', desc: 'Focused preparation for Cambridge advanced-level mathematics, sciences, and economics.' },
-  { id: 'IB', name: 'IB', title: 'Concept and analysis practice', desc: 'Practice for IB mathematics, sciences, economics, and English coursework.' },
-  { id: 'SAT', name: 'SAT', title: 'Timed reasoning practice', desc: 'Reading, writing, and math sets with pacing-focused feedback.' },
   { id: 'JEE', name: 'JEE', title: 'Concept-heavy problem solving', desc: 'Physics, chemistry, and maths sheets built around difficult multi-step questions.' },
-  { id: 'NEET', name: 'NEET', title: 'High-volume recall and accuracy', desc: 'Biology-heavy revision plus chemistry and physics practice.' },
   { id: 'LSAT', name: 'LSAT', title: 'Logic under time pressure', desc: 'Logical reasoning and reading comprehension drills with pacing-focused feedback.' },
+  { id: 'NEET', name: 'NEET', title: 'High-volume recall and accuracy', desc: 'Biology-heavy revision plus chemistry and physics practice.' },
+  { id: 'SAT', name: 'SAT', title: 'Timed reasoning practice', desc: 'Reading, writing, and math sets with pacing-focused feedback.' },
+  { id: 'SSLC', name: 'SSLC', title: 'State syllabus mastery', desc: 'Mathematics, science, social science, and English practice for secondary-level exams.' },
 ];
 
 // Default duration (in minutes) of the actual exam for each track. Used as the
 // default value for the worksheet duration slider.
 export const EXAM_DURATIONS = {
+  AP: 180,
   SSLC: 150,
   CBSE: 180,
   ICSE: 150,
@@ -33,7 +37,7 @@ export const FEATURES = [
   { title: 'Targeted Worksheets', desc: 'Practice exactly what you need, instead of repeating what you already know.', icon: 'Target', tone: 'accent' },
   { title: 'Scores & Predicted Grades', desc: 'An accurate score after every session, plus a predicted grade—especially handy for IGCSE and IB, where predictions shape university applications.', icon: 'LineChart', tone: 'primary' },
   { title: 'Custom Feedback & Advice', desc: 'Personalized feedback on every worksheet and clear advice on what to do next—like a tutor reviewing every session.', icon: 'Lightbulb', tone: 'success' },
-  { title: 'A Huge Question Bank', desc: 'SSLC, CBSE, ICSE, IGCSE, A Levels, IB, SAT, JEE, NEET and more—including exams with barely any practice-paper support.', icon: 'BookOpen', tone: 'primary' },
+  { title: 'A Huge Question Bank', desc: 'AP, AS & A Levels, CBSE, IB, ICSE, IGCSE, JEE, LSAT, NEET, SAT, SSLC and more—including exams with barely any practice-paper support.', icon: 'BookOpen', tone: 'primary' },
   { title: 'Fresh Questions, Free', desc: 'AI does one job here: generating new exam-style questions. For courses like IB or CLAT, where practice material sits behind paywalls, you get an endless supply at no cost.', icon: 'Brain', tone: 'secondary' },
 ];
 
@@ -68,6 +72,7 @@ export const TESTIMONIALS = [
 
 // Subjects per exam track
 export const SUBJECTS = {
+  AP: ['Calculus AB', 'Calculus BC', 'Physics 1', 'Chemistry', 'Biology', 'English Language'],
   SSLC: ['Mathematics', 'Physics', 'Chemistry', 'Biology', 'Social Science', 'English'],
   CBSE: ['Mathematics', 'Physics', 'Chemistry', 'Biology', 'Social Science', 'English'],
   ICSE: ['Mathematics', 'Physics', 'Chemistry', 'Biology', 'Computer Applications', 'English'],
@@ -97,6 +102,10 @@ export const TOPICS = {
   Writing: ['Grammar', 'Rhetoric'],
   'Logical Reasoning': ['Assumptions', 'Strengthen & Weaken', 'Flaws', 'Inference', 'Parallel Reasoning'],
   'Reading Comprehension': ['Main Point', 'Author Attitude', 'Comparative Passages', 'Detail & Structure'],
+  'Calculus AB': ['Limits & Continuity', 'Derivatives', 'Applications of Derivatives', 'Integrals', 'Differential Equations'],
+  'Calculus BC': ['Series', 'Parametric & Polar', 'Advanced Integration', 'Euler’s Method'],
+  'Physics 1': ['Kinematics', 'Dynamics', 'Energy', 'Momentum', 'Rotation', 'Simple Harmonic Motion'],
+  'English Language': ['Rhetorical Analysis', 'Argument Essay', 'Synthesis Essay', 'Multiple-Choice Reading'],
 };
 
 // Brief summary of what each topic covers — used on the Course Overview page.
