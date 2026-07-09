@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useApp } from '../../context/AppContext';
-import { SUBJECTS, TOPICS, QUESTION_BANK, FALLBACK_QUESTIONS, EXAM_DURATIONS } from '../../data/mock';
+import { SUBJECTS, TOPICS, QUESTION_BANK, EXAM_DURATIONS } from '../../data/mock';
 import { Check, X, Clock, ChevronLeft, ChevronRight, Sparkles, FileText, AlertCircle } from 'lucide-react';
 import { toast } from 'sonner';
 
@@ -9,6 +9,8 @@ const DIFFICULTIES = ['Easy', 'Medium', 'Exam level', 'Hard'];
 const DURATION_MIN = 5;
 const DURATION_MAX = 240;
 const DURATION_STEP = 5;
+const QUESTION_COUNT_MIN = 3;
+const QUESTION_COUNT_MAX = 30;
 
 /* ================== Normalization + grading helpers ================== */
 
@@ -72,18 +74,57 @@ function toAnswerType(base, answerType) {
   };
 }
 
+function safeQuestionCount(value) {
+  const rounded = Math.round(Number(value));
+  if (!Number.isFinite(rounded)) return 10;
+  return Math.max(QUESTION_COUNT_MIN, Math.min(QUESTION_COUNT_MAX, rounded));
+}
+
+function fallbackQuestion(topic, index) {
+  const label = topic || 'this topic';
+  const templates = [
+    {
+      q: `Which study method gives the strongest evidence that you understand ${label}?`,
+      options: ['Rereading the heading', 'Solving a new problem and explaining the reasoning', 'Highlighting every sentence', 'Memorizing one example without testing it'],
+      a: 1,
+    },
+    {
+      q: `What should you do first when a ${label} question feels unfamiliar?`,
+      options: ['Skip it immediately', 'Identify the known information and concept being tested', 'Copy the longest formula you remember', 'Choose the most detailed-looking option'],
+      a: 1,
+    },
+    {
+      q: `Which mistake is most likely to reduce accuracy in ${label}?`,
+      options: ['Writing one clear working step', 'Answering before checking what the question is asking', 'Reviewing the final unit or wording', 'Comparing the answer with the given data'],
+      a: 1,
+    },
+    {
+      q: `What is the best next step after missing a ${label} question?`,
+      options: ['Ignore it if the score was acceptable', 'Review the error, retry a similar question, then record the weak point', 'Only reread the chapter title', 'Delete the result from your history'],
+      a: 1,
+    },
+    {
+      q: `How should you prove you are improving at ${label}?`,
+      options: ['Count how long the notes are', 'Track scores across repeated worksheets on the topic', 'Only measure how confident you feel', 'Avoid timed or mixed practice forever'],
+      a: 1,
+    },
+  ];
+  return templates[index % templates.length];
+}
+
 function buildQuestions({ topics, answerType, difficulty, length, pastPapers, aiGenerated, pastPaperPool }) {
   const list = (topics && topics.length) ? topics : [];
+  const safeLength = safeQuestionCount(length);
   // Past-paper questions matching selected topics + answer type.
   const ppMatching = (pastPaperPool || []).filter((p) => list.includes(p.topic) && p.answerType === answerType);
   // Filter by difficulty if it matches; otherwise still include.
   const preferPP = pastPapers && ppMatching.length > 0;
   const preferAI = !!aiGenerated;
 
-  const aiPool = () => {
-    const t = list[Math.floor(Math.random() * Math.max(1, list.length))] || null;
-    const pool = (t && QUESTION_BANK[t]) || FALLBACK_QUESTIONS;
-    const base = pool[Math.floor(Math.random() * pool.length)] || pool[0];
+  const aiPool = (i) => {
+    const t = list.length ? list[i % list.length] : null;
+    const pool = t && QUESTION_BANK[t];
+    const base = pool?.length ? pool[i % pool.length] : fallbackQuestion(t, i);
     return toAnswerType({ ...base, _topic: t, difficulty, source: 'ai-generated' }, answerType);
   };
   const ppPool = (i) => {
@@ -96,16 +137,16 @@ function buildQuestions({ topics, answerType, difficulty, length, pastPapers, ai
   };
 
   const out = [];
-  for (let i = 0; i < length; i++) {
+  for (let i = 0; i < safeLength; i++) {
     let picked = null;
     if (preferPP && preferAI) {
-      picked = (i % 2 === 0) ? ppPool(Math.floor(i / 2)) : aiPool();
+      picked = (i % 2 === 0) ? ppPool(Math.floor(i / 2)) : aiPool(i);
     } else if (preferPP) {
       picked = ppPool(i);
     } else if (preferAI) {
-      picked = aiPool();
+      picked = aiPool(i);
     }
-    if (!picked) picked = aiPool();
+    if (!picked) picked = aiPool(i);
     out.push(picked);
   }
   return out;
@@ -134,7 +175,7 @@ export default function Worksheets({ go }) {
   // Only subjects the user has actually chosen (from onboarding / courses).
   // Includes any subject on a custom course too, so custom subjects show up
   // in the picker.
-  const allTrackSubjects = SUBJECTS[track] || [];
+  const allTrackSubjects = useMemo(() => SUBJECTS[track] || [], [track]);
   const customSubjectTopics = useMemo(() => {
     // Map<subject, topics[]> for custom courses.
     const m = {};
@@ -226,8 +267,12 @@ export default function Worksheets({ go }) {
       toast.error('No past-paper questions match this selection. Ask an admin to upload some, or also tick AI generated.');
       return;
     }
-    const length = Math.max(3, Math.min(30, Math.round(duration / 3)));
+    const length = safeQuestionCount(duration / 3);
     const qs = buildQuestions({ topics, answerType, difficulty, length, pastPapers, aiGenerated, pastPaperPool });
+    if (!qs.length) {
+      toast.error('Could not create questions for this worksheet. Pick another topic or source.');
+      return;
+    }
     setQuestions(qs);
     // For MCQ, -1 means unanswered. For typed/exam, empty string.
     setAnswers(new Array(qs.length).fill(answerType === 'Multiple choice' ? -1 : ''));
@@ -252,8 +297,14 @@ export default function Worksheets({ go }) {
   };
 
   const finalize = () => {
+    if (!questions.length) {
+      toast.error('This worksheet has no questions. Create a new worksheet before submitting.');
+      setStage('build');
+      return;
+    }
     const results = questions.map((q, i) => gradeOne(q, answers[i]));
     const correct = results.filter(Boolean).length;
+    const total = questions.length;
     const durationSec = Math.round((Date.now() - startTime) / 1000);
     const sheet = {
       id: `ws_${Date.now()}`,
@@ -261,7 +312,7 @@ export default function Worksheets({ go }) {
       topic: topics.join(', '),
       topics,
       difficulty,
-      length: questions.length,
+      length: total,
       answerType,
       duration,
       pastPapers,
@@ -269,9 +320,9 @@ export default function Worksheets({ go }) {
       questions,
       answers,
       results,
-      total: questions.length,
+      total,
       correct,
-      score: Math.round((correct / questions.length) * 100),
+      score: Math.round((correct / total) * 100),
       durationSec,
       date: new Date().toISOString(),
     };

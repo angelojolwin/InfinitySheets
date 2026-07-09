@@ -17,7 +17,7 @@ function Ring({ value = 82 }) {
 }
 
 export default function DashboardPreview() {
-  const sidebar = ['Dashboard', 'Start Studying', 'My Subjects', 'Worksheet History', 'Progress', 'Strengths & Weaknesses', 'Profile', 'Settings'];
+  const sidebar = ['Dashboard', 'Start Studying', 'Worksheets', 'Progress', 'Mistake History', 'Profile', 'Settings'];
   const stats = [
     { l: 'Readiness', v: '82%' },
     { l: 'Streak', v: '9 days' },
