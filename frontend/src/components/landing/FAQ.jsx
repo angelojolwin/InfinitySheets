@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Plus, Minus } from 'lucide-react';
 import Reveal from './Reveal';
+import TypeHeading from './TypeHeading';
+import { DoodleReading } from '../decor/StudentDoodles';
 
 const FAQS = [
   {
@@ -35,9 +37,10 @@ export default function FAQ() {
     <section id="faq" className="section-bg">
       <div className="max-w-[1280px] mx-auto px-6 py-28 lg:py-32">
         <Reveal>
-          <div className="text-center max-w-[720px] mx-auto">
+          <div className="relative text-center max-w-[720px] mx-auto">
             <div className="eyebrow mb-5">Questions, answered</div>
-            <h2 className="h-display text-[44px] sm:text-[56px] lg:text-[60px] leading-[1.05]">Everything students ask us.</h2>
+            <TypeHeading text="Everything students ask us." className="h-display text-[46px] sm:text-[58px] lg:text-[64px] leading-[1.05]" />
+            <div className="hidden lg:block absolute -right-44 -top-6"><DoodleReading /></div>
           </div>
         </Reveal>
         <Reveal delay={0.1}>

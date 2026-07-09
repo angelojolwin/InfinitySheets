@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Eye } from 'lucide-react';
 import InfinityBackground from '../decor/InfinityBackground';
+import { DoodleLaptop, DoodleBooks } from '../decor/StudentDoodles';
 import { useApp } from '../../context/AppContext';
 import { EXAM_TRACKS } from '../../data/mock';
 
@@ -12,12 +13,14 @@ export default function Hero() {
     <section id="top" className="relative section-bg overflow-hidden">
       <InfinityBackground variant="hero" />
       <div className="absolute inset-0 grid-fade pointer-events-none" />
+      <div className="hidden xl:block absolute left-[4%] top-[30%] opacity-90 pointer-events-none"><DoodleBooks width={140} /></div>
+      <div className="hidden xl:block absolute right-[4%] top-[24%] opacity-90 pointer-events-none"><DoodleLaptop width={160} /></div>
       <div className="relative max-w-[1280px] mx-auto px-6 min-h-[92svh] flex flex-col items-center justify-center text-center pt-20 pb-10">
         <motion.h1
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="h-display text-[52px] sm:text-[72px] lg:text-[96px] leading-[1.02] max-w-[980px]"
+          className="h-display text-[56px] sm:text-[80px] lg:text-[108px] leading-[1.02] max-w-[1080px]"
         >
           A study tool <span className="font-serif-italic">tailored</span> just for you.
         </motion.h1>
@@ -25,7 +28,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-7 text-[17px] sm:text-[19px] text-slate-500 max-w-[640px] leading-relaxed"
+          className="mt-8 text-[18px] sm:text-[20px] text-slate-500 max-w-[680px] leading-relaxed"
         >
           Coaching centres win exams with endless on-syllabus practice, focused work on weak
           concepts, and total exam familiarity. InfinitySheets puts that training on any
@@ -37,11 +40,11 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.22, ease: [0.22, 1, 0.36, 1] }}
           className="mt-9 flex flex-wrap items-center justify-center gap-3"
         >
-          <a href="#signup" className="btn-violet inline-flex items-center gap-2 px-6 py-3.5 rounded-xl text-[15px] font-medium shadow-sm">
-            Start Free <ArrowRight className="w-4 h-4" />
+          <a href="#signup" className="btn-violet inline-flex items-center gap-2 px-7 py-4 rounded-xl text-[16.5px] font-medium shadow-sm">
+            Start Free <ArrowRight className="w-5 h-5" />
           </a>
-          <button onClick={onDemo} className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl text-[15px] font-medium text-violet-700 bg-violet-50 border border-violet-200 hover:bg-violet-100 transition-colors">
-            <Eye className="w-4 h-4" /> Try without signing up
+          <button onClick={onDemo} className="inline-flex items-center gap-2 px-7 py-4 rounded-xl text-[16.5px] font-medium text-violet-700 bg-violet-50 border border-violet-200 hover:bg-violet-100 transition-colors">
+            <Eye className="w-5 h-5" /> Try without signing up
           </button>
         </motion.div>
         <motion.div
@@ -51,7 +54,7 @@ export default function Hero() {
           className="mt-10 flex flex-wrap items-center justify-center gap-2 max-w-[720px]"
         >
           {EXAM_TRACKS.map((t) => (
-            <span key={t.id} className="px-3 py-1 rounded-full border border-slate-200 bg-white/70 backdrop-blur text-[12.5px] text-slate-600">
+            <span key={t.id} className="px-4 py-1.5 rounded-full border border-slate-200 bg-white/70 backdrop-blur text-[14px] text-slate-600">
               {t.name}
             </span>
           ))}

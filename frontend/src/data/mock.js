@@ -10,6 +10,7 @@ export const EXAM_TRACKS = [
   { id: 'SAT', name: 'SAT', title: 'Timed reasoning practice', desc: 'Reading, writing, and math sets with pacing-focused feedback.' },
   { id: 'JEE', name: 'JEE', title: 'Concept-heavy problem solving', desc: 'Physics, chemistry, and maths sheets built around difficult multi-step questions.' },
   { id: 'NEET', name: 'NEET', title: 'High-volume recall and accuracy', desc: 'Biology-heavy revision plus chemistry and physics practice.' },
+  { id: 'LSAT', name: 'LSAT', title: 'Logic under time pressure', desc: 'Logical reasoning and reading comprehension drills with pacing-focused feedback.' },
 ];
 
 // Default duration (in minutes) of the actual exam for each track. Used as the
@@ -24,6 +25,7 @@ export const EXAM_DURATIONS = {
   SAT: 134,
   JEE: 180,
   NEET: 200,
+  LSAT: 140,
 };
 
 export const FEATURES = [
@@ -75,6 +77,7 @@ export const SUBJECTS = {
   SAT: ['Math', 'Reading', 'Writing'],
   JEE: ['Physics', 'Chemistry', 'Mathematics'],
   NEET: ['Biology', 'Chemistry', 'Physics'],
+  LSAT: ['Logical Reasoning', 'Reading Comprehension'],
 };
 
 export const TOPICS = {
@@ -92,6 +95,8 @@ export const TOPICS = {
   Economics: ['Microeconomics', 'Macroeconomics', 'International Trade'],
   Reading: ['Passages', 'Vocabulary in Context'],
   Writing: ['Grammar', 'Rhetoric'],
+  'Logical Reasoning': ['Assumptions', 'Strengthen & Weaken', 'Flaws', 'Inference', 'Parallel Reasoning'],
+  'Reading Comprehension': ['Main Point', 'Author Attitude', 'Comparative Passages', 'Detail & Structure'],
 };
 
 // Brief summary of what each topic covers — used on the Course Overview page.

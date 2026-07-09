@@ -71,6 +71,9 @@ html, body {
     line-height: 1.02;
     color: var(--color-text);
 }
+/* Tailwind text color utilities must win over the h-display base color,
+   otherwise headings on dark sections render dark-on-dark. */
+.h-display.text-white { color: #fff; }
 
 .btn-violet {
     background: var(--color-primary);
@@ -368,6 +371,33 @@ html.dark .bg-rose-100   { color: #fda4af; background-color: rgba(244, 63, 94, 0
 /* mistake cards rose tint */
 html.dark .bg-rose-50\/40,
 html.dark .bg-rose-50\/30 { background-color: rgba(244, 63, 94, 0.10) !important; }
+
+/* Doodle students: gentle float + twinkling sparkles */
+@keyframes doodle-float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-7px); }
+}
+.doodle-float { animation: doodle-float 5.5s ease-in-out infinite; }
+@keyframes doodle-twinkle {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.25; }
+}
+.doodle-twinkle { animation: doodle-twinkle 2.8s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) {
+    .doodle-float, .doodle-twinkle { animation: none; }
+}
+
+/* Typed-out heading caret */
+@keyframes caret-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+.type-caret {
+    display: inline-block;
+    width: 3px;
+    height: 0.9em;
+    margin-left: 4px;
+    vertical-align: -0.08em;
+    background: currentColor;
+    animation: caret-blink 0.9s step-end infinite;
+}
 
 /* Subtle lift on hover for landing cards */
 .hover-lift {
