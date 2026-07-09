@@ -71,6 +71,9 @@ html, body {
     line-height: 1.02;
     color: var(--color-text);
 }
+/* Tailwind text color utilities must win over the h-display base color,
+   otherwise headings on dark sections render dark-on-dark. */
+.h-display.text-white { color: #fff; }
 
 .btn-violet {
     background: var(--color-primary);
@@ -338,8 +341,15 @@ html.dark .border-red-200 { border-color: var(--color-border) !important; }
 
 html.dark .bg-white\/85,
 html.dark .bg-white\/80,
+html.dark .bg-white\/70,
 html.dark .bg-white\/15,
 html.dark .bg-white\/12 { background-color: rgba(23, 23, 23, 0.85) !important; }
+
+html.dark .bg-blue-50\/50 { background-color: rgba(37, 99, 235, 0.10) !important; }
+html.dark .bg-amber-50 { background-color: rgba(245, 158, 11, 0.12) !important; }
+html.dark .border-amber-200 { border-color: rgba(245, 158, 11, 0.35) !important; }
+html.dark .text-amber-800 { color: #fcd34d !important; }
+html.dark .text-amber-600 { color: #fbbf24 !important; }
 
 html.dark .bg-slate-50\/60 { background-color: var(--color-bg-2) !important; }
 html.dark .bg-slate-200\/70 { background-color: #262626 !important; }
@@ -361,6 +371,45 @@ html.dark .bg-rose-100   { color: #fda4af; background-color: rgba(244, 63, 94, 0
 /* mistake cards rose tint */
 html.dark .bg-rose-50\/40,
 html.dark .bg-rose-50\/30 { background-color: rgba(244, 63, 94, 0.10) !important; }
+
+/* Doodle students: gentle float + twinkling sparkles */
+@keyframes doodle-float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-7px); }
+}
+.doodle-float { animation: doodle-float 5.5s ease-in-out infinite; }
+@keyframes doodle-twinkle {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.25; }
+}
+.doodle-twinkle { animation: doodle-twinkle 2.8s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) {
+    .doodle-float, .doodle-twinkle { animation: none; }
+}
+
+/* Typed-out heading caret */
+@keyframes caret-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+.type-caret {
+    display: inline-block;
+    width: 3px;
+    height: 0.9em;
+    margin-left: 4px;
+    vertical-align: -0.08em;
+    background: currentColor;
+    animation: caret-blink 0.9s step-end infinite;
+}
+
+/* Subtle lift on hover for landing cards */
+.hover-lift {
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.hover-lift:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 30px -12px rgba(15, 23, 42, 0.18);
+}
+@media (prefers-reduced-motion: reduce) {
+    .hover-lift, .hover-lift:hover { transition: none; transform: none; }
+}
 
 .tut-highlight {
     position: relative;
