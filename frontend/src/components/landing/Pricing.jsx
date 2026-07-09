@@ -8,9 +8,9 @@ export default function Pricing() {
       <div className="max-w-[1280px] mx-auto px-6 py-24 lg:py-28">
         <div className="max-w-[760px]">
           <div className="eyebrow mb-5">Pricing</div>
-          <h2 className="h-display text-[40px] sm:text-[48px] lg:text-[54px]">Start free. Upgrade when you’re ready.</h2>
+          <h2 className="h-display text-[40px] sm:text-[48px] lg:text-[54px]">Free. Actually free.</h2>
           <p className="mt-5 text-[15.5px] text-slate-500 leading-relaxed max-w-[560px]">
-            Begin with everything you need to study smarter. Premium unlocks unlimited practice and deeper analytics.
+            Everything you need to study smarter costs nothing, supported by ads. A premium tier may come later&mdash;once we&rsquo;ve proven the platform is worth paying for.
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-12 max-w-[860px]">
@@ -29,7 +29,11 @@ export default function Pricing() {
                   </li>
                 ))}
               </ul>
-              <a href="#signup" className={`mt-6 inline-flex items-center justify-center w-full py-2.5 rounded-lg text-[14px] font-medium transition-colors ${p.highlight ? 'bg-blue-500 hover:bg-blue-400 text-white' : 'btn-violet'}`}>{p.cta}</a>
+              {p.comingSoon ? (
+                <span className={`mt-6 inline-flex items-center justify-center w-full py-2.5 rounded-lg text-[14px] font-medium border cursor-default select-none ${p.highlight ? 'border-slate-700 text-slate-400' : 'border-slate-300 text-slate-400'}`}>{p.cta}</span>
+              ) : (
+                <a href="#signup" className={`mt-6 inline-flex items-center justify-center w-full py-2.5 rounded-lg text-[14px] font-medium transition-colors ${p.highlight ? 'bg-blue-500 hover:bg-blue-400 text-white' : 'btn-violet'}`}>{p.cta}</a>
+              )}
             </div>
           ))}
         </div>

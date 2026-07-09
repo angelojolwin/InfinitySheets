@@ -53,9 +53,9 @@ export const WHY_IT_WORKS = [
 ];
 
 export const RESEARCH_STATS = [
-  { num: '2\u00d7', title: 'More effective than passive rereading', desc: 'Retrieval practice consistently outperforms rereading in long-term retention studies.' },
-  { num: '89%', title: 'Better long-term retention', desc: 'Students report stronger recall when using active recall techniques over time.' },
-  { num: 'Personalized', title: 'Higher engagement & outcomes', desc: 'Adaptive learning leads to improved results compared to one-size-fits-all instruction.' },
+  { num: '2\u00d7', title: 'The testing effect', desc: 'Roediger & Karpicke (2006): practicing retrieval roughly doubled long-term retention compared to repeated rereading.' },
+  { num: '#1', title: 'Top-rated study technique', desc: 'Dunlosky et al. (2013) reviewed ten popular study techniques and rated practice testing among the most effective of all.' },
+  { num: 'Targeted', title: 'Feedback accelerates learning', desc: 'Decades of research show that immediate, specific feedback\u2014exactly what every worksheet gives you\u2014speeds up improvement.' },
 ];
 
 export const TESTIMONIALS = [
@@ -65,8 +65,8 @@ export const TESTIMONIALS = [
 ];
 
 export const PRICING = [
-  { tag: 'Free', price: '$0', period: 'forever', features: ['Personalized worksheets', 'AI weakness analysis', 'Progress tracking'], cta: 'Start Free', highlight: false },
-  { tag: 'Premium', price: '$9', period: 'per month', features: ['Unlimited worksheets', 'Advanced analytics', 'Smart recommendations', 'Priority AI generation', 'Early access to new features'], cta: 'Upgrade', highlight: true },
+  { tag: 'Free', price: '$0', period: 'forever', features: ['Personalized worksheets', 'Weakness analysis', 'Scores & predicted grades', 'Custom feedback & advice', 'Progress tracking & streaks'], cta: 'Start Free', highlight: true },
+  { tag: 'Premium', price: 'Later', period: 'once we’ve earned it', features: ['No ads', 'Unlimited worksheets', 'Deeper analytics', 'Early access to new features'], cta: 'Coming later', highlight: false, comingSoon: true },
 ];
 
 // Subjects per exam track

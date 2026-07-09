@@ -1,9 +1,10 @@
 import React from 'react';
-import { ArrowRight, Play, Eye } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { ArrowRight, Eye } from 'lucide-react';
 import DashboardPreview from './DashboardPreview';
 import InfinityBackground from '../decor/InfinityBackground';
-import StudyDecor from '../decor/StudyDecor';
 import { useApp } from '../../context/AppContext';
+import { EXAM_TRACKS } from '../../data/mock';
 
 export default function Hero() {
   const { startDemo } = useApp();
@@ -11,49 +12,63 @@ export default function Hero() {
   return (
     <section id="top" className="relative section-bg overflow-hidden">
       <InfinityBackground variant="hero" />
-      <StudyDecor density="normal" />
       <div className="absolute inset-0 grid-fade pointer-events-none" />
-      <div className="relative max-w-[1280px] mx-auto px-6 pt-16 lg:pt-24 pb-20 lg:pb-28">
-        <div className="grid lg:grid-cols-[1.05fr_1fr] gap-12 lg:gap-16 items-center">
-          <div>
-            <h1 className="h-display text-[52px] sm:text-[64px] lg:text-[76px]">
-              A study tool <br />
-              <span className="font-serif-italic">tailored</span> just for you.
-            </h1>
-            <p className="mt-6 text-[16.5px] text-slate-500 max-w-[560px] leading-relaxed">
-              Coaching centres win exams with endless on-syllabus practice, focused work on weak concepts, and total exam familiarity. InfinitySheets puts that training on any device—completely free.
-            </p>
-            <div className="mt-8 flex flex-wrap items-center gap-3">
-              <a href="#signup" className="btn-violet inline-flex items-center gap-2 px-5 py-3 rounded-xl text-[14.5px] font-medium shadow-sm">
-                Start Free <ArrowRight className="w-4 h-4" />
-              </a>
-              <a href="#how" className="btn-outline-dark inline-flex items-center gap-2 px-5 py-3 rounded-xl text-[14.5px] font-medium">
-                <Play className="w-4 h-4 text-red-600" /> Watch Demo
-              </a>
-              <button onClick={onDemo} className="inline-flex items-center gap-2 px-5 py-3 rounded-xl text-[14.5px] font-medium text-violet-700 bg-violet-50 border border-violet-200 hover:bg-violet-100 transition-colors">
-                <Eye className="w-4 h-4" /> Try without signing up
-              </button>
-            </div>
-            <div className="mt-10 grid grid-cols-3 gap-3 max-w-[560px]">
-              <Stat num="2×" label="More effective than rereading" />
-              <Stat num="89%" label="Better long-term retention" />
-              <Stat num="100%" label="Personalized to you" />
-            </div>
-          </div>
-          <div className="hidden lg:block">
-            <DashboardPreview />
-          </div>
-        </div>
+      <div className="relative max-w-[1280px] mx-auto px-6 min-h-[92svh] flex flex-col items-center justify-center text-center pt-20 pb-10">
+        <motion.h1
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          className="h-display text-[52px] sm:text-[72px] lg:text-[96px] leading-[1.02] max-w-[980px]"
+        >
+          A study tool <span className="font-serif-italic">tailored</span> just for you.
+        </motion.h1>
+        <motion.p
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
+          className="mt-7 text-[17px] sm:text-[19px] text-slate-500 max-w-[640px] leading-relaxed"
+        >
+          Coaching centres win exams with endless on-syllabus practice, focused work on weak
+          concepts, and total exam familiarity. InfinitySheets puts that training on any
+          device&mdash;completely free.
+        </motion.p>
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.22, ease: [0.22, 1, 0.36, 1] }}
+          className="mt-9 flex flex-wrap items-center justify-center gap-3"
+        >
+          <a href="#signup" className="btn-violet inline-flex items-center gap-2 px-6 py-3.5 rounded-xl text-[15px] font-medium shadow-sm">
+            Start Free <ArrowRight className="w-4 h-4" />
+          </a>
+          <button onClick={onDemo} className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl text-[15px] font-medium text-violet-700 bg-violet-50 border border-violet-200 hover:bg-violet-100 transition-colors">
+            <Eye className="w-4 h-4" /> Try without signing up
+          </button>
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.35 }}
+          className="mt-10 flex flex-wrap items-center justify-center gap-2 max-w-[720px]"
+        >
+          {EXAM_TRACKS.map((t) => (
+            <span key={t.id} className="px-3 py-1 rounded-full border border-slate-200 bg-white/70 backdrop-blur text-[12.5px] text-slate-600">
+              {t.name}
+            </span>
+          ))}
+        </motion.div>
       </div>
+      <motion.div
+        initial={{ opacity: 0, y: 60, scale: 0.94 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{ duration: 1, delay: 0.45, ease: [0.22, 1, 0.36, 1] }}
+        className="relative max-w-[1080px] mx-auto px-6 pb-24"
+      >
+        <div className="rounded-3xl shadow-2xl shadow-blue-900/10 ring-1 ring-slate-900/5 overflow-hidden">
+          <DashboardPreview />
+        </div>
+        <p className="text-center text-[12.5px] text-slate-400 mt-4">The InfinitySheets dashboard&mdash;this is the actual product.</p>
+      </motion.div>
     </section>
-  );
-}
-
-function Stat({ num, label }) {
-  return (
-    <div className="rounded-xl border border-[color:var(--color-border)] bg-white/80 backdrop-blur px-4 py-3 hover:border-violet-300 transition-colors">
-      <div className="text-[20px] font-semibold tracking-tight">{num}</div>
-      <div className="text-[12px] text-slate-500 mt-0.5 leading-snug">{label}</div>
-    </div>
   );
 }
