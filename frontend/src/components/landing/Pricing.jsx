@@ -31,7 +31,7 @@ export default function Pricing() {
             </div>
           </Reveal>
           <Reveal delay={0.15}>
-            <div className="rounded-3xl p-8 bg-slate-900 text-white border border-slate-800 shadow-2xl shadow-slate-900/20">
+            <div className="rounded-3xl p-8 liquid-glass-dark bg-slate-900/80 text-white shadow-2xl shadow-slate-900/20">
               <div className="text-[11px] tracking-[0.14em] uppercase font-semibold text-blue-300">Everything, free</div>
               <div className="flex items-baseline gap-2 mt-3">
                 <div className="text-[48px] font-semibold tracking-tight text-white">$0</div>

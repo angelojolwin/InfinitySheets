@@ -21,11 +21,19 @@ function resolveApiBase() {
 const API_BASE = resolveApiBase();
 
 async function apiCall(path, opts = {}) {
-  const res = await fetch(`${API_BASE}${path}`, {
-    credentials: 'include',
-    headers: { 'Content-Type': 'application/json', ...(opts.headers || {}) },
-    ...opts,
-  });
+  let res;
+  try {
+    res = await fetch(`${API_BASE}${path}`, {
+      credentials: 'include',
+      headers: { 'Content-Type': 'application/json', ...(opts.headers || {}) },
+      ...opts,
+    });
+  } catch (networkErr) {
+    // fetch() rejects with an opaque TypeError when the server is unreachable.
+    const err = new Error('Cannot reach the server right now. Check your connection — or explore the app with the free demo, no account needed.');
+    err.cause = networkErr;
+    throw err;
+  }
   const text = await res.text();
   let data = null;
   try { data = text ? JSON.parse(text) : null; } catch { data = { raw: text }; }
@@ -35,6 +43,11 @@ async function apiCall(path, opts = {}) {
     if (typeof detail === 'string') message = detail;
     else if (Array.isArray(detail)) message = detail.map((e) => e?.msg || JSON.stringify(e)).join(' ');
     else if (detail?.msg) message = detail.msg;
+    // A non-JSON error body (raw HTML 404/502) means we didn't reach the API at
+    // all — e.g. a frontend-only deployment. Give a human answer, not "Request failed".
+    if (message === 'Request failed' && (data?.raw !== undefined || res.status === 404 || res.status === 502 || res.status === 503)) {
+      message = 'Cannot reach the server right now. Check your connection — or explore the app with the free demo, no account needed.';
+    }
     const err = new Error(message);
     err.status = res.status;
     throw err;

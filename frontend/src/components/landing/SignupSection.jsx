@@ -16,6 +16,10 @@ export default function SignupSection() {
       toast.error('Please fill all fields');
       return;
     }
+    if (form.password.length < 6) {
+      toast.error('Password must be at least 6 characters');
+      return;
+    }
     setBusy(true);
     try {
       await apiRegister({ email: form.email, password: form.password, name: form.name, examTrack: form.track });

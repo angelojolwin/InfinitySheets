@@ -14,7 +14,7 @@ export default function Navbar({ onStart }) {
     { label: 'Pricing', href: '#pricing' },
   ];
   return (
-    <header className="sticky top-0 z-40 bg-white/85 backdrop-blur border-b border-[color:var(--color-border)]">
+    <header className="sticky top-0 z-40 liquid-glass border-b border-[color:var(--color-border)]">
       <div className="max-w-[1280px] mx-auto px-6 h-[60px] flex items-center justify-between">
         <a href="#top" className="flex items-center gap-2 group">
           <span className="w-8 h-8 rounded-lg bg-blue-500 flex items-center justify-center group-hover:scale-105 transition-transform">

@@ -10,6 +10,7 @@ import FreeResources from './FreeResources';
 import Research from './Research';
 import FAQ from './FAQ';
 import Pricing from './Pricing';
+import SubjectBreakdown from './SubjectBreakdown';
 import FinalCTA from './FinalCTA';
 import SignupSection from './SignupSection';
 import Footer from './Footer';
@@ -40,6 +41,7 @@ export default function LandingPage({ hash }) {
       <Research />
       <FAQ />
       <Pricing />
+      <SubjectBreakdown />
       <FinalCTA />
       <SignupSection />
       <Footer />

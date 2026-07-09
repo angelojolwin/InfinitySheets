@@ -30,7 +30,7 @@ export default function WhyDifferent() {
         </Reveal>
         <Reveal delay={0.15}>
           <div className="mt-16 max-w-[920px] mx-auto w-full">
-            <div className="rounded-3xl border border-slate-700 bg-slate-900/50 backdrop-blur overflow-hidden">
+            <div className="rounded-3xl liquid-glass-dark overflow-hidden">
               <div className="grid grid-cols-2 border-b border-slate-700">
                 <div className="px-6 py-4 text-[13px] font-semibold text-slate-400 uppercase tracking-wider">Traditional studying</div>
                 <div className="px-6 py-4 text-[13px] font-semibold text-blue-300 uppercase tracking-wider border-l border-slate-700">InfinitySheets</div>
@@ -50,24 +50,7 @@ export default function WhyDifferent() {
             </div>
           </div>
         </Reveal>
-        <Reveal delay={0.25}>
-          <div className="mt-14 grid grid-cols-2 lg:grid-cols-4 gap-3 max-w-[920px] mx-auto w-full">
-            <Mini label="Adaptive" value="to your level" />
-            <Mini label="Personalized" value="to your weak spots" />
-            <Mini label="Instant" value="feedback & marking" />
-            <Mini label="Free" value="every feature, no paywall" />
-          </div>
-        </Reveal>
       </div>
     </section>
-  );
-}
-
-function Mini({ label, value }) {
-  return (
-    <div className="rounded-xl border border-slate-700 bg-slate-900/40 px-4 py-3">
-      <div className="text-[10px] tracking-[0.14em] uppercase font-semibold text-slate-400">{label}</div>
-      <div className="text-[14px] text-slate-100 mt-1">{value}</div>
-    </div>
   );
 }

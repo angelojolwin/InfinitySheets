@@ -14,6 +14,14 @@ export default function Footer() {
           <a href="#signup" className="text-[13.5px] text-zinc-600 hover:text-zinc-900 transition-colors">Start free</a>
         </div>
       </div>
+      <div className="border-t border-zinc-100">
+        <p className="max-w-[1280px] mx-auto px-6 py-5 text-[11.5px] leading-relaxed text-zinc-400">
+          None of the organizations, examination boards, course providers, or qualifications referenced on this
+          website were involved in the creation of, and do not endorse, the resources developed by InfinitySheets.
+          All trademarks and course names remain the property of their respective owners and are used solely for
+          identification and compatibility purposes.
+        </p>
+      </div>
     </footer>
   );
 }

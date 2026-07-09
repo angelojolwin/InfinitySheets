@@ -34,7 +34,7 @@ export default function FreeResources() {
           <Reveal delay={0.15}>
             <div className="relative">
               <div className="hidden lg:block absolute -top-24 right-2"><DoodleBooks tone="dark" /></div>
-              <div className="rounded-3xl border border-slate-700 bg-slate-900/50 backdrop-blur p-7">
+              <div className="rounded-3xl liquid-glass-dark p-7">
                 <div className="text-[12px] tracking-wider uppercase font-semibold text-slate-400 mb-4">Covered curricula</div>
                 <div className="flex flex-wrap gap-2.5">
                   {RESOURCE_TRACKS.map((t) => (

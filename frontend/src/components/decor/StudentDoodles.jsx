@@ -30,14 +30,25 @@ function Sparkles({ x = 0, y = 0, s }) {
   );
 }
 
-/* Big round head, dot eyes, huge grin — shared face helper */
+/* Big round head with warm, friendly features: large eyes with catchlights,
+   rosy cheeks, and a soft open smile. */
 function Face({ cx, cy, r, s, fill }) {
   return (
     <g>
       <circle cx={cx} cy={cy} r={r} stroke={s} strokeWidth="3" fill={fill} />
-      <circle cx={cx - r * 0.32} cy={cy - r * 0.08} r="2.2" fill={s} />
-      <circle cx={cx + r * 0.32} cy={cy - r * 0.08} r="2.2" fill={s} />
-      <path d={`M${cx - r * 0.3} ${cy + r * 0.3} q ${r * 0.3} ${r * 0.35} ${r * 0.6} 0`} stroke={s} strokeWidth="2.6" strokeLinecap="round" fill="none" />
+      {/* big round eyes with white catchlights */}
+      <circle cx={cx - r * 0.34} cy={cy - r * 0.02} r={r * 0.15} fill={s} />
+      <circle cx={cx + r * 0.34} cy={cy - r * 0.02} r={r * 0.15} fill={s} />
+      <circle cx={cx - r * 0.30} cy={cy - r * 0.07} r={r * 0.05} fill="#fff" />
+      <circle cx={cx + r * 0.38} cy={cy - r * 0.07} r={r * 0.05} fill="#fff" />
+      {/* rosy cheeks */}
+      <circle cx={cx - r * 0.58} cy={cy + r * 0.28} r={r * 0.13} fill={BLUE_SOFT} opacity="0.65" />
+      <circle cx={cx + r * 0.58} cy={cy + r * 0.28} r={r * 0.13} fill={BLUE_SOFT} opacity="0.65" />
+      {/* soft open smile */}
+      <path
+        d={`M${cx - r * 0.2} ${cy + r * 0.32} q ${r * 0.2} ${r * 0.28} ${r * 0.4} 0 z`}
+        stroke={s} strokeWidth="2.2" strokeLinejoin="round" fill={s} fillOpacity="0.85"
+      />
     </g>
   );
 }
