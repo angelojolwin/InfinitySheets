@@ -372,6 +372,14 @@ html.dark .bg-rose-100   { color: #fda4af; background-color: rgba(244, 63, 94, 0
 html.dark .bg-rose-50\/40,
 html.dark .bg-rose-50\/30 { background-color: rgba(244, 63, 94, 0.10) !important; }
 
+/* Doodle students: theme-aware line-work */
+:root { --doodle-ink: #0f172a; --doodle-paper: #ffffff; }
+html.dark { --doodle-ink: #e2e8f0; --doodle-paper: #171717; }
+
+/* Hero screenshot: swap image with the active theme */
+html.dark .shot-light { display: none; }
+html:not(.dark) .shot-dark { display: none; }
+
 /* Doodle students: gentle float + twinkling sparkles */
 @keyframes doodle-float {
     0%, 100% { transform: translateY(0); }

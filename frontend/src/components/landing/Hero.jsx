@@ -71,7 +71,13 @@ export default function Hero() {
           <img
             src="/screenshots/dashboard.png"
             alt="The InfinitySheets dashboard showing study streak, daily goal, upcoming exams, and strong and weak topics"
-            className="w-full h-auto block"
+            className="shot-light w-full h-auto block"
+            loading="eager"
+          />
+          <img
+            src="/screenshots/dashboard-dark.png"
+            alt="The InfinitySheets dashboard in dark mode showing study streak, daily goal, upcoming exams, and strong and weak topics"
+            className="shot-dark w-full h-auto block"
             loading="eager"
           />
         </div>

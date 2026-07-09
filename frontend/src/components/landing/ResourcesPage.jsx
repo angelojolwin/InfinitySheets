@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { ExternalLink, BadgeCheck, Info, ArrowLeft } from 'lucide-react';
+import { ExternalLink, BadgeCheck, Info, ArrowLeft, Sun, Moon } from 'lucide-react';
 import { RESOURCE_TRACKS } from '../../data/resources';
+import { useApp } from '../../context/AppContext';
 import Footer from './Footer';
 import Reveal from './Reveal';
 
 export default function ResourcesPage() {
+  const { toggleTheme, state } = useApp();
   const [active, setActive] = useState(RESOURCE_TRACKS[0].id);
   const track = RESOURCE_TRACKS.find((t) => t.id === active) || RESOURCE_TRACKS[0];
 
@@ -17,7 +19,16 @@ export default function ResourcesPage() {
           <a href="#top" className="flex items-center gap-2 text-[14px] text-slate-600 hover:text-slate-900 transition-colors">
             <ArrowLeft className="w-4 h-4" /> Back to InfinitySheets
           </a>
-          <a href="#signup" className="btn-violet px-4 py-2 rounded-lg text-[14px] font-medium shadow-sm">Start Free</a>
+          <div className="flex items-center gap-2">
+            <button
+              onClick={toggleTheme}
+              aria-label={state.theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+              className="w-9 h-9 inline-flex items-center justify-center rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-100 transition-colors"
+            >
+              {state.theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+            </button>
+            <a href="#signup" className="btn-violet px-4 py-2 rounded-lg text-[14px] font-medium shadow-sm">Start Free</a>
+          </div>
         </div>
       </header>
 
