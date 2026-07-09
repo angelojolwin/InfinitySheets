@@ -38,8 +38,8 @@ export const FEATURES = [
 export const HOW_IT_WORKS = [
   { n: '01', title: 'Complete a Worksheet', text: 'Answer fresh exam-style questions matched to your syllabus and current level.' },
   { n: '02', title: 'Weakness Analysis', text: 'The platform pinpoints the exact topics and question types costing you marks.' },
-  { n: '03', title: 'Targeted Worksheets', text: 'Receive new worksheets focused specifically on your weak areas.' },
-  { n: '04', title: 'Smart Recommendations', text: 'Know exactly what to study next—no planning, no guesswork, no hunting for material.' },
+  { n: '03', title: 'Targeted Worksheets', text: 'Your next sheet adapts: more, easier problems on your weak points to build them up, and fewer, harder problems on your strong points to keep them sharp.' },
+  { n: '04', title: 'Smart Recommendations', text: 'Know exactly what to study next—no planning, no hunting for material.' },
   { n: '05', title: 'Track Your Progress', text: 'Watch topic mastery, predicted scores, and study streaks improve over time.' },
 ];
 
@@ -62,11 +62,6 @@ export const TESTIMONIALS = [
   { quote: 'I finally knew exactly what to study instead of wasting time guessing.', name: 'High school senior', role: 'IB student' },
   { quote: 'The targeted worksheets helped me improve the topics I struggled with the most.', name: 'IGCSE learner', role: 'Year 11' },
   { quote: 'It is like having a personal tutor that understands how I learn.', name: 'SAT prep student', role: 'Grade 12' },
-];
-
-export const PRICING = [
-  { tag: 'Free', price: '$0', period: 'forever', features: ['Personalized worksheets', 'Weakness analysis', 'Scores & predicted grades', 'Custom feedback & advice', 'Progress tracking & streaks'], cta: 'Start Free', highlight: true },
-  { tag: 'Premium', price: 'Later', period: 'once we’ve earned it', features: ['No ads', 'Unlimited worksheets', 'Deeper analytics', 'Early access to new features'], cta: 'Coming later', highlight: false, comingSoon: true },
 ];
 
 // Subjects per exam track

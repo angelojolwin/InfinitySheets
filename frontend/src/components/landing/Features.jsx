@@ -1,6 +1,7 @@
 import React from 'react';
 import { LineChart, Brain, Target, Lightbulb, BookOpen } from 'lucide-react';
 import { FEATURES } from '../../data/mock';
+import Reveal from './Reveal';
 
 const iconMap = { LineChart, Brain, Target, Lightbulb, BookOpen };
 const toneClass = {
@@ -19,16 +20,18 @@ export default function Features() {
           <h2 className="h-display text-[40px] sm:text-[48px] lg:text-[54px]">Everything you need to study smarter.</h2>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-12">
-          {FEATURES.map((f) => {
+          {FEATURES.map((f, i) => {
             const Icon = iconMap[f.icon] || Lightbulb;
             return (
-              <div key={f.title} className="card-soft p-6">
-                <div className={`w-11 h-11 rounded-xl flex items-center justify-center mb-5 ${toneClass[f.tone] || toneClass.primary}`}>
-                  <Icon className="w-5 h-5" />
+              <Reveal key={f.title} delay={(i % 3) * 0.08} y={20}>
+                <div className="card-soft p-6 h-full hover-lift">
+                  <div className={`w-11 h-11 rounded-xl flex items-center justify-center mb-5 ${toneClass[f.tone] || toneClass.primary}`}>
+                    <Icon className="w-5 h-5" />
+                  </div>
+                  <h3 className="text-[16.5px] font-semibold text-slate-900 mb-2">{f.title}</h3>
+                  <p className="text-[13.5px] text-slate-600 leading-relaxed">{f.desc}</p>
                 </div>
-                <h3 className="text-[16.5px] font-semibold text-slate-900 mb-2">{f.title}</h3>
-                <p className="text-[13.5px] text-slate-600 leading-relaxed">{f.desc}</p>
-              </div>
+              </Reveal>
             );
           })}
         </div>

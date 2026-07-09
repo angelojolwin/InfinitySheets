@@ -1,7 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Eye } from 'lucide-react';
-import DashboardPreview from './DashboardPreview';
 import InfinityBackground from '../decor/InfinityBackground';
 import { useApp } from '../../context/AppContext';
 import { EXAM_TRACKS } from '../../data/mock';
@@ -64,10 +63,16 @@ export default function Hero() {
         transition={{ duration: 1, delay: 0.45, ease: [0.22, 1, 0.36, 1] }}
         className="relative max-w-[1080px] mx-auto px-6 pb-24"
       >
-        <div className="rounded-3xl shadow-2xl shadow-blue-900/10 ring-1 ring-slate-900/5 overflow-hidden">
-          <DashboardPreview />
+        <div className="absolute inset-x-12 top-6 bottom-16 rounded-full bg-blue-400/20 blur-3xl pointer-events-none" aria-hidden="true" />
+        <div className="relative rounded-3xl shadow-2xl shadow-blue-900/15 ring-1 ring-slate-900/10 overflow-hidden">
+          <img
+            src="/screenshots/dashboard.png"
+            alt="The InfinitySheets dashboard showing study streak, daily goal, upcoming exams, and strong and weak topics"
+            className="w-full h-auto block"
+            loading="eager"
+          />
         </div>
-        <p className="text-center text-[12.5px] text-slate-400 mt-4">The InfinitySheets dashboard&mdash;this is the actual product.</p>
+        <p className="text-center text-[12.5px] text-slate-400 mt-4">The InfinitySheets dashboard&mdash;a real screenshot, not a mockup.</p>
       </motion.div>
     </section>
   );

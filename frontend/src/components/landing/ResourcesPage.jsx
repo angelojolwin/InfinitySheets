@@ -37,7 +37,7 @@ export default function ResourcesPage() {
             </div>
           </Reveal>
 
-          <div className="sticky top-[60px] z-30 -mx-6 px-6 py-3 mt-10 bg-[color:var(--color-bg,#fafaf7)]/90 backdrop-blur border-b border-slate-200/70">
+          <div className="sticky top-[60px] z-30 -mx-6 px-6 py-3 mt-10 bg-white/85 backdrop-blur border-b border-slate-200/70">
             <div className="flex gap-2 overflow-x-auto pb-1" role="tablist" aria-label="Curricula">
               {RESOURCE_TRACKS.map((t) => (
                 <button

@@ -5,7 +5,7 @@ import Reveal from './Reveal';
 const FAQS = [
   {
     q: 'Is it really free?',
-    a: 'Yes. Every feature—worksheets, weakness analysis, scores, predicted grades—is free. The platform is supported by ads while we earn your trust; a paid tier (no ads, unlimited worksheets, deeper analytics) may come later, but the core will stay free.',
+    a: 'Yes. Every feature—worksheets, weakness analysis, scores, predicted grades—is free, supported by ads so it stays that way for everyone.',
   },
   {
     q: 'How is this different from ChatGPT?',
