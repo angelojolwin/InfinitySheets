@@ -48,7 +48,7 @@ export default function FAQ() {
             {FAQS.map((f, i) => {
               const isOpen = open === i;
               return (
-                <div key={i} className="rounded-2xl border border-slate-200 bg-white overflow-hidden">
+                <div key={i} className="rounded-2xl liquid-glass overflow-hidden">
                   <button
                     onClick={() => setOpen(isOpen ? -1 : i)}
                     className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left"

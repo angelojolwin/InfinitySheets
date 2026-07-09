@@ -92,7 +92,7 @@ export default function ResourcesPage() {
                         href={l.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="group card-soft p-5 flex flex-col gap-1.5 hover:border-blue-300 hover:shadow-lg hover:shadow-slate-900/5 transition-all"
+                        className="group liquid-glass rounded-2xl p-5 flex flex-col gap-1.5 hover-lift"
                       >
                         <div className="flex items-start justify-between gap-3">
                           <span className="text-[14.5px] font-semibold text-slate-900 leading-snug">{l.title}</span>

@@ -15,7 +15,7 @@ export default function Research() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-12">
           {RESEARCH_STATS.map((r, i) => (
-            <div key={i} className="card-soft p-7">
+            <div key={i} className="liquid-glass rounded-2xl p-7 hover-lift">
               <div className="text-[44px] font-semibold tracking-tight text-blue-600 leading-none">{r.num}</div>
               <div className="text-[16px] font-semibold text-slate-900 mt-5">{r.title}</div>
               <p className="text-[13.5px] text-slate-600 mt-2 leading-relaxed">{r.desc}</p>

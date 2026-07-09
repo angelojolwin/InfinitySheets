@@ -5,7 +5,7 @@ export default function FinalCTA() {
   return (
     <section className="section-bg">
       <div className="max-w-[1280px] mx-auto px-6 py-20">
-        <div className="relative overflow-hidden rounded-3xl bg-slate-900 px-8 py-16 lg:px-16 lg:py-20">
+        <div className="relative overflow-hidden rounded-3xl liquid-glass-dark bg-slate-900/85 px-8 py-16 lg:px-16 lg:py-20">
           <div className="relative max-w-[760px]">
             <div className="text-[11px] tracking-[0.14em] uppercase font-semibold text-blue-300 mb-5">Final call</div>
             <h2 className="h-display text-white text-[40px] sm:text-[48px] lg:text-[56px]">Ready to study smarter?</h2>

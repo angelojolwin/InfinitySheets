@@ -62,7 +62,7 @@ export default function SignupSection() {
             Sign up with your email to save your worksheets, streak, and progress across devices. Sessions are protected with secure httpOnly cookies.
           </p>
         </div>
-        <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-6" data-testid="auth-panel">
+        <div className="liquid-glass-dark rounded-2xl p-6" data-testid="auth-panel">
           <div className="grid grid-cols-2 gap-2 mb-5">
             <button onClick={() => setTab('signup')} data-testid="tab-signup" className={`py-2.5 rounded-lg text-[14px] font-medium transition-colors ${tab === 'signup' ? 'bg-blue-600 text-white' : 'bg-transparent text-zinc-400 hover:text-white border border-zinc-700'}`}>Sign Up</button>
             <button onClick={() => setTab('login')} data-testid="tab-login" className={`py-2.5 rounded-lg text-[14px] font-medium transition-colors ${tab === 'login' ? 'bg-blue-600 text-white' : 'bg-transparent text-zinc-400 hover:text-white border border-zinc-700'}`}>Log In</button>
