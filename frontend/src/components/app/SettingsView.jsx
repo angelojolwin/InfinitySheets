@@ -292,7 +292,9 @@ function ReadonlyRow({ label, value, icon: Icon }) {
 
 function DangerZone({ resetProgress, deleteAccount, restartTutorial }) {
   const [confirmDelete, setConfirmDelete] = useState(false);
+  const [deletePhrase, setDeletePhrase] = useState('');
   const [confirmReset, setConfirmReset] = useState(false);
+  const deleteArmed = deletePhrase.trim().toUpperCase() === 'DELETE';
   return (
     <Section title="Danger zone" icon={AlertTriangle} subtitle="Irreversible actions and things that reset your progress." danger>
       <div className="flex flex-col gap-3">
@@ -321,13 +323,34 @@ function DangerZone({ resetProgress, deleteAccount, restartTutorial }) {
           <div className="text-[13.5px] font-semibold text-rose-700">Delete account</div>
           <div className="text-[12.5px] text-rose-600/80 mt-0.5 mb-3">Permanently remove this account, worksheets, courses, and settings from this device.</div>
           {!confirmDelete ? (
-            <button onClick={() => setConfirmDelete(true)} className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-md text-white bg-rose-600 hover:bg-rose-700 text-[12.5px] font-semibold">
+            <button onClick={() => setConfirmDelete(true)} data-testid="delete-account" className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-md text-white bg-rose-600 hover:bg-rose-700 text-[12.5px] font-semibold">
               <Trash2 className="w-3.5 h-3.5" /> Delete account
             </button>
           ) : (
-            <div className="flex gap-2">
-              <button onClick={() => { deleteAccount(); window.location.hash = ''; }} className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-md text-white bg-rose-600 hover:bg-rose-700 text-[12.5px] font-semibold">Confirm delete</button>
-              <button onClick={() => setConfirmDelete(false)} className="inline-flex items-center px-3.5 py-1.5 rounded-md border border-slate-300 text-slate-700 text-[12.5px] font-semibold hover:bg-slate-50">Cancel</button>
+            <div className="flex flex-col gap-2.5">
+              <label className="text-[12.5px] text-slate-600">
+                This cannot be undone. Type <span className="font-mono font-semibold text-rose-700">DELETE</span> to confirm:
+              </label>
+              <input
+                type="text"
+                autoFocus
+                value={deletePhrase}
+                onChange={(e) => setDeletePhrase(e.target.value)}
+                placeholder="DELETE"
+                className="input-base w-full max-w-[220px] text-[13px]"
+                data-testid="delete-account-phrase"
+              />
+              <div className="flex gap-2">
+                <button
+                  onClick={() => { if (deleteArmed) { deleteAccount(); window.location.hash = ''; } }}
+                  disabled={!deleteArmed}
+                  data-testid="delete-account-confirm"
+                  className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-md text-white bg-rose-600 hover:bg-rose-700 text-[12.5px] font-semibold disabled:opacity-40 disabled:cursor-not-allowed"
+                >
+                  Permanently delete
+                </button>
+                <button onClick={() => { setConfirmDelete(false); setDeletePhrase(''); }} className="inline-flex items-center px-3.5 py-1.5 rounded-md border border-slate-300 text-slate-700 text-[12.5px] font-semibold hover:bg-slate-50">Cancel</button>
+              </div>
             </div>
           )}
         </div>

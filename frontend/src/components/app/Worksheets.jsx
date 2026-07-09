@@ -82,6 +82,9 @@ function safeQuestionCount(value) {
 
 function fallbackQuestion(topic, index) {
   const label = topic || 'this topic';
+  // Stagger the template sequence per topic so two topics without custom
+  // questions don't ask the identical series in the same order.
+  const topicOffset = (topic || '').split('').reduce((a, c) => a + c.charCodeAt(0), 0);
   const templates = [
     {
       q: `Which study method gives the strongest evidence that you understand ${label}?`,
@@ -108,8 +111,33 @@ function fallbackQuestion(topic, index) {
       options: ['Count how long the notes are', 'Track scores across repeated worksheets on the topic', 'Only measure how confident you feel', 'Avoid timed or mixed practice forever'],
       a: 1,
     },
+    {
+      q: `When revising ${label} the night before an exam, what deserves the most time?`,
+      options: ['Topics you already score highly on', 'The questions and question styles you keep missing', 'Rewriting your notes in neater handwriting', 'Reading the entire textbook chapter once more'],
+      a: 1,
+    },
+    {
+      q: `A friend says they "understand ${label} but lose marks anyway." What is the most likely cause?`,
+      options: ['The topic is impossible to score in', 'They have not practised answering in the exam format and timing', 'They study at the wrong time of day', 'Their pen is too slow'],
+      a: 1,
+    },
+    {
+      q: `What makes a practice session on ${label} most effective?`,
+      options: ['Doing it with the textbook open the whole time', 'Attempting questions first, then checking and correcting against the answers', 'Only attempting questions you are sure about', 'Stopping as soon as one answer is right'],
+      a: 1,
+    },
+    {
+      q: `Which habit best prevents forgetting ${label} before the exam?`,
+      options: ['One long cram session the week you learn it', 'Short, spaced practice sessions returning to the topic over several weeks', 'Copying a classmate’s summary once', 'Watching videos without attempting questions'],
+      a: 1,
+    },
+    {
+      q: `You have 20 minutes for ${label} today. What is the highest-value use of it?`,
+      options: ['Reorganizing your folder', 'A short timed set of questions followed by reviewing every mistake', 'Rereading yesterday’s notes start to finish', 'Making a new colour-coded timetable'],
+      a: 1,
+    },
   ];
-  return templates[index % templates.length];
+  return templates[(index + topicOffset) % templates.length];
 }
 
 function buildQuestions({ topics, answerType, difficulty, length, pastPapers, aiGenerated, pastPaperPool }) {
@@ -121,10 +149,25 @@ function buildQuestions({ topics, answerType, difficulty, length, pastPapers, ai
   const preferPP = pastPapers && ppMatching.length > 0;
   const preferAI = !!aiGenerated;
 
+  // Track how many questions each topic has produced and which question
+  // texts are already on the sheet, so small pools overflow into varied
+  // fallback templates instead of repeating the same question.
+  const perTopicCount = {};
+  const usedTexts = new Set();
   const aiPool = (i) => {
     const t = list.length ? list[i % list.length] : null;
-    const pool = t && QUESTION_BANK[t];
-    const base = pool?.length ? pool[i % pool.length] : fallbackQuestion(t, i);
+    const key = t || '_';
+    const n = perTopicCount[key] || 0;
+    perTopicCount[key] = n + 1;
+    const pool = (t && QUESTION_BANK[t]) || [];
+    let base = n < pool.length ? pool[n] : fallbackQuestion(t, n - pool.length);
+    // If this exact question is somehow already on the sheet, walk the
+    // fallback templates until we find an unused one.
+    let guard = 0;
+    while (usedTexts.has(base.q) && guard < 12) {
+      base = fallbackQuestion(t, n - pool.length + ++guard);
+    }
+    usedTexts.add(base.q);
     return toAnswerType({ ...base, _topic: t, difficulty, source: 'ai-generated' }, answerType);
   };
   const ppPool = (i) => {
