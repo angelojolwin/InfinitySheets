@@ -346,6 +346,15 @@ html.dark .bg-white\/15,
 html.dark .bg-white\/12 { background-color: rgba(23, 23, 23, 0.85) !important; }
 
 html.dark .bg-blue-50\/50 { background-color: rgba(37, 99, 235, 0.10) !important; }
+html.dark .bg-blue-50\/70 { background-color: rgba(37, 99, 235, 0.12) !important; }
+html.dark .bg-white\/60,
+html.dark .bg-white\/50 { background-color: rgba(23, 23, 23, 0.6) !important; }
+html.dark .bg-slate-50\/70 { background-color: var(--color-bg-2) !important; }
+html.dark .border-blue-100 { border-color: rgba(59, 130, 246, 0.3) !important; }
+
+/* Step/feature demo vignettes: muted fills that adapt to theme */
+:root { --demo-muted: #e2e8f0; --demo-tint: #eff6ff; }
+html.dark { --demo-muted: #334155; --demo-tint: rgba(59, 130, 246, 0.16); }
 html.dark .bg-amber-50 { background-color: rgba(245, 158, 11, 0.12) !important; }
 html.dark .border-amber-200 { border-color: rgba(245, 158, 11, 0.35) !important; }
 html.dark .text-amber-800 { color: #fcd34d !important; }
@@ -551,6 +560,29 @@ html:not(.dark) .shot-dark { display: none; }
 @media (prefers-reduced-motion: reduce) {
     .doodle-float, .doodle-twinkle, .doodle-bob, .doodle-type, .doodle-type-alt,
     .doodle-wave, .doodle-wobble, .doodle-flip, .doodle-pop { animation: none; }
+}
+
+/* Marker-highlight sweep (study vibe) */
+.hl-mark { position: relative; z-index: 0; display: inline-block; }
+.hl-mark::before {
+    content: '';
+    position: absolute;
+    inset: 12% -5% 6% -5%;
+    background: linear-gradient(100deg, rgba(253, 224, 71, 0.85), rgba(250, 204, 21, 0.65));
+    border-radius: 0.35em 0.5em 0.4em 0.45em;
+    transform: scaleX(0) rotate(-1deg);
+    transform-origin: left center;
+    z-index: -1;
+}
+.hl-mark.hl-on::before { animation: hl-sweep 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+@keyframes hl-sweep {
+    to { transform: scaleX(1) rotate(-1deg); }
+}
+html.dark .hl-mark::before {
+    background: linear-gradient(100deg, rgba(202, 138, 4, 0.75), rgba(161, 98, 7, 0.6));
+}
+@media (prefers-reduced-motion: reduce) {
+    .hl-mark.hl-on::before { animation: none; transform: scaleX(1) rotate(-1deg); }
 }
 
 /* Typed-out heading caret */

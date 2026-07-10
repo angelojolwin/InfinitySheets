@@ -1,11 +1,14 @@
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
+import { DoodleBooks, DoodleLaptop } from '../decor/StudyDoodles';
 
 export default function FinalCTA() {
   return (
     <section className="section-bg">
       <div className="max-w-[1280px] mx-auto px-6 py-20">
         <div className="relative overflow-hidden rounded-3xl liquid-glass-clear px-8 py-16 lg:px-16 lg:py-20">
+          <div className="hidden lg:block absolute right-12 top-1/2 -translate-y-1/2"><DoodleLaptop width={150} /></div>
+          <div className="hidden xl:block absolute right-56 bottom-8"><DoodleBooks width={90} /></div>
           <div className="relative max-w-[760px]">
             <div className="text-[11px] tracking-[0.14em] uppercase font-semibold text-blue-600 mb-5">Final call</div>
             <h2 className="h-display text-[40px] sm:text-[48px] lg:text-[56px]">Ready to study smarter?</h2>

@@ -104,7 +104,7 @@ export default function HowItWorks() {
   const [active, setActive] = useState(0);
   return (
     <section id="how" className="section-bg">
-      <div className="max-w-[1280px] mx-auto px-6 py-28 lg:py-36 min-h-[85svh] flex flex-col justify-center">
+      <div className="max-w-[1280px] mx-auto px-6 py-20 lg:py-28">
         <Reveal>
           <div className="relative text-center max-w-[860px] mx-auto">
             <div className="eyebrow mb-5">How it works</div>

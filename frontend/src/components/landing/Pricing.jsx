@@ -1,6 +1,7 @@
 import React from 'react';
 import { Check, ArrowRight } from 'lucide-react';
 import Reveal from './Reveal';
+import { DoodleGradCap } from '../decor/StudyDoodles';
 
 const FEATURES = [
   'Personalized worksheets for your exact syllabus',
@@ -12,7 +13,8 @@ const FEATURES = [
 
 export default function Pricing() {
   return (
-    <section id="pricing" className="section-light">
+    <section id="pricing" className="relative section-light overflow-hidden">
+      <div className="hidden lg:block absolute left-[4%] bottom-16"><DoodleGradCap /></div>
       <div className="max-w-[1280px] mx-auto px-6 py-28 lg:py-32">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center max-w-[1040px] mx-auto">
           <Reveal>
