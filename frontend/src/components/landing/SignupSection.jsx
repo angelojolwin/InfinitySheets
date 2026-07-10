@@ -1,54 +1,21 @@
 import React, { useState } from 'react';
-import { useApp } from '../../context/AppContext';
 import { EXAM_TRACKS } from '../../data/mock';
 import { toast } from 'sonner';
 
 export default function SignupSection() {
-  const { apiRegister, apiLogin } = useApp();
   const [tab, setTab] = useState('signup');
   const [form, setForm] = useState({ name: '', email: '', track: 'SSLC', password: '' });
   const [loginForm, setLoginForm] = useState({ email: '', password: '' });
-  const [busy, setBusy] = useState(false);
+  const [busy] = useState(false);
 
-  const handleSignup = async (e) => {
+  // LANDING-ONLY BUILD: the form renders for preview purposes but accounts
+  // cannot be created here — no data leaves the page.
+  const comingSoon = (e) => {
     e.preventDefault();
-    if (!form.name || !form.email || !form.password) {
-      toast.error('Please fill all fields');
-      return;
-    }
-    if (form.password.length < 6) {
-      toast.error('Password must be at least 6 characters');
-      return;
-    }
-    setBusy(true);
-    try {
-      await apiRegister({ email: form.email, password: form.password, name: form.name, examTrack: form.track });
-      toast.success('Account created');
-      window.location.hash = '#dashboard';
-    } catch (err) {
-      toast.error(err.message || 'Could not create account');
-    } finally {
-      setBusy(false);
-    }
+    toast.info('Sign-ups aren’t open yet — we’re launching soon. Watch this space!');
   };
-
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    if (!loginForm.email || !loginForm.password) {
-      toast.error('Enter email and password');
-      return;
-    }
-    setBusy(true);
-    try {
-      await apiLogin({ email: loginForm.email, password: loginForm.password });
-      toast.success('Welcome back');
-      window.location.hash = '#dashboard';
-    } catch (err) {
-      toast.error(err.message || 'Login failed');
-    } finally {
-      setBusy(false);
-    }
-  };
+  const handleSignup = comingSoon;
+  const handleLogin = comingSoon;
 
   return (
     <section id="signup" className="section-dark">

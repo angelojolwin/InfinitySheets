@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Eye } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import InfinityBackground from '../decor/InfinityBackground';
 import { DoodleLaptop, DoodleBooks } from '../decor/StudentDoodles';
-import { useApp } from '../../context/AppContext';
 import { EXAM_TRACKS } from '../../data/mock';
 
 /* Heading typed out character by character; the final segment renders in
@@ -92,8 +91,6 @@ function Callout({ c }) {
 }
 
 export default function Hero() {
-  const { startDemo } = useApp();
-  const onDemo = () => { startDemo(); window.location.hash = '#dashboard'; };
   return (
     <section id="top" className="relative section-bg overflow-hidden">
       <InfinityBackground variant="hero" />
@@ -121,9 +118,6 @@ export default function Hero() {
           <a href="#signup" className="btn-violet inline-flex items-center gap-2 px-7 py-4 rounded-xl text-[16.5px] font-medium shadow-sm">
             Start Free <ArrowRight className="w-5 h-5" />
           </a>
-          <button onClick={onDemo} className="inline-flex items-center gap-2 px-7 py-4 rounded-xl text-[16.5px] font-medium text-violet-700 bg-violet-50 border border-violet-200 hover:bg-violet-100 transition-colors">
-            <Eye className="w-5 h-5" /> Try without signing up
-          </button>
         </motion.div>
         <motion.div
           initial={{ opacity: 0 }}

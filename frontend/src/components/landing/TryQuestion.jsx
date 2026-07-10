@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { Check, X, ArrowRight, Eye, RefreshCw } from 'lucide-react';
+import { Check, X, ArrowRight, RefreshCw } from 'lucide-react';
 import Reveal from './Reveal';
-import { useApp } from '../../context/AppContext';
 
 const QUESTIONS = [
   {
@@ -81,8 +80,6 @@ const QUESTIONS = [
 export default function TryQuestion() {
   const [qIndex, setQIndex] = useState(0);
   const [picked, setPicked] = useState(null);
-  const { startDemo } = useApp();
-  const onDemo = () => { startDemo(); window.location.hash = '#dashboard'; };
   const QUESTION = QUESTIONS[qIndex];
   const answered = picked !== null;
   const isCorrect = picked === QUESTION.correct;
@@ -154,10 +151,7 @@ export default function TryQuestion() {
                       <button onClick={nextQuestion} className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-[14px] font-medium border border-blue-300 text-blue-700 bg-blue-50 hover:bg-blue-100 transition-colors">
                         <RefreshCw className="w-4 h-4" /> Try another question
                       </button>
-                      <button onClick={onDemo} className="btn-violet inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-[14px] font-medium">
-                        <Eye className="w-4 h-4" /> Keep practicing in the demo
-                      </button>
-                      <a href="#signup" className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-[14px] font-medium border border-slate-300 hover:bg-slate-100 transition-colors">
+                      <a href="#signup" className="btn-violet inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-[14px] font-medium">
                         Start Free <ArrowRight className="w-4 h-4" />
                       </a>
                     </div>

@@ -3,11 +3,12 @@ import './App.css';
 import { AppProvider, useApp } from './context/AppContext';
 import LandingPage from './components/landing/LandingPage';
 import ResourcesPage from './components/landing/ResourcesPage';
-import AppShell from './components/app/AppShell';
 import { Toaster } from './components/ui/sonner';
 
+// LANDING-ONLY BUILD: this branch ships just the marketing site — the
+// landing page and the free resource directory. No demo, no app shell.
 function Router() {
-  const { state, loaded, startDemo } = useApp();
+  const { loaded } = useApp();
   const [hash, setHash] = useState(window.location.hash || '');
 
   useEffect(() => {
@@ -16,24 +17,10 @@ function Router() {
     return () => window.removeEventListener('hashchange', onHash);
   }, []);
 
-  // Challenge deep links (#worksheets?subject=...) should work for friends
-  // who aren't signed in — drop them straight into demo mode with the
-  // link's worksheet setup intact.
-  const isChallengeLink = /^#(worksheets|study|qbank)\?/.test(hash);
-  useEffect(() => {
-    if (loaded && !state.user && isChallengeLink) startDemo({ skipTutorial: true });
-  }, [loaded, state.user, isChallengeLink, startDemo]);
-
   if (!loaded) return null;
 
-  // Free resource directory — reachable whether signed in or not
   if (hash.startsWith('#resources')) {
     return <ResourcesPage />;
-  }
-
-  // If user is logged in, show the dashboard app
-  if (state.user) {
-    return <AppShell hash={hash} />;
   }
   return <LandingPage hash={hash} />;
 }
