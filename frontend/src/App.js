@@ -7,7 +7,7 @@ import AppShell from './components/app/AppShell';
 import { Toaster } from './components/ui/sonner';
 
 function Router() {
-  const { state, loaded } = useApp();
+  const { state, loaded, startDemo } = useApp();
   const [hash, setHash] = useState(window.location.hash || '');
 
   useEffect(() => {
@@ -15,6 +15,14 @@ function Router() {
     window.addEventListener('hashchange', onHash);
     return () => window.removeEventListener('hashchange', onHash);
   }, []);
+
+  // Challenge deep links (#worksheets?subject=...) should work for friends
+  // who aren't signed in — drop them straight into demo mode with the
+  // link's worksheet setup intact.
+  const isChallengeLink = /^#(worksheets|study|qbank)\?/.test(hash);
+  useEffect(() => {
+    if (loaded && !state.user && isChallengeLink) startDemo({ skipTutorial: true });
+  }, [loaded, state.user, isChallengeLink, startDemo]);
 
   if (!loaded) return null;
 

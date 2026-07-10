@@ -448,7 +448,8 @@ html.dark .liquid-glass {
     margin-bottom: 0;
 }
 .feature-card:hover .feature-demo,
-.feature-card:focus-within .feature-demo {
+.feature-card:focus-within .feature-demo,
+.feature-card.demo-open .feature-demo {
     max-height: 150px;
     opacity: 1;
     margin-bottom: 14px;

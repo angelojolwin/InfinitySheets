@@ -92,6 +92,24 @@ function FeatureDemo({ kind }) {
 
 const DEMO_KINDS = ['weakness', 'targeted', 'grades', 'feedback', 'bank', 'fresh'];
 
+/* Hover expands on desktop; on touch devices a tap toggles the demo. */
+function FeatureCard({ f, kind }) {
+  const [open, setOpen] = React.useState(false);
+  return (
+    <div
+      tabIndex={0}
+      onClick={() => setOpen((o) => !o)}
+      className={`feature-card liquid-glass rounded-2xl p-6 h-full hover-lift cursor-default ${open ? 'demo-open' : ''}`}
+    >
+      <div className="feature-demo">
+        <FeatureDemo kind={kind} />
+      </div>
+      <h3 className="text-[18px] font-semibold text-slate-900 mb-2">{f.title}</h3>
+      <p className="text-[14.5px] text-slate-600 leading-relaxed">{f.desc}</p>
+    </div>
+  );
+}
+
 export default function Features() {
   return (
     <section id="features" className="section-light">
@@ -104,13 +122,7 @@ export default function Features() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-12">
           {FEATURES.map((f, i) => (
             <Reveal key={f.title} delay={(i % 3) * 0.08} y={20}>
-              <div tabIndex={0} className="feature-card liquid-glass rounded-2xl p-6 h-full hover-lift cursor-default">
-                <div className="feature-demo">
-                  <FeatureDemo kind={DEMO_KINDS[i] || 'fresh'} />
-                </div>
-                <h3 className="text-[18px] font-semibold text-slate-900 mb-2">{f.title}</h3>
-                <p className="text-[14.5px] text-slate-600 leading-relaxed">{f.desc}</p>
-              </div>
+              <FeatureCard f={f} kind={DEMO_KINDS[i] || 'fresh'} />
             </Reveal>
           ))}
         </div>

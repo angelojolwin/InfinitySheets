@@ -66,19 +66,26 @@ function Callout({ c }) {
       onMouseEnter={() => setOpen(true)}
       onMouseLeave={() => setOpen(false)}
     >
-      <a
-        href={c.href}
+      {/* On touch devices the first tap opens the bubble; the link inside
+          navigates. Hover still works on desktop. */}
+      <button
+        type="button"
         aria-label={`${c.label}: ${c.desc}`}
+        aria-expanded={open}
         onFocus={() => setOpen(true)}
-        onBlur={() => setOpen(false)}
-        className="callout-dot block w-4 h-4 rounded-full bg-blue-500 ring-2 ring-white cursor-pointer"
+        onBlur={(e) => { if (!e.currentTarget.parentElement.contains(e.relatedTarget)) setOpen(false); }}
+        onClick={() => setOpen(true)}
+        className="callout-dot block w-5 h-5 sm:w-4 sm:h-4 rounded-full bg-blue-500 ring-2 ring-white cursor-pointer"
       />
       {open && (
-        <div className={`absolute top-1/2 -translate-y-1/2 w-[210px] liquid-glass rounded-xl px-4 py-3 ${c.side === 'left' ? 'right-6' : 'left-6'}`}>
+        <a
+          href={c.href}
+          className={`absolute top-1/2 -translate-y-1/2 w-[200px] max-w-[58vw] liquid-glass rounded-xl px-4 py-3 block ${c.side === 'left' ? 'right-6' : 'left-6'}`}
+        >
           <div className="text-[13px] font-semibold text-slate-900">{c.label}</div>
           <div className="text-[12px] text-slate-600 mt-0.5 leading-snug">{c.desc}</div>
           <div className="text-[11px] text-blue-600 mt-1.5 font-medium">Learn more &darr;</div>
-        </div>
+        </a>
       )}
     </div>
   );

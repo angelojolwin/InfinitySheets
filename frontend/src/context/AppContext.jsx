@@ -1,4 +1,7 @@
 import React, { createContext, useContext, useEffect, useState, useCallback, useMemo } from 'react';
+import { toast } from 'sonner';
+import { ACHIEVEMENTS, evaluateAchievements } from '../data/achievements';
+import { playUnlock } from '../utils/sound';
 
 // NOTE on storage: this app does NOT store credentials, tokens, or PII secrets.
 // Only non-sensitive study data (worksheet history, mistakes, theme, courses, settings).
@@ -68,6 +71,7 @@ const defaultState = {
   user: null, // { name, email, examTrack, subjects?, isDemo? }
   worksheets: [],
   mistakes: [],
+  achievements: [],
   courses: [],
   pastPapers: [], // admin-uploaded past-paper questions
   streak: 0,
@@ -148,11 +152,13 @@ export function AppProvider({ children }) {
     setState((s) => ({ ...s, theme: s.theme === 'dark' ? 'light' : 'dark' }));
   }, []);
 
-  const startDemo = useCallback(() => {
+  const startDemo = useCallback((opts = {}) => {
     setState((s) => ({
       ...s,
       user: { name: 'Demo Student', email: 'demo@infinitysheets.app', examTrack: 'CBSE', isDemo: true, subjects: [] },
       onboardingDone: true,
+      // Challenge deep links go straight to the worksheet — no guided tour.
+      ...(opts.skipTutorial ? { tutorialDone: true } : {}),
     }));
   }, []);
 
@@ -295,7 +301,7 @@ export function AppProvider({ children }) {
         }
         return null;
       }).filter(Boolean);
-      return {
+      const next = {
         ...s,
         worksheets: [sheet, ...s.worksheets],
         mistakes: [...newMistakes, ...s.mistakes].slice(0, 200),
@@ -304,6 +310,21 @@ export function AppProvider({ children }) {
         questionsToday,
         goalDate,
       };
+      // Achievements: evaluate against the new state, celebrate new unlocks.
+      const earned = evaluateAchievements(next, sheet);
+      const fresh = earned.filter((id) => !(s.achievements || []).includes(id));
+      next.achievements = earned;
+      if (fresh.length) {
+        const soundOn = s.settings?.sound === true;
+        setTimeout(() => {
+          fresh.forEach((id, i) => {
+            const a = ACHIEVEMENTS.find((x) => x.id === id);
+            if (a) setTimeout(() => toast.success(`${a.emoji} Achievement unlocked: ${a.title}`, { description: a.desc }), i * 700);
+          });
+          if (soundOn) { try { playUnlock(); } catch { /* audio unavailable */ } }
+        }, 400);
+      }
+      return next;
     });
   }, []);
 

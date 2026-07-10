@@ -1,8 +1,9 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useApp } from '../../context/AppContext';
 import { SUBJECTS, TOPICS, QUESTION_BANK, EXAM_DURATIONS } from '../../data/mock';
-import { Check, X, Clock, ChevronLeft, ChevronRight, Sparkles, FileText, AlertCircle } from 'lucide-react';
+import { Check, X, Clock, ChevronLeft, ChevronRight, Sparkles, FileText, AlertCircle, Link2 } from 'lucide-react';
 import { toast } from 'sonner';
+import { playComplete } from '../../utils/sound';
 
 const ANSWER_TYPES = ['Multiple choice', 'Typed response', 'Exam style'];
 const DIFFICULTIES = ['Easy', 'Medium', 'Exam level', 'Hard'];
@@ -204,8 +205,17 @@ function fmtDuration(min) {
 
 /* ================== Main component ================== */
 
-export default function Worksheets({ go }) {
+export default function Worksheets({ go, linkParams = {} }) {
   const { state, recordWorksheet } = useApp();
+  // Deep-link parameters (#worksheets?subject=..&topics=..&difficulty=..&type=..&duration=..)
+  const link = useMemo(() => ({
+    subject: linkParams.subject ? decodeURIComponent(linkParams.subject) : null,
+    topics: linkParams.topics ? decodeURIComponent(linkParams.topics).split(',').filter(Boolean) : null,
+    difficulty: linkParams.difficulty ? decodeURIComponent(linkParams.difficulty) : null,
+    answerType: linkParams.type ? decodeURIComponent(linkParams.type) : null,
+    duration: linkParams.duration ? parseInt(linkParams.duration, 10) : null,
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }), []);
   const track = state.user?.examTrack || 'SSLC';
   const examMinutes = EXAM_DURATIONS[track] || 60;
 
@@ -251,18 +261,26 @@ export default function Worksheets({ go }) {
   const preselectTopic = typeof window !== 'undefined' ? window.sessionStorage.getItem('preselect_topic') : null;
 
   const [subject, setSubject] = useState(() => {
+    if (link.subject && chosenSubjects.includes(link.subject)) return link.subject;
     if (preselect && chosenSubjects.includes(preselect)) return preselect;
     return chosenSubjects[0] || '';
   });
   const topicsList = topicsForSubject(subject);
   const [topics, setTopics] = useState(() => {
+    if (link.topics) {
+      const valid = link.topics.filter((t) => topicsList.includes(t));
+      if (valid.length) return valid;
+    }
     if (preselectTopic && topicsList.includes(preselectTopic)) return [preselectTopic];
     return topicsList.length ? [topicsList[0]] : [];
   });
 
-  const [answerType, setAnswerType] = useState('Multiple choice');
-  const [difficulty, setDifficulty] = useState('Medium');
-  const [duration, setDuration] = useState(examMinutes);
+  const [answerType, setAnswerType] = useState(() => ANSWER_TYPES.includes(link.answerType) ? link.answerType : 'Multiple choice');
+  const [difficulty, setDifficulty] = useState(() => DIFFICULTIES.includes(link.difficulty) ? link.difficulty : 'Medium');
+  const [duration, setDuration] = useState(() => {
+    if (Number.isFinite(link.duration) && link.duration >= DURATION_MIN && link.duration <= DURATION_MAX) return link.duration;
+    return examMinutes;
+  });
   const [pastPapers, setPastPapers] = useState(false);
   const [aiGenerated, setAiGenerated] = useState(true);
 
@@ -274,7 +292,13 @@ export default function Worksheets({ go }) {
   const [timeLeft, setTimeLeft] = useState(0);
   const [result, setResult] = useState(null);
 
+  // Reset topics when the subject actually changes — comparing against the
+  // previous subject (rather than a mount flag) keeps deep-linked topic
+  // selections intact even under StrictMode's double-invoked effects.
+  const prevSubject = React.useRef(subject);
   useEffect(() => {
+    if (prevSubject.current === subject) return;
+    prevSubject.current = subject;
     const t = topicsForSubject(subject);
     setTopics(t.length ? [t[0]] : []);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -372,6 +396,22 @@ export default function Worksheets({ go }) {
     recordWorksheet(sheet);
     setResult(sheet);
     setStage('result');
+    if (state.settings?.sound === true) { try { playComplete(sheet.score); } catch { /* audio unavailable */ } }
+  };
+
+  // Shareable deep link reproducing this exact worksheet setup.
+  const shareLink = () => {
+    const params = new URLSearchParams();
+    params.set('subject', subject);
+    params.set('topics', topics.join(','));
+    params.set('difficulty', difficulty);
+    params.set('type', answerType);
+    params.set('duration', String(duration));
+    const url = `${window.location.origin}${window.location.pathname}#worksheets?${params.toString()}`;
+    navigator.clipboard.writeText(url).then(
+      () => toast.success('Link copied — anyone who opens it gets this exact worksheet setup'),
+      () => toast.error('Could not copy the link'),
+    );
   };
 
   const fmtTime = (s) => {
@@ -593,8 +633,11 @@ export default function Worksheets({ go }) {
             );
           })}
         </div>
-        <div className="flex gap-3 mt-6">
+        <div className="flex flex-wrap gap-3 mt-6">
           <button onClick={() => { setStage('build'); setResult(null); }} className="btn-violet px-4 py-2 rounded-lg text-[14px] font-medium">Create another</button>
+          <button onClick={shareLink} className="btn-outline-dark inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-[14px] font-medium">
+            <Link2 className="w-4 h-4" /> Challenge a friend
+          </button>
           <button onClick={() => go('dashboard')} className="btn-outline-dark px-4 py-2 rounded-lg text-[14px] font-medium">Back to dashboard</button>
         </div>
       </div>
@@ -703,7 +746,12 @@ export default function Worksheets({ go }) {
         </div>
       </div>
 
-      <button onClick={start} data-testid="ws-start" className="btn-violet mt-5 px-5 py-3 rounded-lg text-[14px] font-medium">Create interactive worksheet</button>
+      <div className="mt-5 flex flex-wrap gap-3">
+        <button onClick={start} data-testid="ws-start" className="btn-violet px-5 py-3 rounded-lg text-[14px] font-medium">Create interactive worksheet</button>
+        <button onClick={shareLink} data-testid="ws-share-link" className="btn-outline-dark inline-flex items-center gap-1.5 px-4 py-3 rounded-lg text-[14px] font-medium" title="Copy a link that opens this exact setup">
+          <Link2 className="w-4 h-4" /> Copy share link
+        </button>
+      </div>
     </div>
   );
 }

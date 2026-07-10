@@ -205,6 +205,13 @@ function AccessibilitySection({ settings, updateSettings, theme, toggleTheme }) 
           hint="Press A–D or 1–4 to pick an option, → to advance, ← to go back."
           testid="pref-keyboard"
         />
+        <Toggle
+          checked={settings.sound === true}
+          onChange={(v) => { updateSettings({ sound: v }); toast.success(v ? 'Sounds on' : 'Sounds off'); }}
+          label={<span className="inline-flex items-center gap-1.5">🔊 Sound effects</span>}
+          hint="A soft chime when you finish a worksheet and a fanfare on achievements. Off by default."
+          testid="pref-sound"
+        />
         <div className="flex items-center justify-between">
           <div className="min-w-0">
             <div className="text-[13.5px] font-medium text-slate-900 inline-flex items-center gap-1.5">
