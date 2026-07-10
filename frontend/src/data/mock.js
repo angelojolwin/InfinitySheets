@@ -49,25 +49,10 @@ export const HOW_IT_WORKS = [
   { n: '05', title: 'Track Your Progress', text: 'Watch topic mastery, predicted scores, and study streaks improve over time.' },
 ];
 
-export const WHY_IT_WORKS = [
-  'Active recall—practice beats rereading',
-  'Fresh exam-style questions generated for you',
-  'Targets your weak concepts automatically',
-  'Accurate scores and predicted grades',
-  'Instant, personalized feedback',
-  'Completely free—no paywalled practice material',
-];
-
 export const RESEARCH_STATS = [
   { num: '2\u00d7', title: 'The testing effect', desc: 'Roediger & Karpicke (2006): practicing retrieval roughly doubled long-term retention compared to repeated rereading.' },
   { num: '#1', title: 'Top-rated study technique', desc: 'Dunlosky et al. (2013) reviewed ten popular study techniques and rated practice testing among the most effective of all.' },
   { num: 'Targeted', title: 'Feedback accelerates learning', desc: 'Decades of research show that immediate, specific feedback\u2014exactly what every worksheet gives you\u2014speeds up improvement.' },
-];
-
-export const TESTIMONIALS = [
-  { quote: 'I finally knew exactly what to study instead of wasting time guessing.', name: 'High school senior', role: 'IB student' },
-  { quote: 'The targeted worksheets helped me improve the topics I struggled with the most.', name: 'IGCSE learner', role: 'Year 11' },
-  { quote: 'It is like having a personal tutor that understands how I learn.', name: 'SAT prep student', role: 'Grade 12' },
 ];
 
 // Subjects per exam track
