@@ -5,7 +5,7 @@ import { DoodleGradCap } from '../decor/StudyDoodles';
 
 export default function SignupSection() {
   const [tab, setTab] = useState('signup');
-  const [form, setForm] = useState({ name: '', email: '', track: 'SSLC', password: '' });
+  const [form, setForm] = useState({ name: '', email: '', track: 'AP', password: '' });
   const [loginForm, setLoginForm] = useState({ email: '', password: '' });
   const [busy] = useState(false);
 
