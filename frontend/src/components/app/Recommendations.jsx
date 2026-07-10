@@ -5,7 +5,7 @@ import EmptyStateScene from '../decor/EmptyStateScene';
 
 export default function Recommendations({ go }) {
   const { state } = useApp();
-  const ws = state.worksheets || [];
+  const ws = useMemo(() => state.worksheets || [], [state.worksheets]);
   const recs = useMemo(() => {
     const topics = {};
     ws.forEach((w) => {

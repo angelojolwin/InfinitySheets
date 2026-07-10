@@ -86,7 +86,17 @@ export default function AppShell({ hash }) {
   const current = ALL_ITEMS.find((n) => n.key === active) || NAV[0];
 
   const [mobileNav, setMobileNav] = useState(false);
-  const go = (k) => { window.location.hash = `#${k}`; setMobileNav(false); };
+  const go = (k) => {
+    const target = `#${k}`;
+    if (window.location.hash === target) {
+      // Re-clicking the current route (e.g. "New worksheet" while on the
+      // results screen) — views listen for this to reset themselves.
+      window.dispatchEvent(new CustomEvent('same-route-nav', { detail: k }));
+    } else {
+      window.location.hash = target;
+    }
+    setMobileNav(false);
+  };
   // Close the drawer on any hash change (e.g. deep links, back button).
   useEffect(() => { setMobileNav(false); }, [hash]);
   const isDark = state.theme === 'dark';
