@@ -1,92 +1,83 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Play } from 'lucide-react';
 import InfinityBackground from '../decor/InfinityBackground';
-import { DoodleLaptop, DoodleBooks } from '../decor/StudentDoodles';
+import { DoodleBooks, DoodleFlask, DoodleEquations } from '../decor/StudyDoodles';
 import { EXAM_TRACKS } from '../../data/mock';
 
-/* Heading typed out character by character; the final segment renders in
-   the serif italic. Full text is reserved invisibly so layout never shifts. */
-const SEGMENTS = [
-  { text: 'A study tool tailored just for ', className: '' },
-  { text: 'you', className: 'font-serif-italic' },
-  { text: '.', className: '' },
-];
-const FULL_LEN = SEGMENTS.reduce((n, seg) => n + seg.text.length, 0);
-
+/* The heading is static except the word "you", which types itself out
+   slowly with a caret. Width is reserved so layout never shifts. */
 function TypedHero() {
+  const WORD = 'you';
   const [count, setCount] = useState(0);
-  const done = count >= FULL_LEN;
+  const done = count >= WORD.length;
   useEffect(() => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { setCount(FULL_LEN); return; }
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { setCount(WORD.length); return; }
     if (done) return;
-    const t = setTimeout(() => setCount((c) => c + 1), 55);
+    const t = setTimeout(() => setCount((c) => c + 1), count === 0 ? 900 : 420);
     return () => clearTimeout(t);
   }, [count, done]);
 
-  let remaining = count;
   return (
     <h1 className="h-display text-[56px] sm:text-[80px] lg:text-[108px] leading-[1.02] max-w-[1080px]" aria-label="A study tool tailored just for you.">
-      <span aria-hidden="true" className="relative inline-block">
-        <span className="invisible">
-          {SEGMENTS.map((seg, i) => <span key={i} className={seg.className}>{seg.text}</span>)}
-        </span>
+      A study tool tailored just for{' '}
+      <span aria-hidden="true" className="relative inline-block font-serif-italic">
+        <span className="invisible">{WORD}</span>
         <span className="absolute inset-0">
-          {SEGMENTS.map((seg, i) => {
-            const take = Math.max(0, Math.min(seg.text.length, remaining));
-            remaining -= take;
-            return <span key={i} className={seg.className}>{seg.text.slice(0, take)}</span>;
-          })}
+          {WORD.slice(0, count)}
           {!done && <span className="type-caret" />}
         </span>
       </span>
+      <span aria-hidden="true">.</span>
     </h1>
   );
 }
 
-/* Interactive callouts pinned over the screenshot. Position is % of the
-   image box. Hover (or tap) opens the bubble; clicking jumps to the
-   matching landing section. */
+/* Always-visible labels around the screenshot, connected to the UI they
+   describe by arrows. tx/ty = arrow target, bx/by = box position (% of
+   the image box). Clicking a label jumps to the matching section. */
 const CALLOUTS = [
-  { x: 56, y: 26, label: 'Study streak', desc: 'Daily streaks and reminders keep practice a habit.', href: '#how', side: 'right' },
-  { x: 24, y: 44, label: 'Days until exam', desc: 'Set your exam date and watch the countdown focus you.', href: '#faq', side: 'right' },
-  { x: 47, y: 62, label: "Today's goal", desc: 'A daily question goal you can actually hit.', href: '#how', side: 'right' },
-  { x: 79, y: 55, label: 'Upcoming exams', desc: 'Per-subject exam dates, always in view.', href: '#faq', side: 'left' },
-  { x: 44, y: 82, label: 'Strong & weak topics', desc: 'Every answer sharpens your weakness analysis.', href: '#features', side: 'right' },
-  { x: 89, y: 7, label: 'New worksheet', desc: 'Fresh exam-style questions for your syllabus in one click.', href: '#try', side: 'left' },
+  { tx: 55, ty: 26, bx: 68, by: 12, align: 'left', label: 'Study streak', desc: 'Practice becomes a habit', href: '#how' },
+  { tx: 88, ty: 9, bx: 76, by: 30, align: 'left', label: 'New worksheet', desc: 'Fresh questions in one click', href: '#try' },
+  { tx: 80, ty: 55, bx: 88, by: 78, align: 'left', label: 'Upcoming exams', desc: 'Per-subject countdowns', href: '#faq' },
+  { tx: 25, ty: 44, bx: 6, by: 20, align: 'right', label: 'Days until exam', desc: 'Set the date, stay focused', href: '#faq' },
+  { tx: 46, ty: 62, bx: 10, by: 50, align: 'right', label: "Today's goal", desc: 'A daily target you can hit', href: '#how' },
+  { tx: 43, ty: 82, bx: 12, by: 92, align: 'right', label: 'Weak topics', desc: 'Found automatically', href: '#features' },
 ];
 
-function Callout({ c }) {
-  const [open, setOpen] = useState(false);
+function CalloutLabels() {
   return (
-    <div
-      className="absolute z-10"
-      style={{ left: `${c.x}%`, top: `${c.y}%` }}
-      onMouseEnter={() => setOpen(true)}
-      onMouseLeave={() => setOpen(false)}
-    >
-      {/* On touch devices the first tap opens the bubble; the link inside
-          navigates. Hover still works on desktop. */}
-      <button
-        type="button"
-        aria-label={`${c.label}: ${c.desc}`}
-        aria-expanded={open}
-        onFocus={() => setOpen(true)}
-        onBlur={(e) => { if (!e.currentTarget.parentElement.contains(e.relatedTarget)) setOpen(false); }}
-        onClick={() => setOpen(true)}
-        className="callout-dot block w-5 h-5 sm:w-4 sm:h-4 rounded-full bg-blue-500 ring-2 ring-white cursor-pointer"
-      />
-      {open && (
+    <>
+      {/* arrows */}
+      <svg className="absolute inset-0 w-full h-full pointer-events-none hidden md:block" aria-hidden="true">
+        <defs>
+          <marker id="callout-arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+            <path d="M0 0 L7 4 L0 8 Z" fill="#3b82f6" />
+          </marker>
+        </defs>
+        {CALLOUTS.map((c) => (
+          <line
+            key={c.label}
+            x1={`${c.bx + (c.align === 'left' ? 2 : 6)}%`} y1={`${c.by}%`}
+            x2={`${c.tx}%`} y2={`${c.ty}%`}
+            stroke="#3b82f6" strokeWidth="2" strokeDasharray="5 4" markerEnd="url(#callout-arrow)"
+            opacity="0.85"
+          />
+        ))}
+      </svg>
+      {/* label boxes */}
+      {CALLOUTS.map((c) => (
         <a
+          key={c.label}
           href={c.href}
-          className={`absolute top-1/2 -translate-y-1/2 w-[200px] max-w-[58vw] liquid-glass rounded-xl px-4 py-3 block ${c.side === 'left' ? 'right-6' : 'left-6'}`}
+          className="hidden md:block absolute z-10 liquid-glass rounded-xl px-3.5 py-2 w-[172px] hover-lift"
+          style={{ left: `${c.bx}%`, top: `${c.by}%`, transform: 'translate(-50%, -50%)' }}
         >
-          <div className="text-[13px] font-semibold text-slate-900">{c.label}</div>
-          <div className="text-[12px] text-slate-600 mt-0.5 leading-snug">{c.desc}</div>
-          <div className="text-[11px] text-blue-600 mt-1.5 font-medium">Learn more &darr;</div>
+          <div className="text-[12.5px] font-semibold text-slate-900 leading-tight">{c.label}</div>
+          <div className="text-[11px] text-slate-600 leading-snug">{c.desc}</div>
         </a>
-      )}
-    </div>
+      ))}
+    </>
   );
 }
 
@@ -95,8 +86,9 @@ export default function Hero() {
     <section id="top" className="relative section-bg overflow-hidden">
       <InfinityBackground variant="hero" />
       <div className="absolute inset-0 grid-fade pointer-events-none" />
-      <div className="hidden xl:block absolute left-[4%] top-[30%] opacity-90 pointer-events-none"><DoodleBooks width={140} /></div>
-      <div className="hidden xl:block absolute right-[4%] top-[24%] opacity-90 pointer-events-none"><DoodleLaptop width={160} /></div>
+      <div className="hidden xl:block absolute left-[4%] top-[26%] opacity-90 pointer-events-none"><DoodleBooks /></div>
+      <div className="hidden xl:block absolute left-[7%] top-[62%] opacity-80 pointer-events-none"><DoodleEquations width={130} /></div>
+      <div className="hidden xl:block absolute right-[5%] top-[28%] opacity-90 pointer-events-none"><DoodleFlask /></div>
       <div className="relative max-w-[1280px] mx-auto px-6 min-h-[92svh] flex flex-col items-center justify-center text-center pt-20 pb-10">
         <TypedHero />
         <motion.p
@@ -118,6 +110,9 @@ export default function Hero() {
           <a href="#signup" className="btn-violet inline-flex items-center gap-2 px-7 py-4 rounded-xl text-[16.5px] font-medium shadow-sm">
             Start Free <ArrowRight className="w-5 h-5" />
           </a>
+          <a href="#how" className="btn-outline-dark inline-flex items-center gap-2 px-7 py-4 rounded-xl text-[16.5px] font-medium">
+            <Play className="w-5 h-5 text-red-600" /> Watch video
+          </a>
         </motion.div>
         <motion.div
           initial={{ opacity: 0 }}
@@ -126,9 +121,9 @@ export default function Hero() {
           className="mt-10 flex flex-wrap items-center justify-center gap-2 max-w-[760px]"
         >
           {EXAM_TRACKS.map((t) => (
-            <span key={t.id} className="px-4 py-1.5 rounded-full border border-slate-200 bg-white/70 backdrop-blur text-[14px] text-slate-600">
+            <a key={t.id} href={`#resources?track=${t.id}`} className="px-4 py-1.5 rounded-full border border-slate-200 bg-white/70 backdrop-blur text-[14px] text-slate-600 hover:border-blue-400 hover:text-blue-700 transition-colors">
               {t.name}
-            </span>
+            </a>
           ))}
         </motion.div>
       </div>
@@ -153,7 +148,13 @@ export default function Hero() {
               loading="eager"
             />
           </div>
-          {CALLOUTS.map((c) => <Callout key={c.label} c={c} />)}
+          <CalloutLabels />
+        </div>
+        {/* Mobile: the same labels as simple links below the screenshot */}
+        <div className="md:hidden mt-4 flex flex-wrap justify-center gap-2">
+          {CALLOUTS.map((c) => (
+            <a key={c.label} href={c.href} className="px-3 py-1.5 rounded-full liquid-glass text-[12.5px] text-slate-700">{c.label}</a>
+          ))}
         </div>
       </motion.div>
     </section>

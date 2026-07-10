@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import Reveal from './Reveal';
 import { SUBJECT_PROGRESS, subjectStats } from '../../data/landingProgress';
+import { DoodleAtom } from '../decor/StudyDoodles';
 
 /*
  * Interactive predicted-grade chart. Hovering a data point shows a
@@ -97,7 +98,8 @@ export default function PredictedGrade() {
       <div className="max-w-[1280px] mx-auto px-6 py-28 lg:py-36 min-h-[85svh] flex flex-col justify-center">
         <div className="grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
           <Reveal>
-            <div>
+            <div className="relative">
+              <div className="hidden xl:block absolute -left-8 -top-24"><DoodleAtom /></div>
               <div className="eyebrow mb-5">Predicted grades</div>
               <h2 className="h-display text-[44px] sm:text-[56px] lg:text-[64px] leading-[1.05]">
                 Know your grade <span className="font-serif-italic">before</span> the exam does.

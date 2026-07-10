@@ -2,7 +2,7 @@ import React from 'react';
 import { ArrowRight, Library } from 'lucide-react';
 import Reveal from './Reveal';
 import { RESOURCE_TRACKS } from '../../data/resources';
-import { DoodleBooks } from '../decor/StudentDoodles';
+import { DoodleTestTubes } from '../decor/StudyDoodles';
 
 export default function FreeResources() {
   return (
@@ -33,14 +33,14 @@ export default function FreeResources() {
           </Reveal>
           <Reveal delay={0.15}>
             <div className="relative">
-              <div className="hidden lg:block absolute -top-24 right-2"><DoodleBooks tone="dark" /></div>
-              <div className="rounded-3xl liquid-glass-dark p-7">
+              <div className="hidden lg:block absolute -top-24 right-2"><DoodleTestTubes tone="dark" /></div>
+              <div className="rounded-3xl liquid-glass-clear-dark p-7">
                 <div className="text-[12px] tracking-wider uppercase font-semibold text-slate-400 mb-4">Covered curricula</div>
                 <div className="flex flex-wrap gap-2.5">
                   {RESOURCE_TRACKS.map((t) => (
                     <a
                       key={t.id}
-                      href="#resources"
+                      href={`#resources?track=${t.id}`}
                       className="px-4 py-2 rounded-full border border-slate-600 text-slate-200 text-[14px] hover:border-blue-400 hover:text-white transition-colors"
                     >
                       {t.short}

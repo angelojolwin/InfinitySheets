@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Check, X, ArrowRight, RefreshCw } from 'lucide-react';
 import Reveal from './Reveal';
+import { DoodleEquations } from '../decor/StudyDoodles';
 
 const QUESTIONS = [
   {
@@ -89,7 +90,8 @@ export default function TryQuestion() {
     <section id="try" className="section-bg">
       <div className="max-w-[1280px] mx-auto px-6 py-28 lg:py-36 min-h-[80svh] flex flex-col justify-center">
         <Reveal>
-          <div className="text-center max-w-[760px] mx-auto">
+          <div className="relative text-center max-w-[760px] mx-auto">
+            <div className="hidden lg:block absolute -left-52 top-4"><DoodleEquations /></div>
             <div className="eyebrow mb-5">Feel it for yourself</div>
             <h2 className="h-display text-[44px] sm:text-[56px] lg:text-[64px] leading-[1.05]">Try a real question. Right here.</h2>
             <p className="mt-5 text-[16px] text-slate-500 leading-relaxed">
