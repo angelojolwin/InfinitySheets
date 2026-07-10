@@ -295,6 +295,16 @@ export default function Worksheets({ go, linkParams = {} }) {
   const [aiGenerated, setAiGenerated] = useState(true);
 
   const [stage, setStage] = useState('build');
+
+  // "New worksheet" / sidebar clicks while already on this route should
+  // reset back to the builder instead of silently doing nothing.
+  useEffect(() => {
+    const onRepeat = (e) => {
+      if (e.detail === 'worksheets') { setStage('build'); setResult(null); }
+    };
+    window.addEventListener('same-route-nav', onRepeat);
+    return () => window.removeEventListener('same-route-nav', onRepeat);
+  }, []);
   const [questions, setQuestions] = useState([]);
   const [answers, setAnswers] = useState([]); // holds number (MCQ index) or string (typed/exam)
   const [current, setCurrent] = useState(0);

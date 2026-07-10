@@ -127,7 +127,7 @@ function SubjectPicker({ subjects, onPick, track }) {
 function BrowseSubject({ subject, chosenSubjects, onBack, onSwitchSubject, go }) {
   const [query, setQuery] = useState('');
   const [revealed, setRevealed] = useState({});
-  const list = ALL_QUESTIONS[subject] || [];
+  const list = useMemo(() => ALL_QUESTIONS[subject] || [], [subject]);
 
   const filtered = useMemo(() => {
     if (!query) return list;

@@ -36,7 +36,7 @@ function predictedFromList(list) {
 
 export default function ProgressView() {
   const { state } = useApp();
-  const ws = state.worksheets || [];
+  const ws = useMemo(() => state.worksheets || [], [state.worksheets]);
 
   const allSubjects = useMemo(() => Array.from(new Set(ws.map((w) => w.subject))), [ws]);
   const [hidden, setHidden] = useState({});

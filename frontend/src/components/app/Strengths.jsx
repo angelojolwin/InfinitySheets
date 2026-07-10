@@ -31,7 +31,7 @@ function useAdaptiveThresholds(byTopic) {
 
 export default function Strengths() {
   const { state } = useApp();
-  const ws = state.worksheets || [];
+  const ws = useMemo(() => state.worksheets || [], [state.worksheets]);
   const [level, setLevel] = useState('all'); // 'all' | 'strengths' | 'weaknesses'
   const [subject, setSubject] = useState('all');
 

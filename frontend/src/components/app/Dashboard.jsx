@@ -43,7 +43,7 @@ function DaysStat({ days, subLabel }) {
 
 export default function Dashboard({ go }) {
   const { state } = useApp();
-  const ws = state.worksheets || [];
+  const ws = useMemo(() => state.worksheets || [], [state.worksheets]);
 
   const stats = useMemo(() => {
     const total = ws.reduce((s, w) => s + (w.total || 0), 0);
