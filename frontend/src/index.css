@@ -387,6 +387,28 @@ html.dark .liquid-glass {
     border-color: rgba(255, 255, 255, 0.08);
     box-shadow: 0 8px 32px -12px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.06);
 }
+/* Clear glass: frosted but untinted — the section background shows through. */
+.liquid-glass-clear {
+    background: rgba(255, 255, 255, 0.12);
+    -webkit-backdrop-filter: blur(20px) saturate(150%);
+    backdrop-filter: blur(20px) saturate(150%);
+    border: 1px solid rgba(148, 163, 184, 0.35);
+    box-shadow: 0 8px 32px -14px rgba(15, 23, 42, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.45);
+}
+html.dark .liquid-glass-clear {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 255, 255, 0.10);
+    box-shadow: 0 8px 32px -14px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+/* Clear glass over always-dark sections */
+.liquid-glass-clear-dark {
+    background: rgba(255, 255, 255, 0.05);
+    -webkit-backdrop-filter: blur(20px) saturate(140%);
+    backdrop-filter: blur(20px) saturate(140%);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
 /* Glass over dark sections (always dark, both themes) */
 .liquid-glass-dark {
     background: rgba(15, 23, 42, 0.45);

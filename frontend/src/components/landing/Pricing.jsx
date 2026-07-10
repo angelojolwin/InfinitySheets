@@ -31,17 +31,17 @@ export default function Pricing() {
             </div>
           </Reveal>
           <Reveal delay={0.15}>
-            <div className="rounded-3xl p-8 liquid-glass-dark bg-slate-900/80 text-white shadow-2xl shadow-slate-900/20">
-              <div className="text-[11px] tracking-[0.14em] uppercase font-semibold text-blue-300">Everything, free</div>
+            <div className="rounded-3xl p-8 liquid-glass-clear shadow-2xl shadow-slate-900/10">
+              <div className="text-[11px] tracking-[0.14em] uppercase font-semibold text-blue-600">Everything, free</div>
               <div className="flex items-baseline gap-2 mt-3">
-                <div className="text-[48px] font-semibold tracking-tight text-white">$0</div>
-                <div className="text-[14px] text-slate-400">forever</div>
+                <div className="text-[48px] font-semibold tracking-tight text-slate-900">$0</div>
+                <div className="text-[14px] text-slate-500">forever</div>
               </div>
               <ul className="mt-6 flex flex-col gap-3">
                 {FEATURES.map((f) => (
                   <li key={f} className="flex items-start gap-2.5">
-                    <Check className="w-4 h-4 mt-0.5 text-emerald-400" strokeWidth={2.6} />
-                    <span className="text-[14.5px] text-slate-200">{f}</span>
+                    <Check className="w-4 h-4 mt-0.5 text-emerald-600" strokeWidth={2.6} />
+                    <span className="text-[14.5px] text-slate-700">{f}</span>
                   </li>
                 ))}
               </ul>

@@ -34,7 +34,6 @@ export default function LandingPage({ hash }) {
       <Hero />
       <WhyDifferent />
       <HowItWorks />
-      <Features />
       <TryQuestion />
       <PredictedGrade />
       <FreeResources />
@@ -42,6 +41,7 @@ export default function LandingPage({ hash }) {
       <FAQ />
       <Pricing />
       <SubjectBreakdown />
+      <Features />
       <FinalCTA />
       <SignupSection />
       <Footer />

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { HOW_IT_WORKS } from '../../data/mock';
 import { ArrowDown } from 'lucide-react';
 import Reveal from './Reveal';
-import { DoodleLaptop } from '../decor/StudentDoodles';
+import { DoodleLaptop, DoodleStationery } from '../decor/StudyDoodles';
 
 /* Animated vignettes — one looping "gif" per step, drawn in SVG so they
    stay crisp and theme-aware. The cursor really clicks, bars really scan. */
@@ -113,6 +113,7 @@ export default function HowItWorks() {
               A simple loop that adapts to you. Every step feeds the next, so practice becomes more targeted with time.
             </p>
             <div className="hidden lg:block absolute -left-48 top-8"><DoodleLaptop /></div>
+            <div className="hidden lg:block absolute -right-44 top-16"><DoodleStationery /></div>
           </div>
         </Reveal>
         <div className="mt-16 grid lg:grid-cols-[1fr_1.05fr] gap-10 lg:gap-14 items-start max-w-[1100px] mx-auto w-full">

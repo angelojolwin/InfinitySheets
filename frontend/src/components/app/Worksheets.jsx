@@ -30,8 +30,18 @@ function gradeTyped(userAnswer, expected, aliases = []) {
   if (!u) return false;
   const candidates = [expected, ...(aliases || [])].map(normalizeText).filter(Boolean);
   if (!candidates.length) return false;
-  // Exact match after normalization, OR one contains the other (short answers).
-  return candidates.some((c) => u === c || (c.length >= 3 && (u.includes(c) || c.includes(u))));
+  // Exact match after normalization, or containment — but only when the
+  // contained string is substantial. Without the length guards a single
+  // typed letter that happens to appear in the expected answer (or a long
+  // ramble containing one short expected word) was graded correct.
+  return candidates.some((c) => {
+    if (u === c) return true;
+    // Full expected answer appears inside what the student typed.
+    if (c.length >= 4 && u.includes(c)) return true;
+    // Student typed most of the expected answer (short answers only).
+    if (u.length >= 4 && u.length >= Math.ceil(c.length * 0.6) && c.includes(u)) return true;
+    return false;
+  });
 }
 
 function gradeExamStyle(userAnswer, keywords = []) {
