@@ -2,13 +2,15 @@ import React from 'react';
 import { TrendingUp, Target } from 'lucide-react';
 import Reveal from './Reveal';
 import { SUBJECT_PROGRESS, subjectStats } from '../../data/landingProgress';
+import { DoodleEquations } from '../decor/StudyDoodles';
 
 /* Full per-subject breakdown near the bottom of the page — improvement,
    scores, and grade thresholds for every subject taken. The chart's lines
    and points link here. */
 export default function SubjectBreakdown() {
   return (
-    <section id="subjects" className="section-bg">
+    <section id="subjects" className="relative section-bg overflow-hidden">
+      <div className="hidden lg:block absolute right-[4%] top-16"><DoodleEquations /></div>
       <div className="max-w-[1280px] mx-auto px-6 py-24 lg:py-28">
         <Reveal>
           <div className="max-w-[760px]">

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Check, X } from 'lucide-react';
 import Reveal from './Reveal';
+import { DoodleAtom, DoodleBooks } from '../decor/StudyDoodles';
 
 const COMPARISON = [
   { them: 'Rereading notes until they blur together', us: 'Answering exam-style questions that stick' },
@@ -12,8 +13,10 @@ const COMPARISON = [
 
 export default function WhyDifferent() {
   return (
-    <section className="section-dark overflow-hidden">
-      <div className="max-w-[1280px] mx-auto px-6 py-28 lg:py-36 min-h-[80svh] flex flex-col justify-center">
+    <section className="relative section-dark overflow-hidden">
+      <div className="max-w-[1280px] mx-auto px-6 py-20 lg:py-28">
+        <div className="hidden lg:block absolute left-[3%] top-24"><DoodleAtom tone="dark" /></div>
+        <div className="hidden lg:block absolute right-[4%] bottom-24"><DoodleBooks tone="dark" width={100} /></div>
         <Reveal>
           <div className="text-center max-w-[860px] mx-auto">
             <div className="text-[11px] tracking-[0.14em] uppercase font-semibold text-blue-300 mb-5">Why InfinitySheets?</div>

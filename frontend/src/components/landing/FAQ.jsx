@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Plus, Minus } from 'lucide-react';
 import Reveal from './Reveal';
 import TypeHeading from './TypeHeading';
-import { DoodleGradCap } from '../decor/StudyDoodles';
+import { DoodleGradCap, DoodleBooks } from '../decor/StudyDoodles';
 
 const FAQS = [
   {
@@ -41,6 +41,7 @@ export default function FAQ() {
             <div className="eyebrow mb-5">Questions, answered</div>
             <TypeHeading text="Everything students ask us." className="h-display text-[46px] sm:text-[58px] lg:text-[64px] leading-[1.05]" />
             <div className="hidden lg:block absolute -right-40 -top-4"><DoodleGradCap /></div>
+            <div className="hidden lg:block absolute -left-44 top-10"><DoodleBooks width={95} /></div>
           </div>
         </Reveal>
         <Reveal delay={0.1}>

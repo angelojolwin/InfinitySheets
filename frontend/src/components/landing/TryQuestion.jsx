@@ -88,7 +88,7 @@ export default function TryQuestion() {
 
   return (
     <section id="try" className="section-bg">
-      <div className="max-w-[1280px] mx-auto px-6 py-28 lg:py-36 min-h-[80svh] flex flex-col justify-center">
+      <div className="max-w-[1280px] mx-auto px-6 py-20 lg:py-28">
         <Reveal>
           <div className="relative text-center max-w-[760px] mx-auto">
             <div className="hidden lg:block absolute -left-52 top-4"><DoodleEquations /></div>

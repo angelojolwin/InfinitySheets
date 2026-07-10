@@ -1,10 +1,12 @@
 import React from 'react';
 import { RESEARCH_STATS } from '../../data/mock';
 import { BookMarked } from 'lucide-react';
+import { DoodleFlask } from '../decor/StudyDoodles';
 
 export default function Research() {
   return (
-    <section className="section-light">
+    <section className="relative section-light overflow-hidden">
+      <div className="hidden lg:block absolute right-[5%] top-20"><DoodleFlask width={85} /></div>
       <div className="max-w-[1280px] mx-auto px-6 py-24 lg:py-28">
         <div className="max-w-[760px]">
           <div className="flex items-center gap-2 mb-5">

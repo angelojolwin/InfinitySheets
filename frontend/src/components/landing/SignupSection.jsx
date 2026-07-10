@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { EXAM_TRACKS } from '../../data/mock';
 import { toast } from 'sonner';
+import { DoodleGradCap } from '../decor/StudyDoodles';
 
 export default function SignupSection() {
   const [tab, setTab] = useState('signup');
@@ -18,7 +19,8 @@ export default function SignupSection() {
   const handleLogin = comingSoon;
 
   return (
-    <section id="signup" className="section-dark">
+    <section id="signup" className="relative section-dark overflow-hidden">
+      <div className="hidden lg:block absolute left-[3%] bottom-16"><DoodleGradCap tone="dark" width={95} /></div>
       <div className="max-w-[1280px] mx-auto px-6 py-24 lg:py-28 grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
         <div>
           <div className="text-blue-400 text-[11px] tracking-[0.14em] uppercase font-semibold mb-5">Start now</div>

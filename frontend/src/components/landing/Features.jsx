@@ -1,6 +1,7 @@
 import React from 'react';
 import { FEATURES } from '../../data/mock';
 import Reveal from './Reveal';
+import { DoodleStationery, DoodleTestTubes } from '../decor/StudyDoodles';
 
 /* Mini looping demos shown inside a card while it is hovered.
    SVG-based so they stay crisp and theme-aware. */
@@ -112,7 +113,9 @@ function FeatureCard({ f, kind }) {
 
 export default function Features() {
   return (
-    <section id="features" className="section-light">
+    <section id="features" className="relative section-light overflow-hidden">
+      <div className="hidden lg:block absolute right-[4%] top-16"><DoodleTestTubes /></div>
+      <div className="hidden lg:block absolute left-[3%] bottom-12"><DoodleStationery /></div>
       <div className="max-w-[1280px] mx-auto px-6 py-24 lg:py-28">
         <div className="max-w-[760px]">
           <div className="eyebrow mb-5">Features</div>
