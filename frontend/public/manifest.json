@@ -1,0 +1,12 @@
+{
+  "short_name": "InfinitySheets",
+  "name": "InfinitySheets — Study smarter, free",
+  "description": "Exam-style practice that finds your weak concepts and fixes them. Free for AP, IGCSE, IB, SAT, JEE, NEET and more.",
+  "icons": [
+    { "src": "favicon.svg", "type": "image/svg+xml", "sizes": "any", "purpose": "any" }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#2563eb",
+  "background_color": "#0f172a"
+}
