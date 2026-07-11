@@ -1,38 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Eye, Play, Infinity } from 'lucide-react';
+import { ArrowRight, Eye, Play } from 'lucide-react';
 import InfinityBackground from '../decor/InfinityBackground';
 import { DoodleBooks, DoodleFlask, DoodleEquations } from '../decor/StudyDoodles';
 import { useApp } from '../../context/AppContext';
 import { EXAM_TRACKS } from '../../data/mock';
 
-/* The heading is static except the word "you", which types itself out
-   slowly and then gets swept with a marker highlight — study vibes.
-   Width is reserved so layout never shifts. */
-function TypedHero() {
-  const WORD = 'you';
-  const [count, setCount] = useState(0);
-  const done = count >= WORD.length;
+/* Static heading; the word "you" gets swept with a marker highlight
+   shortly after load — study vibes, no typing. */
+function HeroHeading() {
+  const [highlight, setHighlight] = useState(false);
   useEffect(() => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { setCount(WORD.length); return; }
-    if (done) return;
-    const t = setTimeout(() => setCount((c) => c + 1), count === 0 ? 900 : 420);
+    const t = setTimeout(() => setHighlight(true), 700);
     return () => clearTimeout(t);
-  }, [count, done]);
+  }, []);
 
   return (
-    <h1 className="h-display text-[56px] sm:text-[80px] lg:text-[108px] leading-[1.02] max-w-[1080px]" aria-label="A study tool tailored just for you.">
+    <h1 className="h-display text-[56px] sm:text-[80px] lg:text-[108px] leading-[1.02] max-w-[1080px]">
       A study tool tailored just for{' '}
-      <span aria-hidden="true" className={`hl-mark ${done ? 'hl-on' : ''}`}>
-        <span className="relative inline-block">
-          <span className="invisible">{WORD}</span>
-          <span className="absolute inset-0">
-            {WORD.slice(0, count)}
-            {!done && <span className="type-caret" />}
-          </span>
-        </span>
-      </span>
-      <span aria-hidden="true">.</span>
+      <span className={`hl-mark ${highlight ? 'hl-on' : ''}`}>you</span>.
     </h1>
   );
 }
@@ -98,18 +84,7 @@ export default function Hero() {
       <div className="hidden xl:block absolute left-[7%] top-[62%] opacity-80 pointer-events-none"><DoodleEquations width={130} /></div>
       <div className="hidden xl:block absolute right-[5%] top-[28%] opacity-90 pointer-events-none"><DoodleFlask /></div>
       <div className="relative max-w-[1280px] mx-auto px-6 min-h-[92svh] flex flex-col items-center justify-center text-center pt-20 pb-10">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="mb-8 flex items-center gap-3"
-        >
-          <span className="w-14 h-14 rounded-2xl bg-blue-600 shadow-lg shadow-blue-600/30 flex items-center justify-center">
-            <Infinity className="w-8 h-8 text-white" strokeWidth={2.6} />
-          </span>
-          <span className="text-[22px] font-semibold tracking-tight text-slate-900">InfinitySheets</span>
-        </motion.div>
-        <TypedHero />
+        <HeroHeading />
         <motion.p
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}

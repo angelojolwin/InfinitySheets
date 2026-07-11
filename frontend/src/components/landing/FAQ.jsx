@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Plus, Minus } from 'lucide-react';
+import { Plus, Minus, ChevronDown, MessageCircleQuestion } from 'lucide-react';
 import Reveal from './Reveal';
 import TypeHeading from './TypeHeading';
 import { DoodleGradCap, DoodleBooks } from '../decor/StudyDoodles';
@@ -31,8 +31,29 @@ const FAQS = [
   },
 ];
 
+// Revealed by the "View more questions" button.
+const MORE_FAQS = [
+  {
+    q: 'Does it work on my phone?',
+    a: 'Yes — the whole site and app are built mobile-first, so you can practice on the bus, between classes, or wherever you study. Progress syncs to your account.',
+  },
+  {
+    q: 'Can I prepare for more than one exam at once?',
+    a: 'Absolutely. Add as many courses as you like — each gets its own subjects, exam dates, worksheets, and predicted grades, and the dashboard keeps them all in view.',
+  },
+  {
+    q: 'What happens to my data?',
+    a: 'Your worksheets and progress belong to you. We store only what the app needs to work, we never sell personal data, and you can delete your account (and everything with it) from Settings at any time.',
+  },
+  {
+    q: 'I found a wrong or unrealistic question — what do I do?',
+    a: 'Tell us! Question quality is the thing we care about most. Flag it in the app or reach out directly, and we will fix it and use it to improve generation for everyone.',
+  },
+];
+
 export default function FAQ() {
   const [open, setOpen] = useState(0);
+  const [showMore, setShowMore] = useState(false);
   return (
     <section id="faq" className="section-bg">
       <div className="max-w-[1280px] mx-auto px-6 py-28 lg:py-32">
@@ -46,10 +67,10 @@ export default function FAQ() {
         </Reveal>
         <Reveal delay={0.1}>
           <div className="mt-14 max-w-[760px] mx-auto flex flex-col gap-3">
-            {FAQS.map((f, i) => {
+            {(showMore ? [...FAQS, ...MORE_FAQS] : FAQS).map((f, i) => {
               const isOpen = open === i;
               return (
-                <div key={i} className="rounded-2xl liquid-glass overflow-hidden">
+                <div key={f.q} className="rounded-2xl liquid-glass overflow-hidden">
                   <button
                     onClick={() => setOpen(isOpen ? -1 : i)}
                     className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left"
@@ -64,6 +85,24 @@ export default function FAQ() {
                 </div>
               );
             })}
+            <div className="mt-4 flex flex-wrap justify-center gap-3">
+              {!showMore && (
+                <button
+                  onClick={() => setShowMore(true)}
+                  data-testid="faq-view-more"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-[14px] font-medium border border-slate-300 text-slate-700 hover:bg-slate-100 transition-colors"
+                >
+                  <ChevronDown className="w-4 h-4" /> View more questions
+                </button>
+              )}
+              <a
+                href="mailto:hello@infinitysheets.app?subject=Question%20about%20InfinitySheets"
+                data-testid="faq-ask"
+                className="btn-violet inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-[14px] font-medium"
+              >
+                <MessageCircleQuestion className="w-4 h-4" /> Ask a question
+              </a>
+            </div>
           </div>
         </Reveal>
       </div>
