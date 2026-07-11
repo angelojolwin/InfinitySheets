@@ -581,8 +581,45 @@ html:not(.dark) .shot-dark { display: none; }
 html.dark .hl-mark::before {
     background: linear-gradient(100deg, rgba(202, 138, 4, 0.75), rgba(161, 98, 7, 0.6));
 }
+/* Amber marker for text on always-dark sections (white text stays readable). */
+.hl-amber::before,
+html.dark .hl-amber::before {
+    background: linear-gradient(100deg, rgba(217, 119, 6, 0.92), rgba(180, 83, 9, 0.85)) !important;
+}
 @media (prefers-reduced-motion: reduce) {
     .hl-mark.hl-on::before { animation: none; transform: scaleX(1) rotate(-1deg); }
+}
+
+/* Hand-drawn underline that draws itself in when scrolled into view. */
+.u-mark { position: relative; white-space: nowrap; }
+.u-line {
+    position: absolute; left: -3%; bottom: -0.24em; width: 106%; height: 0.42em;
+    overflow: visible; pointer-events: none;
+}
+.u-line path {
+    fill: none; stroke: #2563eb; stroke-width: 2.4; stroke-linecap: round;
+    vector-effect: non-scaling-stroke; stroke-dasharray: 220; stroke-dashoffset: 220;
+}
+html.dark .u-line path { stroke: #60a5fa; }
+.u-mark.u-on .u-line path { animation: u-draw 0.75s 0.05s ease-out forwards; }
+@keyframes u-draw { to { stroke-dashoffset: 0; } }
+
+/* Hand-drawn circle that loops around a short phrase (e.g. a price). */
+.c-mark { position: relative; display: inline-block; }
+.c-ring {
+    position: absolute; left: -14%; top: -22%; width: 128%; height: 150%;
+    overflow: visible; pointer-events: none;
+}
+.c-ring path {
+    fill: none; stroke: #2563eb; stroke-width: 2.4; stroke-linecap: round;
+    vector-effect: non-scaling-stroke; stroke-dasharray: 360; stroke-dashoffset: 360;
+}
+html.dark .c-ring path { stroke: #60a5fa; }
+.c-mark.c-on .c-ring path { animation: c-draw 0.9s 0.1s ease-out forwards; }
+@keyframes c-draw { to { stroke-dashoffset: 0; } }
+
+@media (prefers-reduced-motion: reduce) {
+    .u-mark.u-on .u-line path, .c-mark.c-on .c-ring path { animation: none; stroke-dashoffset: 0; }
 }
 
 /* Typed-out heading caret */

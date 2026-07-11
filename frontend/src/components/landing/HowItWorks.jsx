@@ -3,6 +3,7 @@ import { HOW_IT_WORKS } from '../../data/mock';
 import { ArrowDown } from 'lucide-react';
 import Reveal from './Reveal';
 import { DoodleLaptop, DoodleStationery } from '../decor/StudyDoodles';
+import Emphasis from './Emphasis';
 
 /* Animated vignettes — one looping "gif" per step, drawn in SVG so they
    stay crisp and theme-aware. The cursor really clicks, bars really scan. */
@@ -110,7 +111,8 @@ export default function HowItWorks() {
             <div className="eyebrow mb-5">How it works</div>
             <h2 className="h-display text-[46px] sm:text-[60px] lg:text-[70px] leading-[1.05]">From your first worksheet to mastery.</h2>
             <p className="mt-6 text-[17px] sm:text-[18px] text-slate-500 leading-relaxed max-w-[680px] mx-auto">
-              A simple loop that adapts to you. Every step feeds the next, so practice becomes more targeted with time.
+              A simple loop that adapts to you&mdash;every step targets your{' '}
+              <Emphasis variant="underline" className="font-medium text-slate-700">weak concepts</Emphasis>, so practice gets sharper over time.
             </p>
             <div className="hidden lg:block absolute -left-48 top-8"><DoodleLaptop /></div>
             <div className="hidden lg:block absolute -right-44 top-16"><DoodleStationery /></div>

@@ -4,6 +4,7 @@ import { ArrowRight, Eye, Play } from 'lucide-react';
 import InfinityBackground from '../decor/InfinityBackground';
 import { DoodleBooks, DoodleFlask, DoodleEquations } from '../decor/StudyDoodles';
 import { useApp } from '../../context/AppContext';
+import Emphasis from './Emphasis';
 import { EXAM_TRACKS } from '../../data/mock';
 
 /* Static heading; the word "you" gets swept with a marker highlight
@@ -93,7 +94,7 @@ export default function Hero() {
         >
           Coaching centres win exams with endless on-syllabus practice, focused work on weak
           concepts, and total exam familiarity. InfinitySheets puts that training on any
-          device&mdash;completely free.
+          device&mdash;<Emphasis variant="highlight" className="text-slate-800 font-medium">completely free</Emphasis>.
         </motion.p>
         <motion.div
           initial={{ opacity: 0, y: 24 }}

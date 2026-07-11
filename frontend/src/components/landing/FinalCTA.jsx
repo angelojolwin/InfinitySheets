@@ -1,6 +1,7 @@
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
 import { DoodleBooks, DoodleLaptop } from '../decor/StudyDoodles';
+import Emphasis from './Emphasis';
 
 export default function FinalCTA() {
   return (
@@ -13,7 +14,7 @@ export default function FinalCTA() {
             <div className="text-[11px] tracking-[0.14em] uppercase font-semibold text-blue-600 mb-5">Final call</div>
             <h2 className="h-display text-[40px] sm:text-[48px] lg:text-[56px]">Ready to study smarter?</h2>
             <p className="mt-5 text-[16px] text-slate-600 leading-relaxed max-w-[560px]">
-              Join students replacing blind rereading with targeted, exam-style practice. Free, personalized, and the planning is done for you—every hour you study finally counts.
+              Join students replacing blind rereading with targeted, exam-style practice. Free, personalized, and the planning is done for you—<Emphasis variant="underline" className="font-medium text-slate-800">every hour you study finally counts</Emphasis>.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <a href="#signup" className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-blue-500 hover:bg-blue-400 text-white text-[14.5px] font-medium transition-colors">
