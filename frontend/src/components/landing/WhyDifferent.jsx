@@ -2,6 +2,7 @@ import React from 'react';
 import { Check, X } from 'lucide-react';
 import Reveal from './Reveal';
 import { DoodleAtom, DoodleBooks } from '../decor/StudyDoodles';
+import Emphasis from './Emphasis';
 
 const COMPARISON = [
   { them: 'Rereading notes until they blur together', us: 'Answering exam-style questions that stick' },
@@ -21,7 +22,7 @@ export default function WhyDifferent() {
           <div className="text-center max-w-[860px] mx-auto">
             <div className="text-[11px] tracking-[0.14em] uppercase font-semibold text-blue-300 mb-5">Why InfinitySheets?</div>
             <h2 className="h-display text-white text-[44px] sm:text-[60px] lg:text-[72px] leading-[1.05]">
-              Real practice, real results.
+              Real practice, <Emphasis variant="highlight" amber>real results</Emphasis>.
             </h2>
             <p className="mt-7 text-[16.5px] sm:text-[18px] leading-relaxed text-slate-300 max-w-[720px] mx-auto">
               Practice sheets catered to your exact exam&mdash;the right boards, the right question

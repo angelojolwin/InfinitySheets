@@ -2,6 +2,7 @@ import React from 'react';
 import { Check, ArrowRight } from 'lucide-react';
 import Reveal from './Reveal';
 import { DoodleGradCap } from '../decor/StudyDoodles';
+import Emphasis from './Emphasis';
 
 const FEATURES = [
   'Personalized worksheets for your exact syllabus',
@@ -35,9 +36,11 @@ export default function Pricing() {
           <Reveal delay={0.15}>
             <div className="rounded-3xl p-8 liquid-glass-clear shadow-2xl shadow-slate-900/10">
               <div className="text-[11px] tracking-[0.14em] uppercase font-semibold text-blue-600">Everything, free</div>
-              <div className="flex items-baseline gap-2 mt-3">
-                <div className="text-[48px] font-semibold tracking-tight text-slate-900">$0</div>
-                <div className="text-[14px] text-slate-500">forever</div>
+              <div className="flex items-baseline gap-3 mt-3">
+                <Emphasis variant="circle">
+                  <span className="text-[48px] font-semibold tracking-tight text-slate-900 px-1">$0</span>
+                </Emphasis>
+                <span className="text-[14px] text-slate-500">forever</span>
               </div>
               <ul className="mt-6 flex flex-col gap-3">
                 {FEATURES.map((f) => (
