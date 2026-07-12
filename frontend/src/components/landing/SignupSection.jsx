@@ -3,13 +3,27 @@ import { useApp } from '../../context/AppContext';
 import { EXAM_TRACKS } from '../../data/mock';
 import { toast } from 'sonner';
 import { DoodleGradCap } from '../decor/StudyDoodles';
+import GoogleAuthButton from './GoogleAuthButton';
 
 export default function SignupSection() {
-  const { apiRegister, apiLogin } = useApp();
+  const { apiRegister, apiLogin, apiGoogleAuth } = useApp();
   const [tab, setTab] = useState('signup');
   const [form, setForm] = useState({ name: '', email: '', track: 'AP', password: '' });
   const [loginForm, setLoginForm] = useState({ email: '', password: '' });
   const [busy, setBusy] = useState(false);
+
+  const handleGoogle = async (credential) => {
+    setBusy(true);
+    try {
+      await apiGoogleAuth(credential);
+      toast.success('Signed in with Google');
+      window.location.hash = '#dashboard';
+    } catch (err) {
+      toast.error(err.message || 'Google sign-in failed');
+    } finally {
+      setBusy(false);
+    }
+  };
 
   const handleSignup = async (e) => {
     e.preventDefault();
@@ -69,6 +83,21 @@ export default function SignupSection() {
             <button onClick={() => setTab('signup')} data-testid="tab-signup" className={`py-2.5 rounded-lg text-[14px] font-medium transition-colors ${tab === 'signup' ? 'bg-blue-600 text-white' : 'bg-transparent text-zinc-400 hover:text-white border border-zinc-700'}`}>Sign Up</button>
             <button onClick={() => setTab('login')} data-testid="tab-login" className={`py-2.5 rounded-lg text-[14px] font-medium transition-colors ${tab === 'login' ? 'bg-blue-600 text-white' : 'bg-transparent text-zinc-400 hover:text-white border border-zinc-700'}`}>Log In</button>
           </div>
+
+          <div className="mb-4">
+            <GoogleAuthButton
+              onCredential={handleGoogle}
+              onError={(m) => toast.error(m)}
+              onUnavailable={() => toast.info('Google sign-in isn’t set up yet — use your email for now.')}
+              label={tab === 'signup' ? 'Sign up with Google' : 'Continue with Google'}
+            />
+          </div>
+          <div className="flex items-center gap-3 mb-4">
+            <span className="h-px flex-1 bg-zinc-700" />
+            <span className="text-[11px] uppercase tracking-wider text-zinc-500">or with email</span>
+            <span className="h-px flex-1 bg-zinc-700" />
+          </div>
+
           {tab === 'signup' ? (
             <form onSubmit={handleSignup} className="flex flex-col gap-3">
               <Field label="Name"><input data-testid="signup-name" className="input-dark" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} /></Field>
