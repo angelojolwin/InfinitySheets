@@ -4,6 +4,7 @@ import { ArrowRight, Play } from 'lucide-react';
 import InfinityBackground from '../decor/InfinityBackground';
 import { DoodleBooks, DoodleFlask, DoodleEquations } from '../decor/StudyDoodles';
 import Emphasis from './Emphasis';
+import WatchVideoModal from './WatchVideoModal';
 import { EXAM_TRACKS } from '../../data/mock';
 
 /* Static heading; the word "you" gets swept with a marker highlight
@@ -74,8 +75,10 @@ function CalloutLabels() {
 }
 
 export default function Hero() {
+  const [videoOpen, setVideoOpen] = useState(false);
   return (
     <section id="top" className="relative section-bg overflow-hidden">
+      <WatchVideoModal open={videoOpen} onClose={() => setVideoOpen(false)} />
       <InfinityBackground variant="hero" />
       <div className="absolute inset-0 grid-fade pointer-events-none" />
       <div className="hidden xl:block absolute left-[4%] top-[26%] opacity-90 pointer-events-none"><DoodleBooks /></div>
@@ -102,9 +105,9 @@ export default function Hero() {
           <a href="#signup" className="btn-violet inline-flex items-center gap-2 px-7 py-4 rounded-xl text-[16.5px] font-medium shadow-sm">
             Start Free <ArrowRight className="w-5 h-5" />
           </a>
-          <a href="#how" className="btn-outline-dark inline-flex items-center gap-2 px-7 py-4 rounded-xl text-[16.5px] font-medium">
+          <button onClick={() => setVideoOpen(true)} className="btn-outline-dark inline-flex items-center gap-2 px-7 py-4 rounded-xl text-[16.5px] font-medium">
             <Play className="w-5 h-5 text-red-600" /> Watch video
-          </a>
+          </button>
         </motion.div>
         <motion.div
           initial={{ opacity: 0 }}
