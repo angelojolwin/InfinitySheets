@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import Navbar from './Navbar';
 import Hero from './Hero';
+import ProductStats from './ProductStats';
 import WhyDifferent from './WhyDifferent';
 import HowItWorks from './HowItWorks';
 import Features from './Features';
@@ -8,12 +9,15 @@ import TryQuestion from './TryQuestion';
 import PredictedGrade from './PredictedGrade';
 import FreeResources from './FreeResources';
 import Research from './Research';
+import FoundingStory from './FoundingStory';
 import FAQ from './FAQ';
 import Pricing from './Pricing';
 import SubjectBreakdown from './SubjectBreakdown';
+import Waitlist from './Waitlist';
 import FinalCTA from './FinalCTA';
 import SignupSection from './SignupSection';
 import Footer from './Footer';
+import MobileStickyCTA from './MobileStickyCTA';
 
 // On a fresh page load, a leftover section anchor (#signup, #pricing...)
 // makes the page restore scroll deep into the content. Handle the initial
@@ -46,19 +50,23 @@ export default function LandingPage({ hash }) {
     <div className="section-bg">
       <Navbar onStart={onStart} />
       <Hero />
+      <ProductStats />
       <WhyDifferent />
       <HowItWorks />
       <TryQuestion />
       <PredictedGrade />
       <FreeResources />
       <Research />
+      <FoundingStory />
       <FAQ />
       <Pricing />
       <SubjectBreakdown />
       <Features />
+      <Waitlist />
       <FinalCTA />
       <SignupSection />
       <Footer />
+      <MobileStickyCTA />
     </div>
   );
 }
