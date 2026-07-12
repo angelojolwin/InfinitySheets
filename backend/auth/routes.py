@@ -1,4 +1,5 @@
-"""Auth endpoints: register, login, logout, me, refresh."""
+"""Auth endpoints: register, login, logout, me, refresh, google."""
+import os
 from datetime import datetime, timezone, timedelta
 from typing import Dict, Any
 
@@ -6,7 +7,7 @@ from bson import ObjectId
 from fastapi import APIRouter, HTTPException, Request, Response, Depends
 
 from .deps import get_current_user
-from .models import LoginInput, RegisterInput, UserOut
+from .models import GoogleAuthInput, LoginInput, RegisterInput, UserOut
 from .security import (
     create_access_token,
     create_refresh_token,
@@ -16,6 +17,11 @@ from .security import (
 )
 
 router = APIRouter(prefix="/auth")
+
+# Set GOOGLE_CLIENT_ID in the backend environment to enable "Continue with
+# Google". While unset, the endpoint returns 503 and the frontend button
+# stays dormant.
+GOOGLE_CLIENT_ID = os.environ.get("GOOGLE_CLIENT_ID", "").strip()
 
 ACCESS_MAX_AGE = 60 * 60  # 60 min
 REFRESH_MAX_AGE = 60 * 60 * 24 * 7  # 7 days
@@ -117,6 +123,56 @@ async def login(payload: LoginInput, request: Request, response: Response) -> Di
         raise HTTPException(status_code=401, detail="Invalid email or password")
 
     await _clear_failures(db, identifier)
+    user_id = str(user["_id"])
+    access = create_access_token(user_id, email)
+    refresh = create_refresh_token(user_id)
+    _set_auth_cookies(response, access, refresh)
+    return _user_dict(user)
+
+
+@router.post("/google", response_model=UserOut)
+async def google_auth(payload: GoogleAuthInput, request: Request, response: Response) -> Dict[str, Any]:
+    """Verify a Google ID token and log in (creating the account on first use)."""
+    if not GOOGLE_CLIENT_ID:
+        raise HTTPException(status_code=503, detail="Google sign-in is not configured yet.")
+
+    # Verify the token's signature, issuer, expiry, and audience against Google.
+    try:
+        from google.oauth2 import id_token as google_id_token
+        from google.auth.transport import requests as google_requests
+    except ImportError:  # pragma: no cover - dependency install guard
+        raise HTTPException(status_code=503, detail="Google sign-in is not available on the server.")
+
+    try:
+        info = google_id_token.verify_oauth2_token(
+            payload.credential, google_requests.Request(), GOOGLE_CLIENT_ID
+        )
+    except ValueError:
+        raise HTTPException(status_code=401, detail="Invalid Google sign-in.")
+
+    if not info.get("email_verified"):
+        raise HTTPException(status_code=401, detail="Your Google email is not verified.")
+
+    email = (info.get("email") or "").lower().strip()
+    if not email:
+        raise HTTPException(status_code=401, detail="Google did not return an email.")
+
+    db = request.app.state.db
+    now = datetime.now(timezone.utc)
+    user = await db.users.find_one({"email": email})
+    if not user:
+        doc = {
+            "email": email,
+            "password_hash": None,  # Google-only account; no local password.
+            "name": (info.get("name") or email.split("@")[0]).strip(),
+            "role": "user",
+            "provider": "google",
+            "created_at": now,
+        }
+        result = await db.users.insert_one(doc)
+        doc["_id"] = result.inserted_id
+        user = doc
+
     user_id = str(user["_id"])
     access = create_access_token(user_id, email)
     refresh = create_refresh_token(user_id)

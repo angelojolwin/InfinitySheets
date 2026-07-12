@@ -236,6 +236,27 @@ export function AppProvider({ children }) {
     return me;
   }, []);
 
+  const apiGoogleAuth = useCallback(async (credential) => {
+    const me = await apiCall('/api/auth/google', {
+      method: 'POST',
+      body: JSON.stringify({ credential }),
+    });
+    setState((s) => ({
+      ...s,
+      user: {
+        ...(s.user && !s.user.isDemo && s.user.email === me.email ? s.user : {}),
+        id: me.id,
+        email: me.email,
+        name: me.name,
+        role: me.role || 'user',
+        examTrack: (s.user && !s.user.isDemo ? s.user.examTrack : null) || 'SSLC',
+        subjects: (s.user && !s.user.isDemo ? s.user.subjects : null) || [],
+        isDemo: false,
+      },
+    }));
+    return me;
+  }, []);
+
   const apiLogout = useCallback(async () => {
     try {
       await apiCall('/api/auth/logout', { method: 'POST' });
@@ -406,6 +427,7 @@ export function AppProvider({ children }) {
     logout,
     apiRegister,
     apiLogin,
+    apiGoogleAuth,
     apiLogout,
     updateProfile,
     updateSettings,
@@ -433,6 +455,7 @@ export function AppProvider({ children }) {
     logout,
     apiRegister,
     apiLogin,
+    apiGoogleAuth,
     apiLogout,
     updateProfile,
     updateSettings,

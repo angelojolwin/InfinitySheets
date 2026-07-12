@@ -19,6 +19,11 @@ class LoginInput(BaseModel):
     password: str
 
 
+class GoogleAuthInput(BaseModel):
+    # The ID-token JWT returned by Google Identity Services on the client.
+    credential: str = Field(min_length=10, max_length=4096)
+
+
 class UserOut(BaseModel):
     id: str
     email: EmailStr

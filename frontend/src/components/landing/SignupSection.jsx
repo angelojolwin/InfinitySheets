@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { EXAM_TRACKS } from '../../data/mock';
 import { toast } from 'sonner';
 import { DoodleGradCap } from '../decor/StudyDoodles';
+import GoogleAuthButton from './GoogleAuthButton';
 
 export default function SignupSection() {
   const [tab, setTab] = useState('signup');
@@ -9,14 +10,13 @@ export default function SignupSection() {
   const [loginForm, setLoginForm] = useState({ email: '', password: '' });
   const [busy] = useState(false);
 
-  // LANDING-ONLY BUILD: the form renders for preview purposes but accounts
-  // cannot be created here — no data leaves the page.
-  const comingSoon = (e) => {
-    e.preventDefault();
-    toast.info('Sign-ups aren’t open yet — we’re launching soon. Watch this space!');
-  };
+  // LANDING-ONLY BUILD: the form (including Google) renders for preview but
+  // is locked — nothing leaves the page. Everything shows the same notice.
+  const launchingSoon = () => toast.info('Sign-ups aren’t open yet — we’re launching soon. Watch this space!');
+  const comingSoon = (e) => { e.preventDefault(); launchingSoon(); };
   const handleSignup = comingSoon;
   const handleLogin = comingSoon;
+  const handleGoogle = launchingSoon;
 
   return (
     <section id="signup" className="relative section-dark overflow-hidden">
@@ -36,6 +36,21 @@ export default function SignupSection() {
             <button onClick={() => setTab('signup')} data-testid="tab-signup" className={`py-2.5 rounded-lg text-[14px] font-medium transition-colors ${tab === 'signup' ? 'bg-blue-600 text-white' : 'bg-transparent text-zinc-400 hover:text-white border border-zinc-700'}`}>Sign Up</button>
             <button onClick={() => setTab('login')} data-testid="tab-login" className={`py-2.5 rounded-lg text-[14px] font-medium transition-colors ${tab === 'login' ? 'bg-blue-600 text-white' : 'bg-transparent text-zinc-400 hover:text-white border border-zinc-700'}`}>Log In</button>
           </div>
+
+          <div className="mb-4">
+            <GoogleAuthButton
+              onCredential={handleGoogle}
+              onError={launchingSoon}
+              onUnavailable={launchingSoon}
+              label={tab === 'signup' ? 'Sign up with Google' : 'Continue with Google'}
+            />
+          </div>
+          <div className="flex items-center gap-3 mb-4">
+            <span className="h-px flex-1 bg-zinc-700" />
+            <span className="text-[11px] uppercase tracking-wider text-zinc-500">or with email</span>
+            <span className="h-px flex-1 bg-zinc-700" />
+          </div>
+
           {tab === 'signup' ? (
             <form onSubmit={handleSignup} className="flex flex-col gap-3">
               <Field label="Name"><input data-testid="signup-name" className="input-dark" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} /></Field>
