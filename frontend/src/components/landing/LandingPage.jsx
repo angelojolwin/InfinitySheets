@@ -12,7 +12,7 @@ import FoundingStory from './FoundingStory';
 import FAQ from './FAQ';
 import Pricing from './Pricing';
 import SubjectBreakdown from './SubjectBreakdown';
-import Waitlist from './Waitlist';
+import StudentGallery3D from './StudentGallery3D';
 import FinalCTA from './FinalCTA';
 import SignupSection from './SignupSection';
 import Footer from './Footer';
@@ -48,8 +48,8 @@ export default function LandingPage({ hash }) {
   return (
     <div className="section-bg">
       <Navbar onStart={onStart} />
-      <Waitlist />
       <Hero />
+      <StudentGallery3D />
       <ProductStats />
       <WhyDifferent />
       <HowItWorks />

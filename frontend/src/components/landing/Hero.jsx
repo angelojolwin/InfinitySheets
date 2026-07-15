@@ -6,6 +6,7 @@ import { DoodleBooks, DoodleFlask, DoodleEquations } from '../decor/StudyDoodles
 import Emphasis from './Emphasis';
 import WatchVideoModal from './WatchVideoModal';
 import FeatureCarousel from './FeatureCarousel';
+import Waitlist from './Waitlist';
 import { EXAM_TRACKS } from '../../data/mock';
 
 /* Static heading; the word "you" gets swept with a marker highlight
@@ -111,16 +112,12 @@ export default function Hero() {
           </button>
         </motion.div>
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.35 }}
-          className="mt-10 flex flex-wrap lg:flex-nowrap items-center justify-center gap-2"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+          className="w-full flex justify-center"
         >
-          {EXAM_TRACKS.map((t) => (
-            <a key={t.id} href={`#resources?track=${t.id}`} className="whitespace-nowrap px-3.5 py-1.5 rounded-full border border-slate-200 bg-white/70 backdrop-blur text-[13.5px] text-slate-600 hover:border-blue-400 hover:text-blue-700 transition-colors">
-              {t.name}
-            </a>
-          ))}
+          <Waitlist variant="inline" />
         </motion.div>
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -132,6 +129,18 @@ export default function Hero() {
           <h2 className="h-display text-[30px] sm:text-[38px] lg:text-[44px] leading-[1.05]">Everything you need to study smarter.</h2>
         </motion.div>
         <FeatureCarousel />
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.55 }}
+          className="mt-10 flex flex-wrap lg:flex-nowrap items-center justify-center gap-2"
+        >
+          {EXAM_TRACKS.map((t) => (
+            <a key={t.id} href={`#resources?track=${t.id}`} className="whitespace-nowrap px-3.5 py-1.5 rounded-full border border-slate-200 bg-white/70 backdrop-blur text-[13.5px] text-slate-600 hover:border-blue-400 hover:text-blue-700 transition-colors">
+              {t.name}
+            </a>
+          ))}
+        </motion.div>
       </div>
       <motion.div
         initial={{ opacity: 0, y: 60, scale: 0.94 }}
