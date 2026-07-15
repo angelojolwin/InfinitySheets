@@ -523,6 +523,39 @@ html.dark .liquid-glass-clear {
     .hover-hint { display: none; }
 }
 
+/* ===== 3D student-photo gallery (below the dashboard screenshot) =====
+   Rotation is driven from JS (StudentGallery3D rAF loop): continuous
+   auto-spin, paused on hover while arrow paging animates in 3D. */
+.gallery3d-stage {
+    display: none;
+    perspective: 1500px;
+    min-height: 260px;
+    align-items: center;
+    justify-content: center;
+}
+@media (min-width: 640px) {
+    .gallery3d-stage { display: flex; }
+}
+.gallery3d-mobile { display: flex; }
+@media (min-width: 640px) {
+    .gallery3d-mobile { display: none; }
+}
+.gallery3d-ring {
+    position: relative;
+    width: 280px;
+    height: 210px;
+    transform-style: preserve-3d;
+}
+.gallery3d-card {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+@media (prefers-reduced-motion: reduce) {
+    .gallery3d-ring { transform: rotateY(-15deg); }
+}
+
 /* Screenshot feature callouts */
 @keyframes callout-pulse {
     0%, 100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.45); }
