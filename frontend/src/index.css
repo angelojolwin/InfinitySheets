@@ -521,17 +521,13 @@ html.dark .liquid-glass-clear {
 .carousel3d-stage {
     perspective: 1400px;
 }
+/* Rotation is driven from JS (FeatureCarousel rAF loop) so the ring never
+   pauses and front-card detection stays in sync with the spin. */
 .carousel3d-ring {
     position: relative;
     width: var(--c3d-w, 250px);
     height: var(--c3d-h, 170px);
     transform-style: preserve-3d;
-    animation: c3d-spin 36s linear infinite;
-}
-.carousel3d-stage:hover .carousel3d-ring { animation-play-state: paused; }
-@keyframes c3d-spin {
-    from { transform: rotateY(0deg); }
-    to { transform: rotateY(360deg); }
 }
 .carousel3d-card {
     position: absolute;
@@ -547,7 +543,7 @@ html.dark .liquid-glass-clear {
     max-height: 96px;
 }
 @media (prefers-reduced-motion: reduce) {
-    .carousel3d-ring { animation: none; transform: rotateY(-15deg); }
+    .carousel3d-ring { transform: rotateY(-15deg); }
 }
 
 /* Screenshot feature callouts */
