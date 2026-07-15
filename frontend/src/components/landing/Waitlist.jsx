@@ -40,25 +40,25 @@ export default function Waitlist() {
 
   return (
     <section id="waitlist" className="relative section-dark overflow-hidden">
-      <div className="hidden lg:block absolute right-[5%] top-14"><DoodleFlask tone="dark" width={90} /></div>
-      <div className="max-w-[860px] mx-auto px-6 py-24 lg:py-28 text-center">
+      <div className="hidden lg:block absolute right-[5%] top-6"><DoodleFlask tone="dark" width={64} /></div>
+      <div className="max-w-[860px] mx-auto px-6 py-10 lg:py-12 text-center">
         <Reveal>
-          <h2 className="h-display text-white text-[40px] sm:text-[50px] lg:text-[58px] leading-[1.05]">
+          <h2 className="h-display text-white text-[28px] sm:text-[34px] lg:text-[38px] leading-[1.05]">
             Be one of the first students in.
           </h2>
-          <p className="mt-5 text-[16.5px] text-slate-300 leading-relaxed max-w-[560px] mx-auto">
+          <p className="mt-3 text-[15px] text-slate-300 leading-relaxed max-w-[560px] mx-auto">
             We&rsquo;re opening InfinitySheets to a first group of students. Drop your email and
             we&rsquo;ll let you know the moment it&rsquo;s live&mdash;no spam, just the launch.
           </p>
         </Reveal>
         <Reveal delay={0.12}>
           {status === 'done' ? (
-            <div className="mt-9 inline-flex items-center gap-3 rounded-2xl bg-emerald-500/15 border border-emerald-400/30 px-6 py-4">
+            <div className="mt-5 inline-flex items-center gap-3 rounded-2xl bg-emerald-500/15 border border-emerald-400/30 px-6 py-4">
               <span className="w-8 h-8 rounded-full bg-emerald-500 text-white flex items-center justify-center"><Check className="w-4 h-4" strokeWidth={3} /></span>
               <span className="text-[15px] text-emerald-200 font-medium">You&rsquo;re on the list. We&rsquo;ll be in touch at launch.</span>
             </div>
           ) : (
-            <form onSubmit={submit} noValidate className="mt-9 flex flex-col sm:flex-row items-stretch justify-center gap-3 max-w-[520px] mx-auto">
+            <form onSubmit={submit} noValidate className="mt-5 flex flex-col sm:flex-row items-stretch justify-center gap-3 max-w-[520px] mx-auto">
               <div className="relative flex-1">
                 <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
                 <input
@@ -68,17 +68,17 @@ export default function Waitlist() {
                   placeholder="you@email.com"
                   data-testid="waitlist-email"
                   aria-label="Email address"
-                  className={`w-full rounded-xl bg-slate-800/70 border pl-12 pr-4 py-3.5 text-[15px] text-white placeholder:text-slate-500 outline-none focus:ring-2 focus:ring-blue-400/60 ${status === 'error' ? 'border-red-400' : 'border-slate-700'}`}
+                  className={`w-full rounded-xl bg-slate-800/70 border pl-12 pr-4 py-3 text-[15px] text-white placeholder:text-slate-500 outline-none focus:ring-2 focus:ring-blue-400/60 ${status === 'error' ? 'border-red-400' : 'border-slate-700'}`}
                 />
               </div>
               <button type="submit" disabled={status === 'busy'} data-testid="waitlist-submit"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-blue-500 hover:bg-blue-400 text-white text-[15px] font-medium transition-colors disabled:opacity-60 whitespace-nowrap">
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-blue-500 hover:bg-blue-400 text-white text-[15px] font-medium transition-colors disabled:opacity-60 whitespace-nowrap">
                 {status === 'busy' ? 'Adding…' : <>Join the waitlist <ArrowRight className="w-4 h-4" /></>}
               </button>
             </form>
           )}
           {status === 'error' && <p className="mt-3 text-[13px] text-red-300">Please enter a valid email address.</p>}
-          <p className="mt-4 text-[12.5px] text-slate-500">Free at launch. We&rsquo;ll never share your email.</p>
+          <p className="mt-3 text-[12.5px] text-slate-500">Free at launch. We&rsquo;ll never share your email.</p>
         </Reveal>
       </div>
     </section>
