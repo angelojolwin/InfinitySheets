@@ -90,10 +90,18 @@ export default function StudentGallery3D() {
     const stage = stageRef.current;
     if (!stage || reduced) return;
     const onWheel = (e) => {
-      if (Math.abs(e.deltaX) <= Math.abs(e.deltaY)) return; // vertical = page scroll
+      // Horizontal input arrives differently per mouse/driver: true deltaX
+      // (trackpads, MX-series thumb wheels on some drivers) or as a
+      // shift+vertical wheel (other drivers). Treat both as spin input;
+      // plain vertical wheel still scrolls the page.
+      let dx = 0;
+      if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) dx = e.deltaX;
+      else if (e.shiftKey && e.deltaY !== 0) dx = e.deltaY;
+      if (!dx) return;
+      if (e.deltaMode === 1) dx *= 16; // line-based deltas → approx pixels
       e.preventDefault();
       animRef.current = null;
-      angleRef.current += e.deltaX * 0.25;
+      angleRef.current += dx * 0.25;
     };
     stage.addEventListener('wheel', onWheel, { passive: false });
     return () => stage.removeEventListener('wheel', onWheel);
