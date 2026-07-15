@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 import { HOW_IT_WORKS } from '../../data/mock';
 import { ArrowDown } from 'lucide-react';
 import Reveal from './Reveal';
@@ -6,8 +7,27 @@ import { DoodleLaptop, DoodleStationery } from '../decor/StudyDoodles';
 import Emphasis from './Emphasis';
 import StepDemo from './StepDemo';
 
+// The demo panel auto-advances through the steps like flashcards;
+// hovering/focusing a step pins it, and cycling resumes on leave.
+const CYCLE_MS = 3500;
+
 export default function HowItWorks() {
-  const [active, setActive] = useState(0);
+  const [auto, setAuto] = useState(0);
+  const [pinned, setPinned] = useState(null);
+  const reduced = React.useMemo(
+    () => typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches,
+    []
+  );
+  const active = pinned ?? auto;
+
+  useEffect(() => {
+    if (reduced || pinned !== null) return;
+    const t = setInterval(() => setAuto((a) => (a + 1) % HOW_IT_WORKS.length), CYCLE_MS);
+    return () => clearInterval(t);
+  }, [reduced, pinned]);
+
+  // When a pin is released, keep cycling from the pinned step.
+  const release = (i) => { setAuto(i); setPinned(null); };
   return (
     <section id="how" className="section-bg">
       <div className="max-w-[1280px] mx-auto px-6 py-20 lg:py-28">
@@ -31,9 +51,11 @@ export default function HowItWorks() {
                 <Reveal delay={i * 0.05}>
                   <button
                     type="button"
-                    onMouseEnter={() => setActive(i)}
-                    onFocus={() => setActive(i)}
-                    onClick={() => setActive(i)}
+                    onMouseEnter={() => setPinned(i)}
+                    onMouseLeave={() => release(i)}
+                    onFocus={() => setPinned(i)}
+                    onBlur={() => release(i)}
+                    onClick={() => setPinned(i)}
                     className={`w-full text-left liquid-glass rounded-2xl px-6 py-5 flex items-start gap-5 transition-all ${active === i ? 'ring-2 ring-blue-400/60' : 'opacity-80 hover:opacity-100'}`}
                   >
                     <div className={`shrink-0 text-[34px] font-semibold tracking-tight leading-none tabular-nums select-none ${active === i ? 'text-blue-500' : 'text-blue-300'}`}>{s.n}</div>
@@ -65,8 +87,21 @@ export default function HowItWorks() {
                     ))}
                   </span>
                 </div>
-                <StepDemo step={active} />
-                <p className="text-[12px] text-slate-400 mt-2 text-center">Hover a step to see it in action.</p>
+                <div style={{ perspective: 900 }}>
+                  <AnimatePresence mode="wait" initial={false}>
+                    <motion.div
+                      key={active}
+                      initial={reduced ? false : { rotateX: -70, opacity: 0 }}
+                      animate={{ rotateX: 0, opacity: 1 }}
+                      exit={reduced ? undefined : { rotateX: 55, opacity: 0 }}
+                      transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
+                      style={{ transformOrigin: 'center bottom' }}
+                    >
+                      <StepDemo step={active} />
+                    </motion.div>
+                  </AnimatePresence>
+                </div>
+                <p className="text-[12px] text-slate-400 mt-2 text-center">Hover a step to pause on it.</p>
               </div>
             </div>
           </Reveal>
