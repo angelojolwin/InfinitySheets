@@ -486,33 +486,36 @@ html.dark .liquid-glass-clear {
     margin-bottom: 14px;
 }
 
-/* ===== 3D spinning feature-card carousel (hero) ===== */
-.carousel3d-stage {
-    perspective: 1400px;
+/* ===== 2D conveyor-belt feature carousel (hero) =====
+   The card list is rendered twice; the track slides to -50% and loops,
+   so the belt scrolls forever with no visible seam. Deliberately no
+   hover pause. Edges fade out via mask. */
+.carousel-belt {
+    overflow: hidden;
+    max-width: 100%;
+    -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
 }
-/* Rotation is driven from JS (FeatureCarousel rAF loop) so the ring never
-   pauses and front-card detection stays in sync with the spin. */
-.carousel3d-ring {
-    position: relative;
-    width: var(--c3d-w, 250px);
-    height: var(--c3d-h, 170px);
-    transform-style: preserve-3d;
+.carousel-belt-track {
+    display: flex;
+    gap: 16px;
+    width: max-content;
+    animation: belt-scroll 45s linear infinite;
+    will-change: transform;
 }
-.carousel3d-card {
-    position: absolute;
-    inset: 0;
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
+@keyframes belt-scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(calc(-50% - 8px)); } /* half the doubled list + half a gap */
 }
-/* Hovered card grows to reveal its demo; sit above the other ring cards. */
-.carousel3d-card:hover {
-    z-index: 2;
+.carousel-belt-card {
+    flex: 0 0 auto;
+    width: 250px;
 }
-.carousel3d-card .feature-demo svg {
+.carousel-belt-card .feature-demo svg {
     max-height: 96px;
 }
 @media (prefers-reduced-motion: reduce) {
-    .carousel3d-ring { transform: rotateY(-15deg); }
+    .carousel-belt-track { animation: none; }
 }
 
 /* Screenshot feature callouts */
