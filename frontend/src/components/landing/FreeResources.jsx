@@ -9,7 +9,7 @@ export default function FreeResources() {
     <section className="section-dark overflow-hidden">
       <div className="max-w-[1280px] mx-auto px-6 py-28 lg:py-32">
         <div className="grid lg:grid-cols-[1.15fr_1fr] gap-12 lg:gap-16 items-center">
-          <Reveal>
+          <Reveal from="left">
             <div>
               <div className="flex items-center gap-2 mb-5">
                 <Library className="w-4 h-4 text-blue-700" />
@@ -31,7 +31,7 @@ export default function FreeResources() {
               </a>
             </div>
           </Reveal>
-          <Reveal delay={0.15}>
+          <Reveal from="right" delay={0.15}>
             <div className="relative">
               <div className="hidden lg:block absolute -top-24 right-2"><DoodleTestTubes /></div>
               <div className="rounded-3xl liquid-glass p-7">

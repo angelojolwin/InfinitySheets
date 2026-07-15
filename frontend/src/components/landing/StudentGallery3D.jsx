@@ -1,6 +1,7 @@
 import React from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import Reveal from './Reveal';
+import Mascot from '../decor/Mascot';
 
 /*
  * A slowly spinning 3D ring of student photos, shown between the hero
@@ -86,8 +87,14 @@ export default function StudentGallery3D() {
     <section className="section-bg overflow-hidden">
       <div className="max-w-[1280px] mx-auto px-6 pt-4 pb-14 text-center">
         <Reveal>
-          <div className="eyebrow mb-3">In the wild</div>
-          <h2 className="h-display text-[28px] sm:text-[34px] lg:text-[40px] leading-[1.05]">Students already studying with it.</h2>
+          <div className="relative inline-block">
+            <div className="eyebrow mb-3">In the wild</div>
+            <h2 className="h-display text-[28px] sm:text-[34px] lg:text-[40px] leading-[1.05]">Students already studying with it.</h2>
+            {/* Sheety drifting alongside the heading */}
+            <div className="hidden lg:block absolute -right-28 -top-8 pointer-events-none" aria-hidden="true">
+              <Mascot pose="float" width={86} />
+            </div>
+          </div>
         </Reveal>
         <div
           className="gallery3d-stage mt-10 relative"

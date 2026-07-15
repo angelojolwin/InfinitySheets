@@ -4,6 +4,14 @@ import { useApp } from '../../context/AppContext';
 
 export default function Navbar({ onStart }) {
   const [open, setOpen] = useState(false);
+  // Past the hero, Start Free becomes the loudest element in the bar.
+  const [scrolled, setScrolled] = useState(false);
+  React.useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 480);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
   const { toggleTheme, state } = useApp();
   const links = [
     { label: 'Features', href: '#features' },
@@ -36,7 +44,7 @@ export default function Navbar({ onStart }) {
           >
             {state.theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
           </button>
-          <button onClick={onStart} className="btn-violet hidden lg:inline-flex px-4 py-2 rounded-lg text-[14px] font-medium shadow-sm">Start Free</button>
+          <button onClick={onStart} className={`btn-violet hidden lg:inline-flex px-4 py-2 rounded-lg text-[14px] font-medium transition-all duration-300 ${scrolled ? 'shadow-lg shadow-violet-400/40 ring-2 ring-violet-300/60 scale-105' : 'shadow-sm'}`}>Start Free</button>
           <button onClick={() => setOpen(!open)} aria-label="Open menu" className="lg:hidden w-9 h-9 inline-flex items-center justify-center rounded-md hover:bg-slate-100">
             {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
