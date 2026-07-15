@@ -155,8 +155,24 @@ export function AppProvider({ children }) {
   const startDemo = useCallback((opts = {}) => {
     setState((s) => ({
       ...s,
-      user: { name: 'Demo Student', email: 'demo@infinitysheets.app', examTrack: 'CBSE', isDemo: true, subjects: [] },
+      user: { name: 'Demo Student', email: 'demo@infinitysheets.app', examTrack: 'CBSE', isDemo: true, subjects: ['Mathematics', 'Physics', 'Chemistry'] },
       onboardingDone: true,
+      // Seed a sample course so the tour's first stop (Course Overview) and
+      // My Courses aren't empty states on a fresh demo.
+      courses: s.courses.length ? s.courses : [{
+        id: 'c_demo',
+        name: 'CBSE Class 10',
+        exam: 'CBSE',
+        status: 'Active',
+        target: 'A',
+        level: 'Standard',
+        addedAt: new Date().toISOString(),
+        subjects: [
+          { subject: 'Mathematics', examDate: '', target: 'A', level: 'Standard' },
+          { subject: 'Physics', examDate: '', target: 'A', level: 'Standard' },
+          { subject: 'Chemistry', examDate: '', target: 'A', level: 'Standard' },
+        ],
+      }],
       // Challenge deep links go straight to the worksheet — no guided tour.
       ...(opts.skipTutorial ? { tutorialDone: true } : {}),
     }));

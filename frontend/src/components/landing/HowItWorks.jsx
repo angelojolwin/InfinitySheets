@@ -101,7 +101,7 @@ export default function HowItWorks() {
                     </motion.div>
                   </AnimatePresence>
                 </div>
-                <p className="text-[12px] text-slate-400 mt-2 text-center">Hover a step to pause on it.</p>
+                <p className="hover-hint text-[12px] text-slate-400 mt-2 text-center">Hover a step to pause on it.</p>
               </div>
             </div>
           </Reveal>

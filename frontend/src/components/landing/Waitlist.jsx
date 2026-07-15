@@ -7,7 +7,7 @@ import { DoodleFlask } from '../decor/StudyDoodles';
 // Form's formResponse URL, or your own /api/waitlist route). While empty,
 // submissions are validated and stored locally so nothing is lost, and the
 // user still gets a confirmation.
-const WAITLIST_ENDPOINT = '';
+const WAITLIST_ENDPOINT = process.env.REACT_APP_WAITLIST_ENDPOINT || '';
 const STORAGE_KEY = 'infinitysheets_waitlist';
 
 const validEmail = (e) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e.trim());

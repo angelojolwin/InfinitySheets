@@ -23,7 +23,7 @@ export default function FeatureCarousel() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.9, delay: 0.4 }}
-      className="carousel-belt mt-14 mb-2 hidden sm:block"
+      className="carousel-belt mt-14 mb-2"
       aria-label="InfinitySheets features"
     >
       <div className={`carousel-belt-track ${reduced ? 'justify-center' : ''}`} style={reduced ? { animation: 'none' } : undefined}>
