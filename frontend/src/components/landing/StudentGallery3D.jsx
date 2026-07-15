@@ -43,8 +43,8 @@ export default function StudentGallery3D() {
   const step = 360 / n;
   const radius = 300;
   const ringRef = React.useRef(null);
+  const stageRef = React.useRef(null);
   const angleRef = React.useRef(0);        // current rotation in degrees
-  const pausedRef = React.useRef(false);   // true while hovered
   const animRef = React.useRef(null);      // {from, to, start} while paging
   const [hovered, setHovered] = React.useState(false);
   const reduced = React.useMemo(
@@ -65,7 +65,8 @@ export default function StudentGallery3D() {
         const t = Math.min(1, (now - anim.start) / STEP_ANIM_MS);
         angleRef.current = anim.from + (anim.to - anim.from) * easeInOut(t);
         if (t >= 1) animRef.current = null;
-      } else if (!pausedRef.current) {
+      } else {
+        // Never pauses — hover only reveals the paging arrows.
         angleRef.current += (dt / (SPIN_SECONDS * 1000)) * 360;
       }
       if (ringRef.current) ringRef.current.style.transform = `rotateY(${-angleRef.current}deg)`;
@@ -83,6 +84,21 @@ export default function StudentGallery3D() {
     animRef.current = { from, to: slot * step, start: performance.now() };
   };
 
+  // Horizontal wheel / side-scroll spins the ring directly. Registered
+  // manually because React's onWheel is passive (preventDefault ignored).
+  React.useEffect(() => {
+    const stage = stageRef.current;
+    if (!stage || reduced) return;
+    const onWheel = (e) => {
+      if (Math.abs(e.deltaX) <= Math.abs(e.deltaY)) return; // vertical = page scroll
+      e.preventDefault();
+      animRef.current = null;
+      angleRef.current += e.deltaX * 0.25;
+    };
+    stage.addEventListener('wheel', onWheel, { passive: false });
+    return () => stage.removeEventListener('wheel', onWheel);
+  }, [reduced]);
+
   return (
     <section className="section-bg overflow-hidden">
       <div className="max-w-[1280px] mx-auto px-6 pt-4 pb-14 text-center">
@@ -97,9 +113,10 @@ export default function StudentGallery3D() {
           </div>
         </Reveal>
         <div
+          ref={stageRef}
           className="gallery3d-stage mt-10 relative"
-          onMouseEnter={() => { pausedRef.current = true; setHovered(true); }}
-          onMouseLeave={() => { pausedRef.current = false; setHovered(false); }}
+          onMouseEnter={() => setHovered(true)}
+          onMouseLeave={() => setHovered(false)}
         >
           <div ref={ringRef} className="gallery3d-ring" style={reduced ? { transform: 'rotateY(-15deg)' } : undefined}>
             {PHOTOS.map((p, i) => (
