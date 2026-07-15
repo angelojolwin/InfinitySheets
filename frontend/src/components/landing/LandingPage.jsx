@@ -49,6 +49,7 @@ export default function LandingPage({ hash }) {
   return (
     <div className="section-bg">
       <Navbar onStart={onStart} />
+      <Waitlist />
       <Hero />
       <ProductStats />
       <WhyDifferent />
@@ -62,7 +63,6 @@ export default function LandingPage({ hash }) {
       <Pricing />
       <SubjectBreakdown />
       <Features />
-      <Waitlist />
       <FinalCTA />
       <SignupSection />
       <Footer />

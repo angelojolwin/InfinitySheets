@@ -89,15 +89,6 @@ export default function Hero() {
       <div className="hidden xl:block absolute left-[7%] top-[62%] opacity-80 pointer-events-none"><DoodleEquations width={130} /></div>
       <div className="hidden xl:block absolute right-[5%] top-[28%] opacity-90 pointer-events-none"><DoodleFlask /></div>
       <div className="relative max-w-[1280px] mx-auto px-6 min-h-[92svh] flex flex-col items-center justify-center text-center pt-20 pb-10">
-        <motion.a
-          href="#waitlist"
-          initial={{ opacity: 0, y: -8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="mb-7 inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-[13px] font-semibold hover:bg-blue-100 transition-colors"
-        >
-          <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" /> Launching soon &middot; join the first cohort
-        </motion.a>
         <HeroHeading />
         <motion.p
           initial={{ opacity: 0, y: 24 }}

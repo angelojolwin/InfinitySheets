@@ -43,9 +43,6 @@ export default function Waitlist() {
       <div className="hidden lg:block absolute right-[5%] top-14"><DoodleFlask tone="dark" width={90} /></div>
       <div className="max-w-[860px] mx-auto px-6 py-24 lg:py-28 text-center">
         <Reveal>
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-500/15 border border-blue-400/30 text-blue-300 text-[12.5px] font-semibold mb-6">
-            <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" /> Launching soon &middot; join the first cohort
-          </div>
           <h2 className="h-display text-white text-[40px] sm:text-[50px] lg:text-[58px] leading-[1.05]">
             Be one of the first students in.
           </h2>
