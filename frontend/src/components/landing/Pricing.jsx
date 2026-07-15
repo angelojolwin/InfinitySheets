@@ -3,6 +3,7 @@ import { Check, ArrowRight } from 'lucide-react';
 import Reveal from './Reveal';
 import { DoodleGradCap } from '../decor/StudyDoodles';
 import Emphasis from './Emphasis';
+import Mascot from '../decor/Mascot';
 
 const FEATURES = [
   'Personalized worksheets for your exact syllabus',
@@ -33,14 +34,18 @@ export default function Pricing() {
               </p>
             </div>
           </Reveal>
-          <Reveal delay={0.15}>
-            <div className="rounded-3xl p-8 liquid-glass-clear shadow-2xl shadow-slate-900/10">
+          <Reveal from="scale" delay={0.15}>
+            <div className="relative rounded-3xl p-8 liquid-glass-clear shadow-2xl shadow-slate-900/10">
+              {/* Sheety floating in to celebrate the price tag */}
+              <div className="hidden lg:block absolute -top-16 -right-10 pointer-events-none" aria-hidden="true">
+                <Mascot pose="float" width={92} />
+              </div>
               <div className="text-[11px] tracking-[0.14em] uppercase font-semibold text-blue-600">Everything, free</div>
               <div className="flex items-baseline gap-3 mt-3">
                 <Emphasis variant="circle">
-                  <span className="text-[48px] font-semibold tracking-tight text-slate-900 px-1">$0</span>
+                  <span className="text-[72px] font-semibold tracking-tight text-slate-900 px-1">$0</span>
                 </Emphasis>
-                <span className="text-[14px] text-slate-500">forever</span>
+                <span className="text-[15px] text-slate-500">forever &middot; every feature</span>
               </div>
               <ul className="mt-6 flex flex-col gap-3">
                 {FEATURES.map((f) => (

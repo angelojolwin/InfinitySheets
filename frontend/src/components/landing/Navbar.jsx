@@ -4,6 +4,14 @@ import { useApp } from '../../context/AppContext';
 
 export default function Navbar({ onStart }) {
   const [open, setOpen] = useState(false);
+  // Past the hero, Start Free becomes the loudest element in the bar.
+  const [scrolled, setScrolled] = useState(false);
+  React.useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 480);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
   const { startDemo, toggleTheme, state } = useApp();
   const tryDemo = () => { startDemo(); window.location.hash = '#dashboard'; };
   const links = [
@@ -40,7 +48,7 @@ export default function Navbar({ onStart }) {
           <button onClick={tryDemo} className="hidden lg:inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-[13.5px] font-medium text-violet-700 border border-violet-200 bg-violet-50 hover:bg-violet-100 transition-colors">
             <Eye className="w-3.5 h-3.5" /> Try Demo
           </button>
-          <button onClick={onStart} className="btn-violet hidden lg:inline-flex px-4 py-2 rounded-lg text-[14px] font-medium shadow-sm">Start Free</button>
+          <button onClick={onStart} className={`btn-violet hidden lg:inline-flex px-4 py-2 rounded-lg text-[14px] font-medium transition-all duration-300 ${scrolled ? 'shadow-lg shadow-violet-400/40 ring-2 ring-violet-300/60 scale-105' : 'shadow-sm'}`}>Start Free</button>
           <button onClick={() => setOpen(!open)} aria-label="Open menu" className="lg:hidden w-9 h-9 inline-flex items-center justify-center rounded-md hover:bg-slate-100">
             {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>

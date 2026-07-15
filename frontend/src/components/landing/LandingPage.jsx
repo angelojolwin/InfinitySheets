@@ -13,7 +13,6 @@ import FAQ from './FAQ';
 import Pricing from './Pricing';
 import SubjectBreakdown from './SubjectBreakdown';
 import StudentGallery3D from './StudentGallery3D';
-import FinalCTA from './FinalCTA';
 import SignupSection from './SignupSection';
 import Footer from './Footer';
 import MobileStickyCTA from './MobileStickyCTA';
@@ -61,7 +60,6 @@ export default function LandingPage({ hash }) {
       <FAQ />
       <Pricing />
       <SubjectBreakdown />
-      <FinalCTA />
       <SignupSection />
       <Footer />
       <MobileStickyCTA />

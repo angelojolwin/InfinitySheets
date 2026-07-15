@@ -8,6 +8,7 @@ import Emphasis from './Emphasis';
 import WatchVideoModal from './WatchVideoModal';
 import FeatureCarousel from './FeatureCarousel';
 import Waitlist from './Waitlist';
+import Mascot from '../decor/Mascot';
 import { EXAM_TRACKS } from '../../data/mock';
 
 /* Static heading; the word "you" gets swept with a marker highlight
@@ -22,7 +23,7 @@ function HeroHeading() {
   return (
     <h1 className="h-display text-[56px] sm:text-[80px] lg:text-[108px] leading-[1.02] max-w-[1080px]">
       A study tool tailored just for{' '}
-      <span className={`hl-mark ${highlight ? 'hl-on' : ''}`}>you</span>.
+      <span className={`hl-mark hl-serif ${highlight ? 'hl-on' : ''}`}>you</span>.
     </h1>
   );
 }
@@ -107,15 +108,30 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.22, ease: [0.22, 1, 0.36, 1] }}
           className="mt-9 flex flex-wrap items-center justify-center gap-3"
         >
-          <a href="#signup" className="btn-violet inline-flex items-center gap-2 px-7 py-4 rounded-xl text-[16.5px] font-medium shadow-sm">
+          <a href="#signup" className="btn-violet inline-flex items-center gap-2 px-8 py-4 rounded-xl text-[17px] font-semibold shadow-lg shadow-violet-300/40">
             Start Free <ArrowRight className="w-5 h-5" />
           </a>
-          <button onClick={() => setVideoOpen(true)} className="btn-outline-dark inline-flex items-center gap-2 px-7 py-4 rounded-xl text-[16.5px] font-medium">
-            <Play className="w-5 h-5 text-red-600" /> Watch video
+          {/* One dominant CTA per screen — the rest demoted to quiet text links */}
+          <button onClick={() => setVideoOpen(true)} className="inline-flex items-center gap-1.5 px-4 py-4 text-[15px] font-medium text-slate-600 hover:text-slate-900 transition-colors">
+            <Play className="w-4 h-4 text-red-600" /> Watch video
           </button>
-          <button onClick={onDemo} className="inline-flex items-center gap-2 px-7 py-4 rounded-xl text-[16.5px] font-medium text-violet-700 bg-violet-50 border border-violet-200 hover:bg-violet-100 transition-colors">
-            <Eye className="w-5 h-5" /> Try without signing up
+          <button onClick={onDemo} className="inline-flex items-center gap-1.5 px-4 py-4 text-[15px] font-medium text-slate-600 hover:text-violet-700 transition-colors">
+            <Eye className="w-4 h-4" /> Try without signing up
           </button>
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.28 }}
+          className="mt-7 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-[13.5px] text-slate-500"
+        >
+          <span><strong className="text-slate-800 font-semibold">11</strong> curricula</span>
+          <span aria-hidden="true">&middot;</span>
+          <span><strong className="text-slate-800 font-semibold">20+</strong> subjects</span>
+          <span aria-hidden="true">&middot;</span>
+          <span><strong className="text-slate-800 font-semibold">Unlimited</strong> exam-style questions</span>
+          <span aria-hidden="true">&middot;</span>
+          <span><strong className="text-slate-800 font-semibold">$0</strong> forever</span>
         </motion.div>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -154,7 +170,22 @@ export default function Hero() {
         transition={{ duration: 1, delay: 0.45, ease: [0.22, 1, 0.36, 1] }}
         className="relative max-w-[1240px] mx-auto px-6 pb-24"
       >
-        <div className="relative rounded-3xl shadow-2xl shadow-blue-900/15 ring-1 ring-slate-900/10">
+        <div
+          className="relative rounded-3xl shadow-2xl shadow-blue-900/15 ring-1 ring-slate-900/10 tilt-card"
+          onMouseMove={(e) => {
+            const r = e.currentTarget.getBoundingClientRect();
+            e.currentTarget.style.setProperty('--tilt-y', `${((e.clientX - r.left) / r.width - 0.5) * 4}deg`);
+            e.currentTarget.style.setProperty('--tilt-x', `${(0.5 - (e.clientY - r.top) / r.height) * 4}deg`);
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.setProperty('--tilt-x', '0deg');
+            e.currentTarget.style.setProperty('--tilt-y', '0deg');
+          }}
+        >
+          {/* Sheety perched on the frame, legs dangling over the dashboard */}
+          <div className="hidden md:block absolute -top-[74px] right-[7%] z-10 pointer-events-none">
+            <Mascot pose="sit" width={84} />
+          </div>
           <div className="rounded-3xl overflow-hidden">
             <img
               src="/screenshots/dashboard.png"
