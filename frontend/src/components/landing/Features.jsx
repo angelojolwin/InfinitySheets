@@ -5,7 +5,7 @@ import { DoodleStationery, DoodleTestTubes } from '../decor/StudyDoodles';
 
 /* Mini looping demos shown inside a card while it is hovered.
    SVG-based so they stay crisp and theme-aware. */
-function FeatureDemo({ kind }) {
+export function FeatureDemo({ kind }) {
   const card = { fill: 'var(--doodle-paper, #fff)', stroke: '#cbd5e1', strokeWidth: 1.2 };
   return (
     <svg viewBox="0 0 260 110" className="w-full h-auto" aria-hidden="true">
@@ -91,7 +91,7 @@ function FeatureDemo({ kind }) {
   );
 }
 
-const DEMO_KINDS = ['weakness', 'targeted', 'grades', 'feedback', 'bank', 'fresh'];
+export const DEMO_KINDS = ['weakness', 'targeted', 'grades', 'feedback', 'bank', 'fresh'];
 
 /* Hover expands on desktop; on touch devices a tap toggles the demo. */
 function FeatureCard({ f, kind }) {
