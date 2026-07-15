@@ -150,51 +150,6 @@ export default function Hero() {
           ))}
         </motion.div>
       </div>
-      <motion.div
-        initial={{ opacity: 0, y: 60, scale: 0.94 }}
-        animate={{ opacity: 1, y: 0, scale: 1 }}
-        transition={{ duration: 1, delay: 0.45, ease: [0.22, 1, 0.36, 1] }}
-        className="relative max-w-[1240px] mx-auto px-6 pb-24"
-      >
-        <div
-          className="relative rounded-3xl shadow-2xl shadow-blue-900/15 ring-1 ring-slate-900/10 tilt-card"
-          onMouseMove={(e) => {
-            const r = e.currentTarget.getBoundingClientRect();
-            e.currentTarget.style.setProperty('--tilt-y', `${((e.clientX - r.left) / r.width - 0.5) * 4}deg`);
-            e.currentTarget.style.setProperty('--tilt-x', `${(0.5 - (e.clientY - r.top) / r.height) * 4}deg`);
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.setProperty('--tilt-x', '0deg');
-            e.currentTarget.style.setProperty('--tilt-y', '0deg');
-          }}
-        >
-          {/* Sheety perched on the frame, legs dangling over the dashboard */}
-          <div className="hidden md:block absolute -top-[74px] right-[7%] z-10 pointer-events-none">
-            <Mascot pose="sit" width={84} />
-          </div>
-          <div className="rounded-3xl overflow-hidden">
-            <img
-              src="/screenshots/dashboard.png"
-              alt="The InfinitySheets dashboard showing study streak, daily goal, upcoming exams, and strong and weak topics"
-              className="shot-light w-full h-auto block"
-              loading="eager"
-            />
-            <img
-              src="/screenshots/dashboard-dark.png"
-              alt="The InfinitySheets dashboard in dark mode showing study streak, daily goal, upcoming exams, and strong and weak topics"
-              className="shot-dark w-full h-auto block"
-              loading="eager"
-            />
-          </div>
-          <CalloutLabels />
-        </div>
-        {/* Mobile: the same labels as simple links below the screenshot */}
-        <div className="md:hidden mt-4 flex flex-wrap justify-center gap-2">
-          {CALLOUTS.map((c) => (
-            <a key={c.label} href={c.href} className="px-3 py-1.5 rounded-full liquid-glass text-[12.5px] text-slate-700">{c.label}</a>
-          ))}
-        </div>
-      </motion.div>
     </section>
   );
 }
