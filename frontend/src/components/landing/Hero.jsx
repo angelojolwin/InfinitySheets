@@ -129,10 +129,10 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.35 }}
-          className="mt-10 flex flex-wrap items-center justify-center gap-2 max-w-[760px]"
+          className="mt-10 flex flex-wrap lg:flex-nowrap items-center justify-center gap-2"
         >
           {EXAM_TRACKS.map((t) => (
-            <a key={t.id} href={`#resources?track=${t.id}`} className="px-4 py-1.5 rounded-full border border-slate-200 bg-white/70 backdrop-blur text-[14px] text-slate-600 hover:border-blue-400 hover:text-blue-700 transition-colors">
+            <a key={t.id} href={`#resources?track=${t.id}`} className="whitespace-nowrap px-3.5 py-1.5 rounded-full border border-slate-200 bg-white/70 backdrop-blur text-[13.5px] text-slate-600 hover:border-blue-400 hover:text-blue-700 transition-colors">
               {t.name}
             </a>
           ))}
