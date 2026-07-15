@@ -6,6 +6,7 @@ import { DoodleBooks, DoodleFlask, DoodleEquations } from '../decor/StudyDoodles
 import { useApp } from '../../context/AppContext';
 import Emphasis from './Emphasis';
 import WatchVideoModal from './WatchVideoModal';
+import FeatureCarousel from './FeatureCarousel';
 import { EXAM_TRACKS } from '../../data/mock';
 
 /* Static heading; the word "you" gets swept with a marker highlight
@@ -136,6 +137,7 @@ export default function Hero() {
             </a>
           ))}
         </motion.div>
+        <FeatureCarousel />
       </div>
       <motion.div
         initial={{ opacity: 0, y: 60, scale: 0.94 }}
