@@ -120,20 +120,6 @@ export default function Hero() {
           </button>
         </motion.div>
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.28 }}
-          className="mt-7 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-[13.5px] text-slate-500"
-        >
-          <span><strong className="text-slate-800 font-semibold">11</strong> curricula</span>
-          <span aria-hidden="true">&middot;</span>
-          <span><strong className="text-slate-800 font-semibold">20+</strong> subjects</span>
-          <span aria-hidden="true">&middot;</span>
-          <span><strong className="text-slate-800 font-semibold">Unlimited</strong> exam-style questions</span>
-          <span aria-hidden="true">&middot;</span>
-          <span><strong className="text-slate-800 font-semibold">$0</strong> forever</span>
-        </motion.div>
-        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
