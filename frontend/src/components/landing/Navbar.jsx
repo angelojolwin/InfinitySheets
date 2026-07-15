@@ -22,7 +22,7 @@ export default function Navbar({ onStart }) {
           </span>
           <span className="font-semibold text-[15px] tracking-tight text-slate-900">InfinitySheets</span>
         </a>
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden lg:flex items-center gap-8">
           {links.map((l) => (
             <a key={l.href} href={l.href} className="text-[14px] text-slate-600 hover:text-slate-900 transition-colors">{l.label}</a>
           ))}
@@ -37,17 +37,17 @@ export default function Navbar({ onStart }) {
           >
             {state.theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
           </button>
-          <button onClick={tryDemo} className="hidden md:inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-[13.5px] font-medium text-violet-700 border border-violet-200 bg-violet-50 hover:bg-violet-100 transition-colors">
+          <button onClick={tryDemo} className="hidden lg:inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-[13.5px] font-medium text-violet-700 border border-violet-200 bg-violet-50 hover:bg-violet-100 transition-colors">
             <Eye className="w-3.5 h-3.5" /> Try Demo
           </button>
-          <button onClick={onStart} className="btn-violet hidden md:inline-flex px-4 py-2 rounded-lg text-[14px] font-medium shadow-sm">Start Free</button>
-          <button onClick={() => setOpen(!open)} className="md:hidden w-9 h-9 inline-flex items-center justify-center rounded-md hover:bg-slate-100">
+          <button onClick={onStart} className="btn-violet hidden lg:inline-flex px-4 py-2 rounded-lg text-[14px] font-medium shadow-sm">Start Free</button>
+          <button onClick={() => setOpen(!open)} aria-label="Open menu" className="lg:hidden w-9 h-9 inline-flex items-center justify-center rounded-md hover:bg-slate-100">
             {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
       </div>
       {open && (
-        <div className="md:hidden border-t border-[color:var(--color-border)] bg-white">
+        <div className="lg:hidden border-t border-[color:var(--color-border)] bg-[color:var(--color-card)]">
           <div className="px-6 py-4 flex flex-col gap-3">
             {links.map((l) => (
               <a key={l.href} href={l.href} onClick={() => setOpen(false)} className="text-[14px] text-slate-700">{l.label}</a>

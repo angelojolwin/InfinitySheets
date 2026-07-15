@@ -18,6 +18,9 @@ export default function Footer() {
         <p className="max-w-[1280px] mx-auto px-6 pt-5 text-[13px] text-zinc-600 text-center">
           Made with &#10084;&#65039; by Aayan S. Kumar, Angelo Jolwin, and Arihaan Srivastava.
         </p>
+        <p className="max-w-[1280px] mx-auto px-6 pt-2 text-[12px] text-zinc-500 text-center">
+          &copy; {new Date().getFullYear()} InfinitySheets. All rights reserved.
+        </p>
         <p className="max-w-[1280px] mx-auto px-6 py-5 text-[11.5px] leading-relaxed text-zinc-400">
           None of the organizations, examination boards, course providers, or qualifications referenced on this
           website were involved in the creation of, and do not endorse, the resources developed by InfinitySheets.
