@@ -43,9 +43,9 @@ export default function Waitlist({ variant = 'section' }) {
   };
 
   const form = status === 'done' ? (
-    <div className={`${inline ? 'mt-4' : 'mt-5'} inline-flex items-center gap-3 rounded-2xl bg-emerald-500/15 border border-emerald-400/30 px-6 py-4`}>
+    <div className={`${inline ? 'mt-4' : 'mt-5'} inline-flex items-center gap-3 rounded-2xl bg-emerald-50 border border-emerald-200 px-6 py-4`}>
       <span className="w-8 h-8 rounded-full bg-emerald-500 text-white flex items-center justify-center"><Check className="w-4 h-4" strokeWidth={3} /></span>
-      <span className="text-[15px] text-emerald-200 font-medium">You&rsquo;re on the list. We&rsquo;ll be in touch at launch.</span>
+      <span className="text-[15px] text-emerald-700 font-medium">You&rsquo;re on the list. We&rsquo;ll be in touch at launch.</span>
     </div>
   ) : (
     <form onSubmit={submit} noValidate className={`${inline ? 'mt-4' : 'mt-5'} flex flex-col sm:flex-row items-stretch justify-center gap-3 max-w-[520px] mx-auto`}>
@@ -58,7 +58,7 @@ export default function Waitlist({ variant = 'section' }) {
           placeholder="you@email.com"
           data-testid="waitlist-email"
           aria-label="Email address"
-          className={`w-full rounded-xl bg-slate-800/70 border pl-12 pr-4 py-3 text-[15px] text-white placeholder:text-slate-500 outline-none focus:ring-2 focus:ring-blue-400/60 ${status === 'error' ? 'border-red-400' : 'border-slate-700'}`}
+          className={`w-full rounded-xl bg-white border pl-12 pr-4 py-3 text-[15px] text-slate-900 placeholder:text-slate-400 outline-none focus:ring-2 focus:ring-blue-400/60 ${status === 'error' ? 'border-red-400' : 'border-slate-300'}`}
         />
       </div>
       <button type="submit" disabled={status === 'busy'} data-testid="waitlist-submit"
@@ -68,14 +68,14 @@ export default function Waitlist({ variant = 'section' }) {
     </form>
   );
 
-  const errorLine = status === 'error' && <p className="mt-3 text-[13px] text-red-300">Please enter a valid email address.</p>;
+  const errorLine = status === 'error' && <p className="mt-3 text-[13px] text-red-600">Please enter a valid email address.</p>;
   const footnote = <p className="mt-3 text-[12.5px] text-slate-500">Free at launch. We&rsquo;ll never share your email.</p>;
 
   if (inline) {
     return (
-      <div id="waitlist" className="scroll-mt-24 mt-10 w-full max-w-[680px] rounded-3xl bg-slate-900 border border-slate-800 px-6 py-7 sm:px-10 text-center shadow-xl shadow-slate-900/20">
-        <h2 className="h-display text-white text-[24px] sm:text-[28px] leading-[1.1]">Be one of the first students in.</h2>
-        <p className="mt-2 text-[14px] text-slate-300 leading-relaxed max-w-[520px] mx-auto">
+      <div id="waitlist" className="scroll-mt-24 mt-10 w-full max-w-[680px] rounded-3xl liquid-glass border border-slate-200 px-6 py-7 sm:px-10 text-center shadow-xl shadow-slate-300/40">
+        <h2 className="h-display text-slate-900 text-[24px] sm:text-[28px] leading-[1.1]">Be one of the first students in.</h2>
+        <p className="mt-2 text-[14px] text-slate-600 leading-relaxed max-w-[520px] mx-auto">
           Drop your email and we&rsquo;ll let you know the moment it&rsquo;s live&mdash;no spam, just the launch.
         </p>
         {form}
@@ -88,10 +88,10 @@ export default function Waitlist({ variant = 'section' }) {
   return (
     <section id="waitlist" className="relative section-dark overflow-hidden">
       <div className="max-w-[860px] mx-auto px-6 py-10 lg:py-12 text-center">
-        <h2 className="h-display text-white text-[28px] sm:text-[34px] lg:text-[38px] leading-[1.05]">
+        <h2 className="h-display text-slate-900 text-[28px] sm:text-[34px] lg:text-[38px] leading-[1.05]">
           Be one of the first students in.
         </h2>
-        <p className="mt-3 text-[15px] text-slate-300 leading-relaxed max-w-[560px] mx-auto">
+        <p className="mt-3 text-[15px] text-slate-600 leading-relaxed max-w-[560px] mx-auto">
           We&rsquo;re opening InfinitySheets to a first group of students. Drop your email and
           we&rsquo;ll let you know the moment it&rsquo;s live&mdash;no spam, just the launch.
         </p>
