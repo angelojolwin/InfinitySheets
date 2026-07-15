@@ -127,9 +127,18 @@ html, body {
     background: var(--color-bg);
 }
 
+/* Formerly a navy block; in light mode it is now a soft off-white band
+   (layered shades of white + hairline borders give the depth instead of
+   a dark patch). Dark mode still renders it near-black via the html.dark
+   override below, so the light/dark structure stays identical. */
 .section-dark {
-    background: #0f172a;
-    color: #f8fafc;
+    background:
+        radial-gradient(1200px 400px at 50% 0%, rgba(59, 130, 246, 0.05), transparent 70%),
+        linear-gradient(180deg, #ffffff 0%, #f7f9fc 45%, #eef2f8 100%);
+    color: var(--color-text);
+    border-top: 1px solid #e9eef5;
+    border-bottom: 1px solid #e9eef5;
+    box-shadow: inset 0 1px 0 #ffffff;
 }
 
 .text-muted-2 { color: var(--color-text-2); }
@@ -307,7 +316,7 @@ html.dark .text-emerald-700 { color: #6ee7b7 !important; }
 
 html.dark .section-light { background: var(--color-bg-2) !important; }
 html.dark .section-bg { background: var(--color-bg) !important; }
-html.dark .section-dark { background: #050505 !important; }
+html.dark .section-dark { background: #050505 !important; border-color: var(--color-border) !important; box-shadow: none !important; }
 
 html.dark .card-soft { background: var(--color-card); border-color: var(--color-border); }
 html.dark .card-soft:hover { border-color: #404040; }
