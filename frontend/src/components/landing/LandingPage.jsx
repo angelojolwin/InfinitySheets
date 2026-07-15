@@ -4,7 +4,6 @@ import Hero from './Hero';
 import ProductStats from './ProductStats';
 import WhyDifferent from './WhyDifferent';
 import HowItWorks from './HowItWorks';
-import Features from './Features';
 import TryQuestion from './TryQuestion';
 import PredictedGrade from './PredictedGrade';
 import FreeResources from './FreeResources';
@@ -62,7 +61,6 @@ export default function LandingPage({ hash }) {
       <FAQ />
       <Pricing />
       <SubjectBreakdown />
-      <Features />
       <FinalCTA />
       <SignupSection />
       <Footer />
