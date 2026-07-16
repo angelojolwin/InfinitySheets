@@ -2,46 +2,36 @@ import React from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import Reveal from './Reveal';
 import Mascot from '../decor/Mascot';
+import { FEATURES } from '../../data/mock';
+import { FeatureDemo, DEMO_KINDS } from './Features';
 
 /*
- * A slowly spinning 3D ring of student photos, shown between the hero
- * dashboard screenshot and the product stats strip. It rotates on its
- * own and never stops — except while the mouse is over it, when arrows
- * appear and the visitor can page card-by-card (still animated in 3D).
- *
- * The five slots are SVG placeholders for now; drop real photos into
- * PHOTOS below (an `img` field replaces the placeholder art).
+ * The six feature cards on a slowly spinning 3D ring, shown between the
+ * hero dashboard screenshot and the product stats strip. Every card's
+ * looping demo stays open as it rides the ring. The spin never stops —
+ * hovering only reveals prev/next arrows that page card-by-card (still
+ * animated in 3D), and a horizontal wheel spins the ring directly.
+ * (Student photos ride the 2D belt up in the hero.)
  */
-const PHOTOS = [
-  { caption: 'Late-night JEE prep', tone: '#3b82f6', emoji: '📐', img: null },
-  { caption: 'IGCSE Physics session', tone: '#8b5cf6', emoji: '⚡', img: null },
-  { caption: 'Worksheet on the bus', tone: '#f59e0b', emoji: '📱', img: null },
-  { caption: 'Study group, one dashboard', tone: '#10b981', emoji: '👥', img: null },
-  { caption: 'Predicted grade day', tone: '#ef4444', emoji: '🎯', img: null },
-];
-
 const SPIN_SECONDS = 40;
 const STEP_ANIM_MS = 600;
 
-function Placeholder({ tone, emoji, caption }) {
+function FeatureCard({ f, demoIndex }) {
   return (
-    <div className="w-full h-full flex flex-col">
-      <div className="flex-1 rounded-t-2xl flex items-center justify-center text-[44px]"
-        style={{ background: `linear-gradient(135deg, ${tone}22, ${tone}55)` }}>
-        <span role="img" aria-hidden="true">{emoji}</span>
+    <div className="w-full h-full feature-card demo-open liquid-glass rounded-2xl px-5 py-4 text-left flex flex-col overflow-hidden">
+      <div className="feature-demo">
+        <FeatureDemo kind={DEMO_KINDS[demoIndex] || 'fresh'} />
       </div>
-      <div className="px-4 py-3 text-left">
-        <div className="text-[13.5px] font-semibold text-slate-900">{caption}</div>
-        <div className="text-[11.5px] text-slate-500">Student photo coming soon</div>
-      </div>
+      <h3 className="text-[15px] font-semibold text-slate-900 leading-snug">{f.title}</h3>
+      <p className="mt-1.5 text-[12.5px] text-slate-600 leading-relaxed line-clamp-3">{f.desc}</p>
     </div>
   );
 }
 
 export default function StudentGallery3D() {
-  const n = PHOTOS.length;
+  const n = FEATURES.length;
   const step = 360 / n;
-  const radius = 300;
+  const radius = 340;
   const ringRef = React.useRef(null);
   const stageRef = React.useRef(null);
   const angleRef = React.useRef(0);        // current rotation in degrees
@@ -108,12 +98,12 @@ export default function StudentGallery3D() {
   }, [reduced]);
 
   return (
-    <section className="section-bg overflow-hidden">
+    <section id="features" className="section-bg overflow-hidden scroll-mt-24">
       <div className="max-w-[1280px] mx-auto px-6 pt-4 pb-14 text-center">
         <Reveal>
           <div className="relative inline-block">
-            <div className="eyebrow mb-3">In the wild</div>
-            <h2 className="h-display text-[28px] sm:text-[34px] lg:text-[40px] leading-[1.05]">Students already studying with it.</h2>
+            <div className="eyebrow mb-3">Features</div>
+            <h2 className="h-display text-[28px] sm:text-[34px] lg:text-[40px] leading-[1.05]">Everything you need to study smarter.</h2>
             {/* Sheety drifting alongside the heading */}
             <div className="hidden lg:block absolute -right-28 -top-8 pointer-events-none" aria-hidden="true">
               <Mascot pose="float" width={86} />
@@ -127,23 +117,19 @@ export default function StudentGallery3D() {
           onMouseLeave={() => setHovered(false)}
         >
           <div ref={ringRef} className="gallery3d-ring" style={reduced ? { transform: 'rotateY(-15deg)' } : undefined}>
-            {PHOTOS.map((p, i) => (
-              <div key={p.caption} className="gallery3d-card" style={{ transform: `rotateY(${step * i}deg) translateZ(${radius}px)` }}>
-                <div className="w-full h-full liquid-glass rounded-2xl overflow-hidden">
-                  {p.img
-                    ? <img src={p.img} alt={p.caption} className="w-full h-full object-cover" />
-                    : <Placeholder tone={p.tone} emoji={p.emoji} caption={p.caption} />}
-                </div>
+            {FEATURES.map((f, i) => (
+              <div key={f.title} className="gallery3d-card" style={{ transform: `rotateY(${step * i}deg) translateZ(${radius}px)` }}>
+                <FeatureCard f={f} demoIndex={i} />
               </div>
             ))}
           </div>
           {hovered && !reduced && (
             <>
-              <button onClick={() => page(-1)} aria-label="Previous photo"
+              <button onClick={() => page(-1)} aria-label="Previous feature"
                 className="absolute left-[8%] top-1/2 -translate-y-1/2 z-10 w-11 h-11 rounded-full liquid-glass border border-slate-200 flex items-center justify-center text-slate-700 hover:text-blue-600 transition-colors">
                 <ChevronLeft className="w-5 h-5" />
               </button>
-              <button onClick={() => page(1)} aria-label="Next photo"
+              <button onClick={() => page(1)} aria-label="Next feature"
                 className="absolute right-[8%] top-1/2 -translate-y-1/2 z-10 w-11 h-11 rounded-full liquid-glass border border-slate-200 flex items-center justify-center text-slate-700 hover:text-blue-600 transition-colors">
                 <ChevronRight className="w-5 h-5" />
               </button>
@@ -152,11 +138,9 @@ export default function StudentGallery3D() {
         </div>
         {/* Phones get a simple swipeable strip instead of the 3D ring */}
         <div className="gallery3d-mobile mt-8 gap-3 overflow-x-auto px-1 pb-2 snap-x snap-mandatory">
-          {PHOTOS.map((p) => (
-            <div key={p.caption} className="snap-center shrink-0 w-[240px] h-[170px] liquid-glass rounded-2xl overflow-hidden">
-              {p.img
-                ? <img src={p.img} alt={p.caption} className="w-full h-full object-cover" />
-                : <Placeholder tone={p.tone} emoji={p.emoji} caption={p.caption} />}
+          {FEATURES.map((f, i) => (
+            <div key={f.title} className="snap-center shrink-0 w-[250px]">
+              <FeatureCard f={f} demoIndex={i} />
             </div>
           ))}
         </div>
