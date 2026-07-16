@@ -49,7 +49,6 @@ export default function ProductPeek() {
             </Reveal>
           ))}
         </div>
-        <p className="mt-3 text-center text-[12px] text-slate-400">Real screens from the InfinitySheets dashboard.</p>
       </div>
     </section>
   );
