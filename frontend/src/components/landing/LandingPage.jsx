@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import Navbar from './Navbar';
 import Hero from './Hero';
 import ProductStats from './ProductStats';
+import ProductPeek from './ProductPeek';
 import WhyDifferent from './WhyDifferent';
 import HowItWorks from './HowItWorks';
 import TryQuestion from './TryQuestion';
@@ -10,9 +11,8 @@ import FreeResources from './FreeResources';
 import FoundingStory from './FoundingStory';
 import FAQ from './FAQ';
 import Pricing from './Pricing';
-import SubjectBreakdown from './SubjectBreakdown';
 import StudentGallery3D from './StudentGallery3D';
-import SignupSection from './SignupSection';
+import Waitlist from './Waitlist';
 import Footer from './Footer';
 import MobileStickyCTA from './MobileStickyCTA';
 
@@ -47,6 +47,7 @@ export default function LandingPage({ hash }) {
     <div className="section-bg">
       <Navbar onStart={onStart} />
       <Hero />
+      <ProductPeek />
       <StudentGallery3D />
       <ProductStats />
       <WhyDifferent />
@@ -57,8 +58,8 @@ export default function LandingPage({ hash }) {
       <FoundingStory />
       <FAQ />
       <Pricing />
-      <SubjectBreakdown />
-      <SignupSection />
+      {/* Pre-launch build: one consistent ask — the waitlist (keeps the #signup anchor for all Start Free / Log In links) */}
+      <Waitlist id="signup" />
       <Footer />
       <MobileStickyCTA />
     </div>

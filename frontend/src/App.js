@@ -3,6 +3,7 @@ import './App.css';
 import { AppProvider, useApp } from './context/AppContext';
 import LandingPage from './components/landing/LandingPage';
 import ResourcesPage from './components/landing/ResourcesPage';
+import PrivacyPage from './components/landing/PrivacyPage';
 import { Toaster } from './components/ui/sonner';
 
 // LANDING-ONLY BUILD: this branch ships just the marketing site — the
@@ -22,6 +23,12 @@ function Router() {
   if (hash.startsWith('#resources')) {
     return <ResourcesPage />;
   }
+
+  // Privacy policy — plain static page
+  if (hash.startsWith('#privacy')) {
+    return <PrivacyPage />;
+  }
+
   return <LandingPage hash={hash} />;
 }
 
