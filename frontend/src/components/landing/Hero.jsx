@@ -7,7 +7,6 @@ import Emphasis from './Emphasis';
 import WatchVideoModal from './WatchVideoModal';
 import FeatureCarousel from './FeatureCarousel';
 import Waitlist from './Waitlist';
-import Mascot from '../decor/Mascot';
 import { EXAM_TRACKS } from '../../data/mock';
 
 /* Static heading; the word "you" gets swept with a marker highlight
@@ -24,56 +23,6 @@ function HeroHeading() {
       A study tool tailored just for{' '}
       <span className={`hl-mark hl-serif ${highlight ? 'hl-on' : ''}`}>you</span>.
     </h1>
-  );
-}
-
-/* Always-visible labels around the screenshot, connected to the UI they
-   describe by arrows. tx/ty = arrow target, bx/by = box position (% of
-   the image box). Clicking a label jumps to the matching section. */
-const CALLOUTS = [
-  { tx: 55, ty: 26, bx: 68, by: 12, align: 'left', label: 'Study streak', desc: 'Practice becomes a habit', href: '#how' },
-  { tx: 88, ty: 9, bx: 76, by: 30, align: 'left', label: 'New worksheet', desc: 'Fresh questions in one click', href: '#try' },
-  { tx: 80, ty: 55, bx: 88, by: 78, align: 'left', label: 'Upcoming exams', desc: 'Per-subject countdowns', href: '#faq' },
-  { tx: 25, ty: 44, bx: 6, by: 20, align: 'right', label: 'Days until exam', desc: 'Set the date, stay focused', href: '#faq' },
-  { tx: 46, ty: 62, bx: 10, by: 50, align: 'right', label: "Today's goal", desc: 'A daily target you can hit', href: '#how' },
-  { tx: 43, ty: 82, bx: 12, by: 92, align: 'right', label: 'Weak topics', desc: 'Found automatically', href: '#features' },
-];
-
-function CalloutLabels() {
-  return (
-    <>
-      {/* arrows */}
-      <svg className="absolute inset-0 w-full h-full pointer-events-none hidden md:block" aria-hidden="true">
-        <defs>
-          <marker id="callout-arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
-            <path d="M0 0 L7 4 L0 8 Z" fill="#3b82f6" />
-          </marker>
-        </defs>
-        {CALLOUTS.map((c) => (
-          // Lines start at the box center and run underneath the label box,
-          // so the visible part always leaves cleanly from the box edge.
-          <line
-            key={c.label}
-            x1={`${c.bx}%`} y1={`${c.by}%`}
-            x2={`${c.tx}%`} y2={`${c.ty}%`}
-            stroke="#3b82f6" strokeWidth="2" strokeDasharray="5 4" markerEnd="url(#callout-arrow)"
-            opacity="0.85"
-          />
-        ))}
-      </svg>
-      {/* label boxes */}
-      {CALLOUTS.map((c) => (
-        <a
-          key={c.label}
-          href={c.href}
-          className="hidden md:block absolute z-10 liquid-glass rounded-xl px-3.5 py-2 w-[172px] hover-lift"
-          style={{ left: `${c.bx}%`, top: `${c.by}%`, transform: 'translate(-50%, -50%)' }}
-        >
-          <div className="text-[12.5px] font-semibold text-slate-900 leading-tight">{c.label}</div>
-          <div className="text-[11px] text-slate-600 leading-snug">{c.desc}</div>
-        </a>
-      ))}
-    </>
   );
 }
 
@@ -144,51 +93,6 @@ export default function Hero() {
           ))}
         </motion.div>
       </div>
-      <motion.div
-        initial={{ opacity: 0, y: 60, scale: 0.94 }}
-        animate={{ opacity: 1, y: 0, scale: 1 }}
-        transition={{ duration: 1, delay: 0.45, ease: [0.22, 1, 0.36, 1] }}
-        className="relative max-w-[1240px] mx-auto px-6 pb-24"
-      >
-        <div
-          className="relative rounded-3xl shadow-2xl shadow-blue-900/15 ring-1 ring-slate-900/10 tilt-card"
-          onMouseMove={(e) => {
-            const r = e.currentTarget.getBoundingClientRect();
-            e.currentTarget.style.setProperty('--tilt-y', `${((e.clientX - r.left) / r.width - 0.5) * 4}deg`);
-            e.currentTarget.style.setProperty('--tilt-x', `${(0.5 - (e.clientY - r.top) / r.height) * 4}deg`);
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.setProperty('--tilt-x', '0deg');
-            e.currentTarget.style.setProperty('--tilt-y', '0deg');
-          }}
-        >
-          {/* Sheety perched on the frame, legs dangling over the dashboard */}
-          <div className="hidden md:block absolute -top-[74px] right-[7%] z-10 pointer-events-none">
-            <Mascot pose="sit" width={84} />
-          </div>
-          <div className="rounded-3xl overflow-hidden">
-            <img
-              src="/screenshots/dashboard.png"
-              alt="The InfinitySheets dashboard showing study streak, daily goal, upcoming exams, and strong and weak topics"
-              className="shot-light w-full h-auto block"
-              loading="eager"
-            />
-            <img
-              src="/screenshots/dashboard-dark.png"
-              alt="The InfinitySheets dashboard in dark mode showing study streak, daily goal, upcoming exams, and strong and weak topics"
-              className="shot-dark w-full h-auto block"
-              loading="eager"
-            />
-          </div>
-          <CalloutLabels />
-        </div>
-        {/* Mobile: the same labels as simple links below the screenshot */}
-        <div className="md:hidden mt-4 flex flex-wrap justify-center gap-2">
-          {CALLOUTS.map((c) => (
-            <a key={c.label} href={c.href} className="px-3 py-1.5 rounded-full liquid-glass text-[12.5px] text-slate-700">{c.label}</a>
-          ))}
-        </div>
-      </motion.div>
     </section>
   );
 }
