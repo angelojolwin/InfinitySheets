@@ -6,11 +6,11 @@ import React from 'react';
  * SVG placeholder art.
  */
 export const PHOTOS = [
-  { caption: 'Late-night JEE prep', tone: '#3b82f6', emoji: '📐', img: null },
-  { caption: 'IGCSE Physics session', tone: '#8b5cf6', emoji: '⚡', img: null },
-  { caption: 'Worksheet on the bus', tone: '#f59e0b', emoji: '📱', img: null },
-  { caption: 'Study group, one dashboard', tone: '#10b981', emoji: '👥', img: null },
-  { caption: 'Predicted grade day', tone: '#ef4444', emoji: '🎯', img: null },
+  { caption: 'Project build in progress', tone: '#3b82f6', emoji: '📐', img: '/photos/student-1.jpg' },
+  { caption: 'Robotics after class', tone: '#8b5cf6', emoji: '⚡', img: '/photos/student-2.jpg' },
+  { caption: 'Chemistry practical', tone: '#f59e0b', emoji: '🧪', img: '/photos/student-3.jpg' },
+  { caption: 'Demo day', tone: '#10b981', emoji: '👥', img: '/photos/student-4.jpg' },
+  { caption: 'Group project, one goal', tone: '#ef4444', emoji: '🎯', img: '/photos/student-5.jpg' },
 ];
 
 export function PhotoPlaceholder({ tone, emoji, caption }) {

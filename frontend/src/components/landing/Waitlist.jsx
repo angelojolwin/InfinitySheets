@@ -70,7 +70,7 @@ export default function Waitlist({ variant = 'section', id }) {
   );
 
   const errorLine = status === 'error' && <p className="mt-3 text-[13px] text-red-600">Please enter a valid email address.</p>;
-  const footnote = <p className="mt-3 text-[12.5px] text-slate-500">Free at launch. We&rsquo;ll never share your email.</p>;
+  const footnote = <p className="mt-3 text-[12.5px] text-slate-500">Free at launch. <a href="#privacy" className="underline decoration-slate-600/40 hover:text-slate-400">We&rsquo;ll never share your email.</a></p>;
 
   if (inline) {
     return (

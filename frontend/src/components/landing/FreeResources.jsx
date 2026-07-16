@@ -19,7 +19,7 @@ export default function FreeResources() {
                 Every past paper. Every syllabus. One page.
               </h2>
               <p className="mt-6 text-[17px] sm:text-[18px] text-slate-600 leading-relaxed max-w-[560px]">
-                We collected the official past papers, syllabi, and best free archives for all
+                Every subject, fully accounted for. We collected the official past papers, syllabi, and best free archives for all
                 {' '}{RESOURCE_TRACKS.length} curricula&mdash;so you never dig through ten tabs again.
                 No account. No catch. Just links to the real sources.
               </p>

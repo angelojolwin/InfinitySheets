@@ -31,6 +31,7 @@ export default function Footer() {
               <li key={l.href}><a href={l.href} className="text-[13.5px] text-zinc-600 hover:text-zinc-900 transition-colors">{l.label}</a></li>
             ))}
             <li><a href="#signup" className="text-[13.5px] text-zinc-600 hover:text-zinc-900 transition-colors">Start free</a></li>
+            <li><a href="#privacy" className="text-[13.5px] text-zinc-600 hover:text-zinc-900 transition-colors">Privacy</a></li>
           </ul>
         </div>
         <div className="col-span-2">
