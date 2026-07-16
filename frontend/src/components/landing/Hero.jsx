@@ -60,14 +60,23 @@ export default function Hero() {
           <a href="#signup" className="btn-violet inline-flex items-center gap-2 px-8 py-4 rounded-xl text-[17px] font-semibold shadow-lg shadow-violet-300/40">
             Start Free <ArrowRight className="w-5 h-5" />
           </a>
-          {/* One dominant CTA per screen — the rest demoted to quiet text links */}
-          <button onClick={() => setVideoOpen(true)} className="inline-flex items-center gap-1.5 px-4 py-4 text-[15px] font-medium text-slate-600 hover:text-slate-900 transition-colors">
-            <Play className="w-4 h-4 text-red-600" /> Watch video
+          {/* Secondary: the product walkthrough — the only visual proof on the page */}
+          <button onClick={() => setVideoOpen(true)} className="btn-outline-dark inline-flex items-center gap-2 px-6 py-4 rounded-xl text-[16px] font-medium">
+            <Play className="w-5 h-5 text-red-600" /> Watch video
           </button>
           <button onClick={onDemo} className="inline-flex items-center gap-1.5 px-4 py-4 text-[15px] font-medium text-slate-600 hover:text-violet-700 transition-colors">
             <Eye className="w-4 h-4" /> Try without signing up
           </button>
         </motion.div>
+        <motion.a
+          href="#try"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.28 }}
+          className="mt-5 text-[14px] text-blue-600 hover:text-blue-700 font-medium transition-colors"
+        >
+          or try a real exam question right now &darr;
+        </motion.a>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}

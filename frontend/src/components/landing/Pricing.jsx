@@ -36,9 +36,9 @@ export default function Pricing() {
           </Reveal>
           <Reveal from="scale" delay={0.15}>
             <div className="relative rounded-3xl p-8 liquid-glass-clear shadow-2xl shadow-slate-900/10">
-              {/* Sheety floating in to celebrate the price tag */}
-              <div className="hidden lg:block absolute -top-16 -right-10 pointer-events-none" aria-hidden="true">
-                <Mascot pose="float" width={92} />
+              {/* Sheety sitting on the pricing card, legs dangling over $0 */}
+              <div className="hidden lg:block absolute -top-[74px] right-8 pointer-events-none" aria-hidden="true">
+                <Mascot pose="sit" width={84} />
               </div>
               <div className="text-[11px] tracking-[0.14em] uppercase font-semibold text-blue-600">Everything, free</div>
               <div className="flex items-baseline gap-3 mt-3">

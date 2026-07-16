@@ -7,7 +7,6 @@ import HowItWorks from './HowItWorks';
 import TryQuestion from './TryQuestion';
 import PredictedGrade from './PredictedGrade';
 import FreeResources from './FreeResources';
-import Research from './Research';
 import FoundingStory from './FoundingStory';
 import FAQ from './FAQ';
 import Pricing from './Pricing';
@@ -55,7 +54,6 @@ export default function LandingPage({ hash }) {
       <TryQuestion />
       <PredictedGrade />
       <FreeResources />
-      <Research />
       <FoundingStory />
       <FAQ />
       <Pricing />

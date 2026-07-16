@@ -102,12 +102,12 @@ export default function StudentGallery3D() {
       <div className="max-w-[1280px] mx-auto px-6 pt-4 pb-14 text-center">
         <Reveal>
           <div className="relative inline-block">
-            <div className="eyebrow mb-3">Features</div>
-            <h2 className="h-display text-[28px] sm:text-[34px] lg:text-[40px] leading-[1.05]">Everything you need to study smarter.</h2>
-            {/* Sheety drifting alongside the heading */}
-            <div className="hidden lg:block absolute -right-28 -top-8 pointer-events-none" aria-hidden="true">
-              <Mascot pose="float" width={86} />
+            {/* Sheety peeking out from behind the heading, hanging onto it */}
+            <div className="hidden lg:block absolute -top-[38px] right-10 -z-10 pointer-events-none -rotate-6" aria-hidden="true">
+              <Mascot pose="peek" width={66} />
             </div>
+            <div className="relative eyebrow mb-3">Features</div>
+            <h2 className="relative h-display text-[28px] sm:text-[34px] lg:text-[40px] leading-[1.05]">Everything you need to study smarter.</h2>
           </div>
         </Reveal>
         <div
