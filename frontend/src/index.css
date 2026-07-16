@@ -580,7 +580,7 @@ html.dark .liquid-glass-clear {
 .gallery3d-stage {
     display: none;
     perspective: 1500px;
-    min-height: 260px;
+    min-height: 300px;
     align-items: center;
     justify-content: center;
 }
@@ -593,9 +593,12 @@ html.dark .liquid-glass-clear {
 }
 .gallery3d-ring {
     position: relative;
-    width: 280px;
-    height: 210px;
+    width: 250px;
+    height: 252px;
     transform-style: preserve-3d;
+}
+.gallery3d-card .feature-demo svg {
+    max-height: 92px;
 }
 .gallery3d-card {
     position: absolute;

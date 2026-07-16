@@ -133,8 +133,8 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.45, ease: [0.22, 1, 0.36, 1] }}
           className="mt-16 text-center"
         >
-          <div className="eyebrow mb-3">Features</div>
-          <h2 className="h-display text-[30px] sm:text-[38px] lg:text-[44px] leading-[1.05]">Everything you need to study smarter.</h2>
+          <div className="eyebrow mb-3">In the wild</div>
+          <h2 className="h-display text-[30px] sm:text-[38px] lg:text-[44px] leading-[1.05]">Students already studying with it.</h2>
         </motion.div>
         <FeatureCarousel />
         <motion.div
