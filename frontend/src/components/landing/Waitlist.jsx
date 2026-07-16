@@ -16,7 +16,7 @@ const validEmail = (e) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e.trim());
  * used inside the hero (dark rounded card between the CTA buttons and the
  * feature belt); the default renders a full-width dark section.
  */
-export default function Waitlist({ variant = 'section' }) {
+export default function Waitlist({ variant = 'section', id }) {
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState('idle'); // idle | busy | done | error
   const inline = variant === 'inline';
@@ -92,7 +92,7 @@ export default function Waitlist({ variant = 'section' }) {
   }
 
   return (
-    <section id="waitlist" className="relative section-dark overflow-hidden">
+    <section id={id || 'waitlist-section'} className="relative section-dark overflow-hidden">
       <div className="max-w-[860px] mx-auto px-6 py-10 lg:py-12 text-center">
         <h2 className="h-display text-slate-900 text-[28px] sm:text-[34px] lg:text-[38px] leading-[1.05]">
           Be one of the first students in.

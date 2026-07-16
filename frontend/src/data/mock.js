@@ -49,12 +49,6 @@ export const HOW_IT_WORKS = [
   { n: '05', title: 'Track Your Progress', text: 'Watch topic mastery, predicted scores, and study streaks improve over time.' },
 ];
 
-export const RESEARCH_STATS = [
-  { num: '2\u00d7', title: 'The testing effect', desc: 'Roediger & Karpicke (2006): practicing retrieval roughly doubled long-term retention compared to repeated rereading.' },
-  { num: '#1', title: 'Top-rated study technique', desc: 'Dunlosky et al. (2013) reviewed ten popular study techniques and rated practice testing among the most effective of all.' },
-  { num: 'Targeted', title: 'Feedback accelerates learning', desc: 'Decades of research show that immediate, specific feedback\u2014exactly what every worksheet gives you\u2014speeds up improvement.' },
-];
-
 // Subjects per exam track
 export const SUBJECTS = {
   AP: ['Calculus AB', 'Calculus BC', 'Physics 1', 'Chemistry', 'Biology', 'English Language'],
